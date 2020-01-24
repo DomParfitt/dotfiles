@@ -4,14 +4,14 @@
           relink: true
           force: true
 
-- shell:
-      - command: ./pre-install.sh
-        description: Run pre-install script
-
 - clean:
       ~/:
       ~/.oh-my.zsh/custom:
           recursive: true
+
+- shell:
+      - command: ./pre-install.sh
+        description: Run pre-install script
 
 - link:
       ~/.profile: profile
