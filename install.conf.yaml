@@ -3,6 +3,10 @@
           create: true
           relink: true
 
+- shell:
+      - command: ./pre-install
+        description: Run pre-install script
+
 - clean:
       ~/:
       ~/.oh-my.zsh/custom:
