@@ -13,15 +13,12 @@
       ~/.bashrc: bashrc
       ~/.bash_logout: bash_logout
       ~/.gitconfig: gitconfig
-      ~/.ssh/config:
-          path: ssh/config
+      ~/.ssh/config: ssh/config
       ~/.vimrc: vimrc
       ~/.zprofile: zprofile
       ~/.zshrc: zshrc
-      ~/bin:
-          path: bin/
-      ~/.config/i3:
-          path: config/i3/
+      ~/bin: bin/
+      ~/.config/i3: config/i3/
 
 - create:
       - ~/projects
