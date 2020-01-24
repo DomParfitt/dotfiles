@@ -4,7 +4,7 @@
           relink: true
 
 - shell:
-      - command: bash pre-install
+      - command: ./pre-install.sh
         description: Run pre-install script
 
 - clean:
