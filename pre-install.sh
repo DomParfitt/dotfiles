@@ -7,3 +7,5 @@ if ! [[ -d ${oh_my_zsh} ]]; then
 else
     upgrade_oh_my_zsh
 fi
+
+chsh -s "$(which zsh)"
