@@ -8,4 +8,12 @@ else
     upgrade_oh_my_zsh
 fi
 
+# Check for Rust and install it if it isn't present
+rustup="$HOME/.rustup"
+if ! [[ -d "${rustup}" ]]; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+    rustup update
+fi
+
 chsh -s "$(which zsh)"
