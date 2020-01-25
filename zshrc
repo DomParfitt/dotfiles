@@ -64,6 +64,8 @@ plugins=(
   zsh-nvm
   git
   aws
+  rust
+  cargo
 )
 
 source $ZSH/oh-my-zsh.sh
