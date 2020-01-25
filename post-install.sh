@@ -10,4 +10,3 @@ if ! [[ -d "${rustup}" ]]; then
 else
     rustup update
 fi
-
