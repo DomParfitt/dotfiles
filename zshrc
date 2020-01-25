@@ -118,7 +118,9 @@ export TLDR_PARAM='cyan bold'
 PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
 
 # Completion for NVM
-[[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
+if [[ -r "$NVM_DIR/bash_completion" ]]; then
+  source "$NVM_DIR/bash_completion"
+fi
 
 # Completion for AWS CLI
 if [[ -f "$HOME/.local/bin/aws_zsh_completer.sh" ]] ; then
