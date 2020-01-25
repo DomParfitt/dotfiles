@@ -8,8 +8,6 @@
 
 - clean:
       ~/:
-      ~/.oh-my-zsh/custom:
-          recursive: true
 
 - shell:
       - command: git submodule update --init --recursive
@@ -27,7 +25,6 @@
       ~/.zshrc: zshrc
       ~/bin: bin/
       ~/.config/i3: config/i3/
-      ~/.oh-my-zsh/custom: oh-my-zsh/custom
       ~/.fonts: fonts
       ~/.aliases: aliases
 
