@@ -15,5 +15,6 @@ if ! [[ -d "${rustup}" ]]; then
 else
     rustup update
 fi
+rustup completions zsh > ~/.zfunc/_rustup
 
 chsh -s "$(which zsh)"
