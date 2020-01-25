@@ -31,3 +31,4 @@
 
 - create:
       - ~/projects
+      - ~/.zfunc
