@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "$HOME/.zshrc"
-
 # Check for Rust and install it if it isn't present
 rustup="$HOME/.rustup"
 if ! [[ -d "${rustup}" ]]; then
