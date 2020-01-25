@@ -14,4 +14,4 @@ else
     upgrade_oh_my_zsh
 fi
 
-chsh -s "$(which zsh)"
+# chsh -s "$(which zsh)"
