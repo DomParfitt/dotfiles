@@ -108,6 +108,11 @@ path+=(
 
 export PATH
 
+# Set FPath for functions
+fpath+=(
+  "$HOME/.zfunc"
+)
+
 # TLDR Formatting
 export TLDR_QUOTE='white italic'
 export TLDR_HEADER='blue bold underline'
