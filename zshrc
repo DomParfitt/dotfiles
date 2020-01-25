@@ -77,9 +77,6 @@ export TLDR_DESCRIPTION='green bold italic'
 export TLDR_CODE='red bold'
 export TLDR_PARAM='cyan bold'
 
-# Change prompt to show full path
-PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
-
 # Completion for NVM
 if [[ -r "$NVM_DIR/bash_completion" ]]; then
   source "$NVM_DIR/bash_completion"
@@ -92,20 +89,10 @@ fi
 
 # Completions for Rust/Cargo
 if ! [[ -r "$HOME/.zfunc/_rustup" ]]; then
-  rustup completions zsh > ~/.zfunc/_rustup
+  rustup completions zsh > "$HOME/.zfunc/_rustup"
 fi
 
-# Purepower config for Powerlevel10k
-if [[ -r "$HOME/.purepower" ]]; then
-  source "$HOME/.purepower"
+# Source Powerlevel10k config
+if [[ -r "$HOME/.p10k.zsh" ]]; then
+  source "$HOME/.p10k.zsh"
 fi
-
-# Custom config for Powerlevel10k
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(public_ip aws)
-# export POWERLEVEL9K_PROMPT_ON_NEWLINE=false
-export POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%(?.%F{002}\u03BB%f.%F{009}\u03BB%f) "
-export POWERLEVEL9K_PUBLIC_IP_BACKGROUND='026'
-export POWERLEVEL9K_AWS_BACKGROUND='208'
-export POWERLEVEL9K_AWS_FOREGROUND='239'
-export POWERLEVEL9K_MODE='nerdfont-complete'
