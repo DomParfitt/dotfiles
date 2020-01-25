@@ -20,7 +20,6 @@
       ~/.gitconfig: gitconfig
       ~/.ssh/config: ssh/config
       ~/.vimrc: vimrc
-      ~/.zprofile: zprofile
       ~/.zshrc: zshrc
       ~/bin: bin/
       ~/.config/i3: config/i3/

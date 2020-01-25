@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -98,7 +95,16 @@ alias quad="terminator -l quad"
 
 # Set PATH
 export GOPATH=$HOME/go
-export PATH="$PATH:~/bin:$GOPATH/bin"
+# export PATH="$PATH:~/bin:$GOPATH/bin"
+# export PATH="$HOME/.cargo/bin:$PATH"
+path+=(
+  "$HOME/bin"
+  "/usr/local/bin"
+  "$GOPATH/bin"
+  "$HOME/.cargo/bin"
+)
+
+export PATH
 
 # TLDR Formatting
 export TLDR_QUOTE='white italic'
