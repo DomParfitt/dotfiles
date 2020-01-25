@@ -12,8 +12,6 @@
 - shell:
       - command: git submodule update --init --recursive
         description: Installing git submodules
-      - command: ./pre-install.sh
-        description: Running pre-install script
 
 - link:
       ~/.profile: profile
@@ -29,6 +27,10 @@
       ~/.oh-my-zsh/custom: oh-my-zsh/custom
       ~/.fonts: fonts
       ~/.aliases: aliases
+
+- shell:
+      - command: ./pre-install.sh
+        description: Running pre-install script
 
 - create:
       - ~/projects
