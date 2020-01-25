@@ -14,7 +14,7 @@ antigen bundles <<EOBUNDLES
   cargo
 EOBUNDLES
 
-antigen theme romkatv/powerlevel10k
+# antigen theme romkatv/powerlevel10k
 antigen theme robbyrussell
 
 antigen apply
@@ -78,13 +78,13 @@ export UPDATE_ZSH_DAYS=7
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  zsh-nvm
-  git
-  aws
-  rust
-  cargo
-)
+# plugins=(
+#   zsh-nvm
+#   git
+#   aws
+#   rust
+#   cargo
+# )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,9 +114,8 @@ alias ts="yo simple-ts"
 alias quad="terminator -l quad"
 
 # Set PATH
-export GOPATH=$HOME/go
-# export PATH="$PATH:~/bin:$GOPATH/bin"
-# export PATH="$HOME/.cargo/bin:$PATH"
+export GOPATH="$HOME/go"
+
 path+=(
   "$HOME/bin"
   "/usr/local/bin"
@@ -147,12 +146,17 @@ if [[ -r "$NVM_DIR/bash_completion" ]]; then
 fi
 
 # Completion for AWS CLI
-if [[ -f "$HOME/.local/bin/aws_zsh_completer.sh" ]] ; then
+if [[ -r "$HOME/.local/bin/aws_zsh_completer.sh" ]] ; then
   source "$HOME/.local/bin/aws_zsh_completer.sh"
 fi
 
+# Completions for Rust/Cargo
+if ! [[ -r "$HOME/.zfunc/_rustup" ]]; then
+  rustup completions zsh > ~/.zfunc/_rustup
+fi
+
 # Purepower config for Powerlevel10k
-if [[ -f "$HOME/.purepower" ]]; then
+if [[ -r "$HOME/.purepower" ]]; then
   source "$HOME/.purepower"
 fi
 
