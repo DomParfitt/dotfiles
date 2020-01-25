@@ -1,18 +1,15 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#  ZSH_THEME="robbyrussell"
-# ZSH_THEME="spaceship"
-# ZSH_THEME="nt9"
-# ZSH_THEME="dom"
-ZSH_THEME=powerlevel10k/powerlevel10k
+ ZSH_THEME="robbyrussell"
+# ZSH_THEME=powerlevel10k/powerlevel10k
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -103,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias emacs="emacs -nw"
+source ~/.aliases
 alias ts="yo simple-ts"
 alias quad="terminator -l quad"
 
@@ -119,27 +117,20 @@ export TLDR_PARAM='cyan bold'
 # Change prompt to show full path
 PROMPT='${ret_status} %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)'
 
-
 # Completion for NVM
 [[ -r $NVM_DIR/bash_completion ]] && \. $NVM_DIR/bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/dom/google-cloud-sdk/path.zsh.inc' ]; then . '/home/dom/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/dom/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/dom/google-cloud-sdk/completion.zsh.inc'; fi
-
 # Completion for AWS CLI
-source $HOME/.local/bin/aws_zsh_completer.sh
+if [[ -f "$HOME/.local/bin/aws_zsh_completer.sh" ]] ; then
+  source "$HOME/.local/bin/aws_zsh_completer.sh"
+fi
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/dom/repos/key-rotate/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/dom/repos/key-rotate/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/dom/repos/key-rotate/node_modules/tabtab/.completions/sls.zsh ]] && . /home/dom/repos/key-rotate/node_modules/tabtab/.completions/sls.zsh
+# Purepower config for Powerlevel10k
+if [[ -f "$HOME/.purepower" ]]; then
+  source "$HOME/.purepower"
+fi
 
-source ~/.purepower
+# Custom config for Powerlevel10k
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir_writable dir vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(public_ip aws)
 # export POWERLEVEL9K_PROMPT_ON_NEWLINE=false
@@ -148,6 +139,3 @@ export POWERLEVEL9K_PUBLIC_IP_BACKGROUND='026'
 export POWERLEVEL9K_AWS_BACKGROUND='208'
 export POWERLEVEL9K_AWS_FOREGROUND='239'
 export POWERLEVEL9K_MODE='nerdfont-complete'
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /home/dom/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /home/dom/.nvm/versions/node/v10.15.3/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh

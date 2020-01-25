@@ -28,6 +28,7 @@
       ~/.config/i3: config/i3/
       ~/.oh-my-zsh/custom: oh-my-zsh/custom
       ~/.fonts: fonts
+      ~/.aliases: aliases
 
 - create:
       - ~/projects
