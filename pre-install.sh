@@ -11,5 +11,3 @@ oh_my_zsh="$HOME/.oh-my-zsh"
 if ! [[ -d "$oh_my_zsh" ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
-
-# sudo chsh -s "$(which zsh)"
