@@ -17,8 +17,8 @@ EOBUNDLES
 
 # Install themes
 
-# antigen theme romkatv/powerlevel10k
-antigen theme robbyrussell
+antigen theme romkatv/powerlevel10k
+# antigen theme robbyrussell
 
 # Apply antigen config
 antigen apply
