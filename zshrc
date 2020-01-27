@@ -83,13 +83,13 @@ if [[ -r "$NVM_DIR/bash_completion" ]]; then
 fi
 
 # Completion for AWS CLI
-if [[ -r "$HOME/.local/bin/aws_zsh_completer.sh" ]] ; then
+if [[ -r "$HOME/.local/bin/aws_zsh_completer.sh" ]]; then
   source "$HOME/.local/bin/aws_zsh_completer.sh"
 fi
 
 # Completions for Rust/Cargo
 if ! [[ -r "$HOME/.zfunc/_rustup" ]]; then
-  rustup completions zsh > "$HOME/.zfunc/_rustup"
+  rustup completions zsh >"$HOME/.zfunc/_rustup"
 fi
 
 # Source Powerlevel10k config
