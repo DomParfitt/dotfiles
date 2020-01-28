@@ -1,38 +1,38 @@
 - defaults:
-      link:
-          create: true
-          relink: true
-          force: true
-      shell:
-          stderr: true
+    link:
+      create: true
+      relink: true
+      force: true
+    shell:
+      stderr: true
 
 - clean:
-      ~/:
+    ~/:
 
 - shell:
-      - command: git submodule update --init --recursive
-        description: Installing git submodules
-      - command: ./pre-install.sh
-        description: Running pre-install script
+    - command: git submodule update --init --recursive
+      description: Installing git submodules
+    - command: ./pre-install.sh
+      description: Running pre-install script
 
 - link:
-      ~/.profile: profile
-      ~/.bashrc: bashrc
-      ~/.bash_logout: bash_logout
-      ~/.gitconfig: gitconfig
-      ~/.ssh/config: ssh/config
-      ~/.vimrc: vimrc
-      ~/.zshrc: zshrc
-      ~/bin: bin/
-      ~/.config/i3: config/i3/
-      ~/.fonts: fonts
-      ~/.aliases: aliases
-      ~/.p10k.zsh: p10k.zsh
+    ~/.profile: profile
+    ~/.bashrc: bashrc
+    ~/.bash_logout: bash_logout
+    ~/.gitconfig: gitconfig
+    ~/.ssh/config: ssh/config
+    ~/.vimrc: vimrc
+    ~/.zshrc: zshrc
+    ~/bin: bin/
+    ~/.config/i3: config/i3/
+    ~/.fonts: fonts
+    ~/.aliases: aliases
+    ~/.p10k.zsh: p10k.zsh
 
 - create:
-      - ~/projects
-      - ~/.zfunc
+    - ~/projects
+    - ~/.zfunc
 
 - shell:
-      - command: ./post-install.sh
-        description: Running post-install script
+    - command: ./post-install.sh
+      description: Running post-install script
