@@ -9,7 +9,6 @@ antigen use oh-my-zsh
 # Install plugins
 antigen bundles <<EOBUNDLES
   lukechilds/zsh-nvm
-  git
   aws
   rust
   cargo
