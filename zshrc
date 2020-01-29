@@ -13,6 +13,7 @@ antigen bundles <<EOBUNDLES
   aws
   rust
   cargo
+  tmux
 EOBUNDLES
 
 # Install themes
