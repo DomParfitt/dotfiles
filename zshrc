@@ -50,6 +50,11 @@ source "$ZSH/oh-my-zsh.sh"
 # Import and set aliases
 source "$HOME/.aliases"
 
+# Set PAGER
+if which most > /dev/null 2>&1; then
+  export PAGER='most'
+fi
+
 # Set PATH
 export GOPATH="$HOME/go"
 
