@@ -49,8 +49,6 @@ source "$ZSH/oh-my-zsh.sh"
 
 # Import and set aliases
 source "$HOME/.aliases"
-alias ts="yo simple-ts"
-alias quad="terminator -l quad"
 
 # Set PATH
 export GOPATH="$HOME/go"
