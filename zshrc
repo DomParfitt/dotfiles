@@ -15,9 +15,7 @@ antigen bundles <<EOBUNDLES
 EOBUNDLES
 
 # Install themes
-
 antigen theme romkatv/powerlevel10k
-# antigen theme robbyrussell
 
 # Apply antigen config
 antigen apply
@@ -25,27 +23,8 @@ antigen apply
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=7
 
+# Run Oh My ZSH
 source "$ZSH/oh-my-zsh.sh"
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Import and set aliases
 source "$HOME/.aliases"
