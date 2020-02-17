@@ -29,6 +29,7 @@
     ~/.aliases: aliases
     ~/.p10k.zsh: p10k.zsh
     ~/.tmux.conf: tmux.conf
+    ~/.tmux.conf.borderless: tmux.conf.borderless
     ~/.Xresources: Xresources
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.tmuxp: tmuxp
