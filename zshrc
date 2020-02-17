@@ -5,6 +5,22 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Start tmux automatically and close the terminal on exiting tmux
+# Check we're on a graphical shell
+if [[ "$DISPLAY" ]]; then
+
+  # Check tmux is installed
+  if command -v tmux > /dev/null 2>&1; then
+
+    # Check we're running an interactive shell and we're not already in tmux
+    if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
+      
+      # Run tmux and when that process closes exit the terminal
+      tmux && exit
+    fi
+  fi
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 

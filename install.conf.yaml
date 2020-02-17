@@ -28,6 +28,8 @@
     ~/.fonts: fonts
     ~/.aliases: aliases
     ~/.p10k.zsh: p10k.zsh
+    ~/.tmux.conf: tmux.conf
+    ~/.Xresources: Xresources
 
 - create:
     - ~/projects
