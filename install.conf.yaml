@@ -30,6 +30,7 @@
     ~/.p10k.zsh: p10k.zsh
     ~/.tmux.conf: tmux.conf
     ~/.Xresources: Xresources
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
 
 - create:
     - ~/projects
