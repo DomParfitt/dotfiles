@@ -1,20 +1,27 @@
 alias ls='ls --color=auto'
 alias ll='ls -ahl'
 
+# Use `bat` if it's installed
 if command -v bat > /dev/null 2>&1; then
   alias cat='bat'
 fi
 
+# Use `exa` if it's installed
 if command -v exa > /dev/null 2>&1; then
   alias ls='exa'
 fi
 
+# Use `ripgrep` if it's installed
 if command -v rg > /dev/null 2>&1; then
   alias grep='rg'
 fi
 
+# Use `most` as the `man` pager if it's installed
 if command -v most > /dev/null 2>&1; then
   alias man='man -P most'
 fi
+
+# Close all `tmux` panes
+alias close="tmux kill-session -t $(tmux display-message -p \"#S\")"
 
 alias ts='yo simple-ts'
