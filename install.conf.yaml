@@ -31,6 +31,7 @@
     ~/.tmux.conf: tmux.conf
     ~/.Xresources: Xresources
     ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.tmuxp: tmuxp
 
 - create:
     - ~/projects
