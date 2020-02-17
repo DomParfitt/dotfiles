@@ -1,1 +1,2 @@
-:set number
+set number
+colorscheme delek
