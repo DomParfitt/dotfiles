@@ -1,0 +1,9 @@
+session_name: quad
+windows:
+  - window_name: quad
+    layout: tiled
+    panes:
+      - clear
+      - clear
+      - clear
+      - clear
