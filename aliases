@@ -9,6 +9,10 @@ if command -v exa > /dev/null 2>&1; then
   alias ls='exa'
 fi
 
+if command -v rg > /dev/null 2>&1; then
+  alias grep='rg'
+fi
+
 if command -v most > /dev/null 2>&1; then
   alias man='man -P most'
 fi
