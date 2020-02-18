@@ -3,7 +3,9 @@ windows:
   - window_name: quad
     layout: tiled
     panes:
-      - clear
+      - shell_command:
+          - clear
+        focus: true
       - clear
       - clear
       - clear
