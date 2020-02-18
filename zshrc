@@ -9,7 +9,7 @@ if [[ "$DISPLAY" ]]; then
     if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
       
       # Run tmux and when that process closes exit the terminal
-      tmux && (tmux kill-server || true) && exit
+      tmux && exit
     fi
   fi
 fi
