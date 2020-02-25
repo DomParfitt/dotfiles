@@ -27,7 +27,6 @@
     ~/.tmux.conf.borderless: tmux.conf.borderless
     ~/.tmuxp: tmuxp
     ~/.vimrc: vimrc
-    ~/.Xresources: Xresources
     ~/.zshrc: zshrc
     ~/bin: bin/
 
