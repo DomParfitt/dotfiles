@@ -59,10 +59,10 @@ source "$HOME/.aliases"
 export GOPATH="$HOME/go"
 
 path+=(
-  "$HOME/bin"
-  "/usr/local/bin"
   "$GOPATH/bin"
+  "$HOME/bin"
   "$HOME/.cargo/bin"
+  "/usr/local/bin"
 )
 
 export PATH
