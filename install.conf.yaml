@@ -24,7 +24,6 @@
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
     ~/bin: bin/
-    ~/.config/i3: config/i3/
     ~/.fonts: fonts
     ~/.aliases: aliases
     ~/.p10k.zsh: p10k.zsh
