@@ -16,22 +16,20 @@
       description: Running pre-install script
 
 - link:
-    ~/.profile: profile
-    ~/.bashrc: bashrc
-    ~/.bash_logout: bash_logout
-    ~/.gitconfig: gitconfig
-    ~/.ssh/config: ssh/config
-    ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
-    ~/bin: bin/
-    ~/.fonts: fonts
     ~/.aliases: aliases
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.fonts: fonts
+    ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh
+    ~/.profile: profile
+    ~/.ssh/config: ssh/config
     ~/.tmux.conf: tmux.conf
     ~/.tmux.conf.borderless: tmux.conf.borderless
-    ~/.Xresources: Xresources
-    ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.tmuxp: tmuxp
+    ~/.vimrc: vimrc
+    ~/.Xresources: Xresources
+    ~/.zshrc: zshrc
+    ~/bin: bin/
 
 - create:
     - ~/projects
