@@ -42,4 +42,7 @@ export function borderless() {
   tmux source-file "$config_file"
 }
 
+# Alias xclip to use `clipboard` by default
+alias xclip="xclip -selection clipboard"
+
 alias ts='yo simple-ts'
