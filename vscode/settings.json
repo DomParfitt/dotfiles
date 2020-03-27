@@ -1,0 +1,96 @@
+{
+  "[*.sh]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "[haskell]": {
+    "editor.defaultFormatter": "alanz.vscode-hie-server"
+  },
+  "[javascript]": {
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.tabSize": 2
+  },
+  "[markdown]": {},
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "breadcrumbs.enabled": true,
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "C_Cpp.default.includePath": [
+    "../include"
+  ],
+  "coverage-gutters.coverageReportFileName": "test-results/jest/**",
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.largeFileOptimizations": false,
+  "editor.minimap.enabled": false,
+  "files.associations": {
+    "*.cf": "yaml",
+    "*.inc": "php",
+    "*.module": "php"
+  },
+  "files.autoSave": "afterDelay",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "gitlens.views.compare.location": "gitlens",
+  "gitlens.views.fileHistory.location": "gitlens",
+  "gitlens.views.lineHistory.location": "gitlens",
+  "gitlens.views.repositories.location": "gitlens",
+  "gitlens.views.search.location": "gitlens",
+  "languageServerHaskell.hieExecutablePath": "~/.local/bin/hie-wrapper",
+  "markdown.extension.toc.githubCompatibility": true,
+  "markdown.extension.toc.levels": "2..6",
+  "markdown.extension.toc.orderedList": true,
+  "php.validate.executablePath": "/usr/bin/php",
+  "shellcheck.customArgs": [
+    "-x"
+  ],
+  "shellcheck.disableVersionCheck": true,
+  "shellcheck.ignorePatterns": {
+    "**/*.zsh": true
+  },
+  "sync.gist": "e853d7cf7e1a7bfef0b116ed999b21a0",
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "view-in-browser.customBrowser": "chrome",
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "yaml.customTags": [
+    "!And sequence",
+    "!And",
+    "!Base64",
+    "!Cidr",
+    "!Equals sequence",
+    "!Equals",
+    "!FindInMap sequence",
+    "!FindInMap",
+    "!GetAZs",
+    "!GetAtt sequence",
+    "!GetAtt",
+    "!If sequence",
+    "!If",
+    "!ImportValue sequence",
+    "!ImportValue",
+    "!Join sequence",
+    "!Join",
+    "!Not sequence",
+    "!Not",
+    "!Or sequence",
+    "!Or",
+    "!Ref",
+    "!Select sequence",
+    "!Select",
+    "!Split sequence",
+    "!Split",
+    "!Sub sequence",
+    "!Sub"
+],
+  "yaml.format.enable": true,
+  "yaml.validate": false
+}
