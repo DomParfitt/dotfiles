@@ -18,6 +18,8 @@
 - link:
     ~/.aliases: aliases
     ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.config/Code/User/settings.json: vscode/settings.json
+    ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.fonts: fonts
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh

@@ -7,3 +7,7 @@ if ! [[ -d "${rustup}" ]]; then
 else
     rustup update
 fi
+
+if command -v code > /dev/null 2>&1; then
+    xargs -L 1 code --install-extension < vscode/extensions.txt
+fi
