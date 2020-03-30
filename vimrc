@@ -19,7 +19,30 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+" 
+" ALE Config
+"
+let g:ale_completion_enabled=1
+let g:ale_completion_tsserver_autoimport = 1
+
+" 
+" IndentLine Config
+"
+let g:indentLine_char='▏'
+
+" 
+" Lightline Config
+"
+set laststatus=2
+set noshowmode
+
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+
+" 
 " OneDark Config
+"
 let g:onedark_termcolors=16
 colorscheme onedark
 
@@ -27,15 +50,4 @@ colorscheme onedark
 highlight EndOfBuffer ctermfg=darkgrey
 highlight LineNr ctermfg=darkgrey
 highlight Comment ctermfg=darkgrey
-
-" Lightline Config
-set laststatus=2
-set noshowmode
-
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ }
-
-" IndentLine Config
-let g:indentLine_char='▏'
 
