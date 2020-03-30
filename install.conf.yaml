@@ -18,8 +18,8 @@
 - link:
     ~/.aliases: aliases
     ~/.config/alacritty/alacritty.yml: alacritty.yml
-    ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
+    ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.fonts: fonts
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh
@@ -28,6 +28,7 @@
     ~/.tmux.conf: tmux.conf
     ~/.tmux.conf.borderless: tmux.conf.borderless
     ~/.tmuxp: tmuxp
+    ~/.vim/autoload/plug.vim: plug.vim
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
     ~/bin: bin/
