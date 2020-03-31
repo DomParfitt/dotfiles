@@ -17,6 +17,8 @@ map! <ESC>[1;5C <C-Right>
 call plug#begin('~/.vim/plugged')
 
   Plug 'dense-analysis/ale'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
@@ -28,8 +30,18 @@ call plug#end()
 " 
 " ALE Config
 "
-let g:ale_completion_enabled=1
-let g:ale_completion_tsserver_autoimport = 1
+let g:ale_lint_on_text_changed=1
+
+"
+" CoC Config
+"
+
+" Map tab and shift-tab to cycle through completions list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Map ctrl-space to open completions list
+inoremap <silent><expr> <c-@> coc#refresh()
 
 " 
 " IndentLine Config
