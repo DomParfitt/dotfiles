@@ -7,6 +7,12 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
+" Correct mappings for Ctrl+<Left|Right>
+map  <ESC>[1;5D <C-Left>
+map! <ESC>[1;5D <C-Left>
+map  <ESC>[1;5C <C-Right>
+map! <ESC>[1;5C <C-Right>
+
 " Setup plugins
 call plug#begin('~/.vim/plugged')
 
