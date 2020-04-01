@@ -1,4 +1,5 @@
 alias ls='ls --color=auto'
+alias l='ls -hl'
 alias ll='ls -ahl'
 
 # Use `bat` if it's installed
