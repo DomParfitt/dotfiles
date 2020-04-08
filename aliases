@@ -31,18 +31,6 @@ export function tx() {
 # Close all `tmux` panes
 alias close="tmux kill-session -t $(tmux display-message -p \"#S\")"
 
-# Switch `tmux` configs
-export function borderless() {
-  local mode=$1
-  local config_file="$HOME/.tmux.conf.borderless"
-
-  if [[ "${mode}" == "off" ]]; then
-    config_file="$HOME/.tmux.conf"
-  fi
-
-  tmux source-file "$config_file"
-}
-
 # Alias xclip to use `clipboard` by default
 alias xclip="xclip -selection clipboard"
 
