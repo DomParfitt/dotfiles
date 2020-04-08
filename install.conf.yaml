@@ -26,7 +26,6 @@
     ~/.profile: profile
     ~/.ssh/config: ssh/config
     ~/.tmux.conf: tmux.conf
-    ~/.tmux.conf.borderless: tmux.conf.borderless
     ~/.tmuxp: tmuxp
     ~/.vim/autoload/plug.vim: plug.vim
     ~/.vimrc: vimrc
