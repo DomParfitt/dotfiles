@@ -92,5 +92,6 @@
     "!Sub"
 ],
   "yaml.format.enable": true,
-  "yaml.validate": false
+"yaml.validate": false,
+"diffEditor.ignoreTrimWhitespace": false
 }
