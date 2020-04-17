@@ -68,6 +68,7 @@ bindsym $mod+l exec --no-startup-id blurlock
 
 # Start app launcher
 bindsym $mod+a exec --no-startup-id $app_launcher
+exec_always xcape -e 'Super_L=Super_L|a'
 
 # Launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
