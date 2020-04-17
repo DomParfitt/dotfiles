@@ -1,0 +1,333 @@
+#########################
+# General Configuration #
+#########################
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border pixel 1
+default_floating_border normal
+
+# Set default font
+font xft:URWGothic-Book 11
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Focus on container under mouse
+focus_follows_mouse yes
+
+# Set inner/outer gaps
+gaps inner 14
+gaps outer -2
+
+# Don't show gaps if there's only one window
+smart_gaps on
+smart_borders on
+
+###########
+# Aliases #
+###########
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+# Set alias for num_lock
+set $num_lock Mod2
+
+# Set default browser
+set $browser firefox
+
+# Set default file manager
+set $file_man pcmanfm #ranger
+
+# Set application launcher
+set $app_launcher dmenu_recency
+
+# Set workspace aliases
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+
+################
+# Key Bindings #
+################
+
+# Start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Close Window
+bindsym $mod+Shift+q kill
+
+# Lock screen
+bindsym $mod+l exec --no-startup-id blurlock
+
+# Start app launcher
+bindsym $mod+a exec --no-startup-id $app_launcher
+
+# Launch categorized menu
+bindsym $mod+z exec --no-startup-id morc_menu
+
+# Launch bmenu
+bindsym $mod+Ctrl+b exec i3-sensible-terminal -e 'bmenu'
+
+# Launch browser
+bindsym $mod+F2 exec $browser
+
+# Open file browser
+bindsym $mod+e exec $file_man
+
+# Reload i3 config
+bindsym $mod+Shift+c reload
+
+# Restart i3
+bindsym $mod+Shift+r restart
+
+# Toggle fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Toggle status bar
+bindsym $mod+m bar mode toggle
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+
+# Enter resize mode
+bindsym $mod+r mode "resize"
+
+# Split orientation
+bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+q split toggle
+
+# Cycle workspaces
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# Window navigation
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# Move window
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# Switch workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# Switch workspaces using NumPad
+bindsym $mod+$num_lock+KP_1 workspace $ws1
+bindsym $mod+$num_lock+KP_2 workspace $ws2
+bindsym $mod+$num_lock+KP_3 workspace $ws3
+bindsym $mod+$num_lock+KP_4 workspace $ws4
+bindsym $mod+$num_lock+KP_5 workspace $ws5
+bindsym $mod+$num_lock+KP_6 workspace $ws6
+bindsym $mod+$num_lock+KP_7 workspace $ws7
+bindsym $mod+$num_lock+KP_8 workspace $ws8
+bindsym $mod+$num_lock+KP_9 workspace $ws9
+
+# Move focused container to workspace
+bindsym $mod+Ctrl+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Ctrl+9 move container to workspace $ws9; workspace $ws9
+
+# Move focused container to workspace with NumPad
+bindsym $mod+Ctrl+$num_lock+KP_1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+$num_lock+KP_2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+$num_lock+KP_3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+$num_lock+KP_4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Ctrl+$num_lock+KP_5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Ctrl+$num_lock+KP_6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Ctrl+$num_lock+KP_7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Ctrl+$num_lock+KP_8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Ctrl+$num_lock+KP_9 move container to workspace $ws9; workspace $ws9
+
+###########
+# Theming #
+###########
+
+# Set color aliases from .Xresources
+set_from_resource $term_background     background
+set_from_resource $term_foreground     foreground
+set_from_resource $term_black          color0
+set_from_resource $term_red            color1
+set_from_resource $term_green          color2
+set_from_resource $term_yellow         color3
+set_from_resource $term_blue           color4
+set_from_resource $term_magenta        color5
+set_from_resource $term_cyan           color6
+set_from_resource $term_white          color7
+set_from_resource $term_bright_black   color8
+set_from_resource $term_bright_red     color9
+set_from_resource $term_bright_green   color10
+set_from_resource $term_bright_yellow  color11
+set_from_resource $term_bright_blue    color12
+set_from_resource $term_bright_magenta color13
+set_from_resource $term_bright_cyan    color14
+set_from_resource $term_bright_white   color15
+
+# Set border colours for focussed and unfocussed windows
+#                       border       backgr.      text                indic.       child_border
+client.focused          $term_white  $term_white  $term_bright_white  $term_white  
+client.focused_inactive $term_white  $term_white  $term_bright_white  $term_white
+client.unfocused        $term_black  $term_black  $term_white         $term_black
+client.urgent           $term_red    $term_red    $term_white         $term_red
+
+###############
+# Status Bars #
+###############
+
+bar {
+
+  # Set bar and status providers
+	i3bar_command  i3bar
+	status_command i3status
+
+  # Place bar at top
+	position top 
+
+  # Don't show workspace numbers if they're named
+	strip_workspace_numbers yes
+
+  # Set bar colours
+  colors {
+    background $term_black
+    statusline $term_white
+    separator  $term_bright_black
+
+    #                   border              background          text
+    focused_workspace   $term_green         $term_green         $term_black
+    active_workspace    $term_blue          $term_blue          $term_black
+    inactive_workspace  $term_bright_black  $term_bright_black  $term_bright_white
+    urgent_workspace    $term_red           $term_red           $term_black 
+  }
+}
+
+################
+# Custom Modes #
+################
+
+# Handles locking, sleep, shutdown, etc.
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock,           mode "default"
+    bindsym s exec --no-startup-id i3exit suspend,        mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user,    mode "default"
+    bindsym e exec --no-startup-id i3exit logout,         mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate,      mode "default"
+    bindsym r exec --no-startup-id i3exit reboot,         mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Allows resizing of containers
+mode "resize" {
+  # Bind arrow keys for resizing
+  bindsym Left  resize shrink width  5 px or 5 ppt
+  bindsym Down  resize grow   height 5 px or 5 ppt
+  bindsym Up    resize shrink height 5 px or 5 ppt
+  bindsym Right resize grow   width  5 px or 5 ppt
+
+  # exit resize mode: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+##########################
+# Autostart Applications #
+##########################
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+exec --no-startup-id clipit
+exec --no-startup-id xautolock -time 10 -locker blurlock
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+
+###############################
+# Application Specific Config #
+###############################
+
+# Open applications on specific workspaces
+# assign [class="Firefox"] $ws2
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+
+#####################
+# Unorganised Stuff #
+#####################
+
+################################################################################################
+## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+################################################################################################
+
+exec --no-startup-id volumeicon
+bindsym $mod+Ctrl+m exec i3-sensible-terminal -e 'alsamixer'
+#exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
+
+################################################################################################
+
+# Start Applications
+bindsym $mod+t exec --no-startup-id pkill compton
+bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym Print exec --no-startup-id i3-scrot
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
