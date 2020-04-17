@@ -20,6 +20,8 @@
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.config/Code/User/keybindings.json: vscode/keybindings.json
     ~/.config/Code/User/settings.json: vscode/settings.json
+    ~/.config/i3: i3
+    ~/.config/i3status: i3status
     ~/.fonts: fonts
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh
@@ -29,6 +31,7 @@
     ~/.tmuxp: tmuxp
     ~/.vim/autoload/plug.vim: plug.vim
     ~/.vimrc: vimrc
+    ~/.Xresources: Xresources
     ~/.zshrc: zshrc
     ~/bin: bin/
 
