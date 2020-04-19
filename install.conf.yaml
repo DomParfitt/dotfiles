@@ -42,3 +42,7 @@
 - shell:
     - command: ./post-install.sh
       description: Running post-install script
+
+- shell:
+    - command: chsh -s $(which zsh)
+      description: Setting default shell to zsh
