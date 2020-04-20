@@ -1,7 +1,4 @@
-#!/usr/bin/env zsh
-
-# Install oh-my-zsh plugins and export PATH
-source ~/.zshrc
+#!/usr/bin/env bash
 
 # Install Vim plugins
 vim +'PlugInstall --sync' +qa
@@ -18,6 +15,9 @@ if ! [[ -d "${rustup}" ]]; then
 else
     rustup update
 fi
+
+# Manually add cargo to the path
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Install useful Rust binaries
 cargo install bat
