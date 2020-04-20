@@ -31,8 +31,7 @@
     "*.cf": "yaml",
     "*.inc": "php",
     "*.module": "php"
-  },
-  "files.autoSave": "afterDelay",
+},
   "git.autofetch": true,
   "git.confirmSync": false,
   "gitlens.views.compare.location": "gitlens",
@@ -93,5 +92,8 @@
 ],
   "yaml.format.enable": true,
 "yaml.validate": false,
-"diffEditor.ignoreTrimWhitespace": false
+"diffEditor.ignoreTrimWhitespace": false,
+"cfnLint.appendRules": [
+
+]
 }
