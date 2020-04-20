@@ -1,0 +1,119 @@
+#
+# Window manipulation
+# ______________
+
+# Open a terminal
+super + Return
+  alacritty
+
+# Close window
+super + shift + q
+	bspc  node -c
+
+# Kill window
+super + shift + x
+	bspc  node -k
+
+# Window moving and splitting
+# ______________    
+
+# go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} ^{1-9,10} --follow
+
+# Change workspace with NumPad
+super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP_Home, KP_Up, KP_Prior}
+    bspc {desktop -f, node -d} ^{1-9} --follow
+
+# Go to specific window
+super + Tab
+	WindowSelector
+
+# Move focus in a direction
+super + {Left,Down,Up,Right}
+    focusmover {west,south,north,east}
+        	
+# Different style of movement: transplant into window in chosen direction
+super + shift + {Left,Down,Up,Right}
+	euclid_mover {west,south,north,east}
+
+#resize windows
+super + ctrl + {Left,Down,Up,Right}
+	bspwm_resize.sh {west,south,north,east}
+
+#
+# Layout manipulation/desktop level controls
+# ______________    
+
+# Toggle monocle mode
+super + f 
+	bspc desktop -l next
+	
+# Balance tree
+super + b
+	bspc node @/ -B
+
+#
+# mouse bindings
+# __________________
+
+~button1
+	DidIClickDesktop.sh && gapgrab	
+
+~button2
+	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
+#DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+		
+~button3
+	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
+
+#
+# spawn programs
+#
+
+super + e
+	thunar
+
+# Use slightly bigger font for ranger
+super + shift + e
+	alacritty -e ranger
+
+Print
+	scrot
+
+#
+# Media keys
+#
+
+XF86AudioRaiseVolume
+	volume up
+
+XF86AudioLowerVolume
+	volume down
+
+XF86AudioMute
+	volume mute
+	
+XF86MonBrightnessDown
+ light -U 5 
+
+XF86MonBrightnessUp
+ light -A 5
+ 
+
+XF86Sleep
+	systemctl suspend
+
+# make sxhkd reload its configuration files:
+super + shift + Escape
+	pkill -USR1 -x sxhkd
+
+# In case bspwmrc fails to execute/you wish have plugged in a new monitor
+super + shift + r
+	bspwmrc
+
+super + shift + space
+  rofi -show
+
+super + a
+  rofi -show
