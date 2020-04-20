@@ -1,4 +1,4 @@
-#!/usr/bin/ev zsh
+#!/usr/bin/env zsh
 
 # Install oh-my-zsh plugins and export PATH
 source ~/.zshrc
