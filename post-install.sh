@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Load zsh plugins
+(zsh)
+
 # Install Vim plugins
 vim +'PlugInstall --sync' +qa
 
