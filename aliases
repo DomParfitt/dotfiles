@@ -2,6 +2,11 @@ alias ls='ls --color=auto'
 alias l='ls -hl'
 alias ll='ls -ahl'
 
+# Prints out $PATH entries on separate lines
+export function path() {
+ echo $PATH | tr ':' '\n'
+}
+
 # Use `bat` if it's installed
 if command -v bat > /dev/null 2>&1; then
   alias cat='bat'
