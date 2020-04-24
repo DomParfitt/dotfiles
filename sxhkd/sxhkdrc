@@ -25,17 +25,22 @@ super + {_,shift + }{1-9,0}
 super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP_Home, KP_Up, KP_Prior}
     bspc {desktop -f, node -d} ^{1-9} --follow
 
-# Go to specific window
-super + Tab
-	WindowSelector
-
 # Move focus/swap panes in a direction
 super + {_, shift} +{Left,Down,Up,Right}
     bspc node {-f, -s} {west,south,north,east}
 
 #resize windows
-super + ctrl + {Left,Down,Up,Right}
-	bspwm_resize.sh {west,south,north,east}
+super + ctrl + Left
+	bspc node -z left -1 0
+
+super + ctrl + Right
+	bspc node -z right 1 0
+
+super + ctrl + Up
+	bspc node -z top -1 0
+
+super + ctrl + Down
+	bspc node -z bottom - 0
 
 #
 # Layout manipulation/desktop level controls
