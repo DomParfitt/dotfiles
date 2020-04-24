@@ -19,7 +19,7 @@ super + shift + x
 
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} ^{1-9,10} --follow
+    bspc {desktop -f, node -d} ^{1-9,10} --follow
 
 # Change workspace with NumPad
 super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP_Home, KP_Up, KP_Prior}
@@ -29,9 +29,9 @@ super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP
 super + Tab
 	WindowSelector
 
-# Move focus in a direction
-super + {Left,Down,Up,Right}
-    bspc node -f {west,south,north,east}
+# Move focus/swap panes in a direction
+super + {_, shift} +{Left,Down,Up,Right}
+    bspc node {-f, -s} {west,south,north,east}
         	
 # Different style of movement: transplant into window in chosen direction
 super + shift + {Left,Down,Up,Right}
