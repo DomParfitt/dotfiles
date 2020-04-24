@@ -45,9 +45,6 @@ export UPDATE_ZSH_DAYS=7
 # Run Oh My ZSH
 source "$ZSH/oh-my-zsh.sh"
 
-# Import and set aliases
-source "$HOME/.aliases"
-
 # Set PATH
 export GOPATH="$HOME/go"
 
@@ -60,6 +57,9 @@ path+=(
 )
 
 export PATH
+
+# Import and set aliases
+source "$HOME/.aliases"
 
 # Set FPath for functions
 fpath+=(
