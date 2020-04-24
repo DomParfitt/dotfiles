@@ -31,7 +31,7 @@ super + Tab
 
 # Move focus in a direction
 super + {Left,Down,Up,Right}
-    focusmover {west,south,north,east}
+    bspc node -f {west,south,north,east}
         	
 # Different style of movement: transplant into window in chosen direction
 super + shift + {Left,Down,Up,Right}
