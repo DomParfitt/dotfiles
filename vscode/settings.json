@@ -1,8 +1,4 @@
 {
-  "[*.sh]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 4
-  },
   "[haskell]": {
     "editor.defaultFormatter": "alanz.vscode-hie-server"
   },
@@ -12,7 +8,14 @@
   "[json]": {
     "editor.tabSize": 2
   },
+  "[jsonc]": {
+    "editor.tabSize": 2
+  },
   "[markdown]": {},
+  "[shellscript]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
   "[typescript]": {
     "editor.tabSize": 2
   },
@@ -21,7 +24,10 @@
   "C_Cpp.default.includePath": [
     "../include"
   ],
+  "cfnLint.appendRules": [],
+  "cfnLint.enableAutocomplete": true,
   "coverage-gutters.coverageReportFileName": "test-results/jest/**",
+  "diffEditor.ignoreTrimWhitespace": false,
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
@@ -31,7 +37,7 @@
     "*.cf": "yaml",
     "*.inc": "php",
     "*.module": "php"
-},
+  },
   "git.autofetch": true,
   "git.confirmSync": false,
   "gitlens.views.compare.location": "gitlens",
@@ -51,7 +57,6 @@
   "shellcheck.ignorePatterns": {
     "**/*.zsh": true
   },
-  "sync.gist": "e853d7cf7e1a7bfef0b116ed999b21a0",
   "terminal.integrated.shell.linux": "/usr/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "view-in-browser.customBrowser": "chrome",
@@ -89,11 +94,7 @@
     "!Split",
     "!Sub sequence",
     "!Sub"
-],
+  ],
   "yaml.format.enable": true,
-"yaml.validate": false,
-"diffEditor.ignoreTrimWhitespace": false,
-"cfnLint.appendRules": [
-
-]
+  "yaml.validate": false
 }
