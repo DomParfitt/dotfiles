@@ -26,8 +26,8 @@ super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP
     bspc {desktop -f, node -d} ^{1-9} --follow
 
 # Move focus/swap panes in a direction
-super + {_, shift} +{Left,Down,Up,Right}
-    bspc node {-f, -s} {west,south,north,east}
+super + {_,shift} + {Left,Down,Up,Right}
+    bspc node {-f,-s} {west,south,north,east}
 
 #resize windows
 super + ctrl + Left
