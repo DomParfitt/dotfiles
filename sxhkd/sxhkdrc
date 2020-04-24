@@ -55,20 +55,6 @@ super + b
 	bspc node @/ -B
 
 #
-# mouse bindings
-# __________________
-
-~button1
-	DidIClickDesktop.sh && gapgrab	
-
-~button2
-	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
-#DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
-		
-~button3
-	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
-
-#
 # spawn programs
 #
 
