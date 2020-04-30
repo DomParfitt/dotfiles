@@ -40,6 +40,9 @@ let g:ale_lint_on_text_changed=1
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Map Enter to select from suggestions
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " Map ctrl-space to open completions list
 inoremap <silent><expr> <c-@> coc#refresh()
 
