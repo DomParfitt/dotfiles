@@ -5,17 +5,14 @@
 # Open a terminal
 super + Return
     $TERMINAL
-    #alacritty
 
 # Open file explorer
 super + e
     $FILE_EXPLORER
-	#thunar
 
 # Open app launcher
 super + a
     $APP_LAUNCHER
-    #rofi -show
 
 ###############################
 #   Window Manager Shortcuts  #
