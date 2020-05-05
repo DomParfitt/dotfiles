@@ -59,7 +59,14 @@ set noshowmode
 
 let g:lightline = {
   \ 'colorscheme': 'onedark',
-  \ }
+  \ 'active': {
+      \   'left': [ [ 'mode', 'paste'  ],
+      \             [ 'readonly', 'filename', 'modified', 'syntaxitem'  ] ]
+      \ },
+      \ 'component_function': {
+      \   'syntaxitem': 'SyntaxItem'
+      \ },
+      \ }
 
 " 
 " OneDark Config
@@ -72,3 +79,6 @@ highlight EndOfBuffer ctermfg=darkgrey
 highlight LineNr ctermfg=darkgrey
 highlight Comment ctermfg=darkgrey
 
+function! SyntaxItem()
+    return synIDattr(synID(line("."),col("."),1),"name")
+endfunction
