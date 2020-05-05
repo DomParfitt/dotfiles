@@ -1,76 +1,74 @@
-#
-# Window manipulation
-# ______________
+###############################
+#   Application Shortcuts     #
+###############################
 
 # Open a terminal
 super + Return
-  alacritty
+    $TERMINAL
+    #alacritty
 
-# Close window
+# Open file explorer
+super + e
+    $FILE_EXPLORER
+	#thunar
+
+# Open app launcher
+super + a
+    $APP_LAUNCHER
+    #rofi -show
+
+###############################
+#   Window Manager Shortcuts  #
+###############################
+
+# Close focused window
 super + shift + q
-	bspc  node -c
+	bspc node -c
 
-# Kill window
+# Kill focused window
 super + shift + x
-	bspc  node -k
+	bspc node -k
 
-# Window moving and splitting
-# ______________    
-
-# go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f, node -d} ^{1-9,10} --follow
-
-# Change workspace with NumPad
-super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP_Home, KP_Up, KP_Prior}
-    bspc {desktop -f, node -d} ^{1-9} --follow
-
-# Move focus/swap panes in a direction
-super + {_,shift} + {Left,Down,Up,Right}
-    bspc node {-f,-s} {west,south,north,east}
-
-#resize windows
-super + ctrl + Left
-	bspc node -z left -1 0
-
-super + ctrl + Right
-	bspc node -z right 1 0
-
-super + ctrl + Up
-	bspc node -z top -1 0
-
-super + ctrl + Down
-	bspc node -z bottom - 0
-
-#
-# Layout manipulation/desktop level controls
-# ______________    
-
-# Toggle monocle mode
+# Toggle monocle (fullscreen) mode
 super + f 
 	bspc desktop -l next
 	
-# Balance tree
+# Balance window layout
 super + b
 	bspc node @/ -B
 
-#
-# spawn programs
-#
+# Change workspace / Move window to workspace
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f, node -d} ^{1-9,10} --follow
 
-super + e
-	thunar
+# Change workspace / Move window to workspace (with NumPad)
+super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP_Home, KP_Up, KP_Prior}
+    bspc {desktop -f, node -d} ^{1-9} --follow
 
-# Use slightly bigger font for ranger
-super + shift + e
-	alacritty -e ranger
+# Select / swap window
+super + {_,shift} + {Left,Down,Up,Right}
+    bspc node {-f,-s} {west,south,north,east}
 
-Print
-	scrot
+# Cycle desktops
+super + ctrl + {Left,Right}
+    bspc desktop -f {prev,next}
 
+#resize windows - TODO: Fix
+#super + ctrl + Left
+#	bspc node -z left -1 0
 #
-# Media keys
+#super + ctrl + Right
+#	bspc node -z right 1 0
 #
+#super + ctrl + Up
+#	bspc node -z top -1 0
+#
+#super + ctrl + Down
+#	bspc node -z bottom - 0
+
+###############################
+#       Media Keys            #
+###############################
 
 XF86AudioRaiseVolume
 	volume up
@@ -87,9 +85,12 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
  light -A 5
  
-
 XF86Sleep
 	systemctl suspend
+
+###############################
+#       Reload Configs        #
+###############################
 
 # make sxhkd reload its configuration files:
 super + shift + Escape
@@ -97,10 +98,4 @@ super + shift + Escape
 
 # In case bspwmrc fails to execute/you wish have plugged in a new monitor
 super + shift + r
-	bspwmrc
-
-super + shift + space
-  rofi -show
-
-super + a
-  rofi -show
+	$HOME/.config/bspwm/bspwmrc
