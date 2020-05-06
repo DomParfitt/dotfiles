@@ -7,6 +7,20 @@ export PANEL_HEIGHT=25
 # Set workspace names
 bspc monitor -d I II III IV V VI VII VIII IX X
 
+monitors=$(xrandr -q | grep -wc connected)
+
+if [[ $monitors == 2 ]]; then
+
+  # Get the name of the external monitor
+  second_monitor=$(xrandr -q | grep -w connected | awk '$0 !~ /eDP-1/ {print $1}')
+
+  # Use the external monitor as the primary
+  bspc monitor "${second_monitor}" -d I II III IV V VI
+  
+  # Use built-in monitor as secondary
+  bspc monitor eDP-1 -d VII VIII IX
+fi
+
 # Set gaps
 bspc config window_gap $gap
 bspc config top_padding $gap
@@ -18,7 +32,7 @@ bspc config gapless_monocle     true
 bspc config borderless_monocle  true
 
 # Set 1 pixel border
-bspc config border_width 1
+bspc config border_width 1 
 
 # Set insertion scheme
 bspc config automatic_scheme alternate
@@ -27,7 +41,7 @@ bspc config automatic_scheme alternate
 bspc config focus_follows_pointer true
 
 # Mouse controls
-bspc config pointer_mod         mod4
+bspc config pointer_modifier    mod4
 bspc config pointer_action1     move
 
 # Auto remove monitors
@@ -46,7 +60,10 @@ bspc config split_ratio 0.5
 sxhkd &
 
 # Map super to super+shift+space
-xcape -e 'Super_L=Super_L|Shift_L|space' &
+xcape -e 'Super_L=Super_L|a' &
+
+# Compositor
+compton -b
 
 # Status Bar
-limepanel &
+#limepanel &
