@@ -29,6 +29,10 @@ super + shift + x
 # Toggle monocle (fullscreen) mode
 super + f 
 	bspc desktop -l next
+
+# Toggle tiled and floating mode
+super + t
+  bspc node -t '~floating'
 	
 # Balance window layout
 super + b
