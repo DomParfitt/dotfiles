@@ -28,7 +28,6 @@ type = internal/bspwm
 pin-workspaces = true
 
 label-focused = "%icon% %name% "
-#label-separator = | 
 label-focused-background = ${colors.green}
 label-focused-foreground = ${colors.bright_white}
 
