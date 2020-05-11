@@ -27,12 +27,6 @@ if command -v most > /dev/null 2>&1; then
   alias man='man -P most'
 fi
 
-# Use `tx` to load `tmuxp` named session 
-export function tx() {
-  local session=$1
-  tmuxp load -y "${session}"
-}
-
 # Close all `tmux` panes
 alias close="tmux kill-session -t $(tmux display-message -p \"#S\")"
 

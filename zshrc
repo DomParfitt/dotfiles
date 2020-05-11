@@ -14,9 +14,6 @@ if [[ "$DISPLAY" ]]; then
   fi
 fi
 
-# Required for `tmuxp`
-export DISABLE_AUTO_TITLE='true'
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 

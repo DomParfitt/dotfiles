@@ -31,7 +31,6 @@
     ~/.profile: profile
     ~/.ssh/config: ssh/config
     ~/.tmux.conf: tmux.conf
-    ~/.tmuxp: tmuxp
     ~/.vim/autoload/plug.vim: plug.vim
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
