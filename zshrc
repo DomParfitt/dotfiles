@@ -46,10 +46,10 @@ source "$ZSH/oh-my-zsh.sh"
 export GOPATH="$HOME/go"
 
 path+=(
-  "$GOPATH/bin"
-  "$HOME/bin"
   "$HOME/.cargo/bin"
   "$HOME/.local/bin"
+  "$HOME/bin"
+  "$GOPATH/bin"
   "/usr/local/bin"
 )
 
