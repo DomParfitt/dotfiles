@@ -35,6 +35,7 @@
     ~/.vim/autoload/plug.vim: plug.vim
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
+    ~/.zprofile: profile
     ~/.zshrc: zshrc
     ~/bin: bin/
 
