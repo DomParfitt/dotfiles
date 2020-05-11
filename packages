@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+function apt_install() {
+
+  local -r apt_pkgs=(
+    bspwm
+    sxhkd
+    tmux
+    vim
+    vscode
+  )
+
+  sudo apt install "${apt_pkgs[@]}"
+}
+
+function cargo_install() {
+
+  local -r cargo_pkgs=(
+    bat
+    exa
+    ripgrep
+  )
+
+  cargo install "${cargo_pkgs[@]}"
+}
+
+function npm_install() {
+
+  local -t npm_pkgs=()
+
+  npm install -g "${npm_pkgs[@]}"
+}
+
+function pacman_install() {
+  
+  local -r pacman_pkgs=(
+    bspwm
+    sxhkd
+    tmux
+    vim
+    vscode
+  )
+
+  sudo pacman -Syu "${pacman_pkgs[@]}"
+}
+
+function pip_install() {
+
+  local -r pip_pkgs=()
+
+  pip install --user --upgrade "${pip_pkgs[@]}"
+}
