@@ -10,7 +10,7 @@ function apt_install() {
     vscode
   )
 
-  sudo apt install "${apt_pkgs[@]}"
+  sudo apt install -y "${apt_pkgs[@]}"
 }
 
 function cargo_install() {
@@ -41,12 +41,32 @@ function pacman_install() {
     vscode
   )
 
-  sudo pacman -Syu "${pacman_pkgs[@]}"
+  sudo pacman -Syu --noconfirm "${pacman_pkgs[@]}"
 }
 
 function pip_install() {
 
-  local -r pip_pkgs=()
+  local -r pip_pkgs=(
+    awscli
+    cfn-lint
+  )
 
   pip install --user --upgrade "${pip_pkgs[@]}"
 }
+
+function main() {
+
+  # Install packages using the OS package manager
+  if command -v apt > /dev/null 2>&1; then
+    apt_install
+  else
+    pacman_install
+  fi
+
+  # Install packages using language specific package managers
+  cargo_install
+  npm_install
+  pip_install
+}
+
+main
