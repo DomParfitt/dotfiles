@@ -39,4 +39,9 @@ alias close="tmux kill-session -t $(tmux display-message -p \"#S\")"
 # Alias xclip to use `clipboard` by default
 alias xclip="xclip -selection clipboard"
 
+# Alias python to python3
+if command -v python3 > /dev/null 2>&1; then
+    alias python="python3"
+fi
+
 alias ts='yo simple-ts'
