@@ -45,6 +45,7 @@
   "gitlens.views.lineHistory.location": "gitlens",
   "gitlens.views.repositories.location": "gitlens",
   "gitlens.views.search.location": "gitlens",
+  "javascript.updateImportsOnFileMove.enabled": "always",
   "languageServerHaskell.hieExecutablePath": "~/.local/bin/hie-wrapper",
   "markdown.extension.toc.githubCompatibility": true,
   "markdown.extension.toc.levels": "2..6",
