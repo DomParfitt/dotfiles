@@ -18,11 +18,3 @@ if ! [[ -d "${rustup}" ]]; then
 else
     rustup update
 fi
-
-# Manually add cargo to the path
-export PATH="$PATH:$HOME/.cargo/bin"
-
-# Install useful Rust binaries
-cargo install bat
-cargo install exa
-cargo install ripgrep
