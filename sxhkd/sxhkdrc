@@ -39,8 +39,8 @@ super + b
 	bspc node @/ -B
 
 # Change workspace / Move window to workspace
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f, node -d} ^{1-9,10} --follow
+super + {_,shift + }{1-9}
+    bspc {desktop -f, node -d} ^{1-9} --follow
 
 # Change workspace / Move window to workspace (with NumPad)
 super + {_, shift}  + {KP_End, KP_Down, KP_Next, KP_Left, KP_Begin, KP_Right, KP_Home, KP_Up, KP_Prior}
