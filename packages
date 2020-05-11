@@ -26,7 +26,10 @@ function cargo_install() {
 
 function npm_install() {
 
-  local -t npm_pkgs=()
+  local -t npm_pkgs=(
+    generator-simple-ts
+    yo
+  )
 
   npm install -g "${npm_pkgs[@]}"
 }
