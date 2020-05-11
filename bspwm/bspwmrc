@@ -25,7 +25,7 @@ fi
 # Set gaps
 bspc config window_gap          $gap
 bspc config top_padding         $gap
-bspc config top_monocle_padding $((PANEL_HEIGHT - gap))
+#bspc config top_monocle_padding $((PANEL_HEIGHT - gap)) # Uncomment if not using xfce4-panel
 
 # Remove gaps if there is a single window
 bspc config single_monocle      true
