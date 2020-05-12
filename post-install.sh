@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# Load zsh plugins
-(zsh && exit)
-
-# Install Vim plugins
-vim +'PlugInstall --sync' +qa
+# Load zsh plugins & install Node
+zsh -ic 'nvm install --lts && exit'
 
 # Install VS Code extensions
 if command -v code > /dev/null 2>&1; then
