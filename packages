@@ -4,8 +4,10 @@ function apt_install() {
 
   local -r apt_pkgs=(
     bspwm
+    compton
     curl
     feh
+    neovim
     sxhkd
     tmux
     vim
@@ -39,8 +41,10 @@ function pacman_install() {
   
   local -r pacman_pkgs=(
     bspwm
+    compton
     curl
     feh
+    neovim
     sxhkd
     tmux
     vim
