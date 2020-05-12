@@ -23,6 +23,7 @@
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/i3: i3
     ~/.config/i3status: i3status
+    ~/.config/nvim/init.vim: init.vim
     ~/.config/polybar: polybar
     ~/.config/sxhkd: sxhkd
     ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-appfinder.xml: xfce/xfce4-appfinder.xml

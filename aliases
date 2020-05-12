@@ -42,4 +42,8 @@ if command -v pip3 > /dev/null 2>&1; then
     alias pip="pip3"
 fi
 
+if command -v nvim > /dev/null 2>&1; then
+    alias vim="nvim"
+fi
+
 alias ts='yo simple-ts'
