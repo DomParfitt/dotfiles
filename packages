@@ -4,10 +4,11 @@ function apt_install() {
 
   local -r apt_pkgs=(
     bspwm
+    curl
+    feh
     sxhkd
     tmux
     vim
-    vscode
   )
 
   sudo apt install -y "${apt_pkgs[@]}"
@@ -38,6 +39,8 @@ function pacman_install() {
   
   local -r pacman_pkgs=(
     bspwm
+    curl
+    feh
     sxhkd
     tmux
     vim
