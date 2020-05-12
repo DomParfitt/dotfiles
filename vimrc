@@ -23,11 +23,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
   Plug 'joshdick/onedark.vim'
+  Plug 'rakr/vim-one'
   Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
-# Automatically install missing plugins
+" Automatically install missing plugins
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
