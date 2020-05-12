@@ -25,6 +25,8 @@
     ~/.config/i3status: i3status
     ~/.config/polybar: polybar
     ~/.config/sxhkd: sxhkd
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-appfinder.xml: xfce/xfce4-appfinder.xml
+    ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml: xfce/xfce4-panel.xml
     ~/.fonts: fonts
     ~/.gitconfig: gitconfig
     ~/.p10k.zsh: p10k.zsh
