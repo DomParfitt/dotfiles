@@ -1,0 +1,8 @@
+[user]
+	name = Dom Parfitt
+	email = mail@domparfitt.com
+[credential]
+	helper = store
+
+[includeIf "gitdir:~/projects/work/**"]
+  path = ~/.config/git/work-config
