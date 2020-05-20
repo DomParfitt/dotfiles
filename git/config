@@ -3,6 +3,7 @@
 	email = mail@domparfitt.com
 [credential]
 	helper = store
-
+[core]
+	excludesfile = ~/.config/git/gitignore
 [includeIf "gitdir:~/projects/work/**"]
   path = ~/.config/git/work-config
