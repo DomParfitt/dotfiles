@@ -1,9 +1,15 @@
 [user]
 	name = Dom Parfitt
 	email = mail@domparfitt.com
+
 [credential]
 	helper = store
+
 [core]
-	excludesfile = ~/.config/git/gitignore
+  excludesfile = ~/.config/git/gitignore
+
+[include]
+    path = ~/.config/git/delta
+
 [includeIf "gitdir:~/projects/work/**"]
   path = ~/.config/git/work-config
