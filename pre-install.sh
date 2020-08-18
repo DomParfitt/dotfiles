@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-# Check if curl is installed and exit with message if not
-if ! command -v curl > /dev/null 2>&1; then
-  echo "curl is not installed. You must install it before continuing."
-  exit 1
-fi 
+# Check if required packages are installed and exit with message if not
+prerequisites=(curl python zsh)
+for package in "${prerequisites[@]}"; do
+  if ! command -v "${package}" > /dev/null 2>&1; then
+    echo "${package} is not installed. You must install it before continuing."
+    exit 1
+  fi
+done
 
 # Check for Antigen and install it if it isn't present
 antigen="$HOME/antigen.zsh"
