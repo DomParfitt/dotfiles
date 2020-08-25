@@ -7,6 +7,15 @@ export function path() {
  echo $PATH | tr ':' '\n'
 }
 
+export function rename() {
+  name=$1
+  if [[ -z $name ]]; then
+    return 1
+  fi
+
+  tmux select-pane -t $(tmux display-message -p "#P") -T "${name}"
+}
+
 # Use `bat` if it's installed
 if command -v bat > /dev/null 2>&1; then
   alias cat='bat'
