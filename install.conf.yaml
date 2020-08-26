@@ -70,12 +70,10 @@
 - shell:
     - description: Installing Node via NVM
       command: zsh -ic 'nvm install --lts && exit'
+    - description: Installing npm packages
+      command: command -v npm && xargs npm install -g < packages/npm
     - description: Installing VSCode Extensions
-      command: |
-        if command -v code > /dev/null 2>&1; then
-          xargs -L 1 code --install-extension < vscode/extensions.txt
-        fi
-      stdout: true
+      command: command -v code && xargs -L 1 code --install-extension < vscode/extensions.txt
     - description: Installing/Updating Rust
       command: |
         if ! [[ -d "$HOME/.rustup" ]]; then
@@ -83,7 +81,11 @@
         else
           rustup update
         fi
+    - description: Installing cargo packages
+      command: command -v cargo && xargs cargo install < packages/cargo
+    - description: Installing pip packages
+      command: command -v pip && xargs pip install --user --upgrade < packages/pip
     - description: Setting default shell to zsh
-      command: chsh -s $(which zsh)
+      command: "[[ $(getent passwd $USER | cut -d: -f7) =~ zsh$ ]] || chsh -s $(which zsh)"
       stdin: true
       stdout: true
