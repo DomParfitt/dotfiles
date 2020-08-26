@@ -7,6 +7,7 @@ export function path() {
  echo $PATH | tr ':' '\n'
 }
 
+# Rename a tmux pane
 export function rename() {
   name=$1
   if [[ -z $name ]]; then
@@ -14,6 +15,16 @@ export function rename() {
   fi
 
   tmux select-pane -t $(tmux display-message -p "#P") -T "${name}"
+}
+
+# Close a specified tmux pane, or all panes
+export function close() {
+  pane_id=$1
+  if [[ -z $pane_id ]]; then
+    tmux kill-session -t $(tmux display-message -p "#S")
+  else
+    tmux kill-pane -t "${pane_id}"
+  fi
 }
 
 # Use `bat` if it's installed
@@ -35,9 +46,6 @@ fi
 if command -v most > /dev/null 2>&1; then
   alias man='man -P most'
 fi
-
-# Close all `tmux` panes
-alias close="tmux kill-session -t $(tmux display-message -p \"#S\")"
 
 # Alias xclip to use `clipboard` by default
 alias xclip="xclip -selection clipboard"
