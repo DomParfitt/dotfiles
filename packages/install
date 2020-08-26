@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+if command -v dnf > /dev/null 2>&1; then
+  # Set install command for dnf
+  install_cmd="sudo dnf install -y"
+
+  # Add COPRs
+  xargs -L 1 sudo dnf copr enable -y < "packages/copr"
+  
+  # Add Microsoft repository for VSCode
+  sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+  sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+  
+  # Update repositories
+  sudo dnf check-update
+elif command -v apt > /dev/null 2>&1; then
+  # Set install command for apt
+  install_cmd="sudo apt install -y"
+  
+  # Add PPAs
+  xargs -I {} sudo add-apt-repository ppa:{} < "packages/ppa"
+  
+  # Update the DB
+  sudo apt update
+elif command -v pacman > /dev/null 2>&1; then
+  # Set install command for pacman
+  install_cmd="sudo pacman -Syu"
+else
+  exit 1
+fi
+
+"${install_cmd}" < "packages/main"
