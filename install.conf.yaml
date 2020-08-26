@@ -9,6 +9,8 @@
 
 - clean:
     ~/:
+    ~/.config:
+      recursive: true
 
 - shell:
     - description: Installing git submodules
@@ -18,23 +20,9 @@
       stdin: true
       stdout: true
     - description: Installing Antigen
-      command: |
-        if ! command -v curl > /dev/null 2>&1; then
-          exit 1
-        fi
-
-        if ! [[ -r "$HOME/antigen.zsh" ]]; then
-          curl -L git.io/antigen > "$HOME/antigen.zsh"
-        fi
+      command: command -v curl && ! [[ -r "$HOME/antigen.zsh" ]] && curl -L git.io/antigen > "$HOME/antigen.zsh"
     - description: Installing Oh My ZSH!
-      command: |
-        if ! command -v zsh > /dev/null 2>&1; then
-          exit 1
-        fi
-
-        if ! [[ -d "$HOME/.oh-my-zsh" ]]; then
-          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        fi
+      command: command -v zsh && ! [[ -d "$HOME/.oh-my-zsh" ]] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 - link:
     ~/.aliases: aliases
