@@ -12,7 +12,6 @@ eamodio.gitlens
 EditorConfig.EditorConfig
 eg2.vscode-npm-script
 esbenp.prettier-vscode
-GitHub.vscode-pull-request-github
 golang.go
 hoovercj.haskell-linter
 jaredly.reason-vscode
