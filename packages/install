@@ -29,4 +29,6 @@ else
   exit 1
 fi
 
-"${install_cmd}" < "packages/main"
+mapfile -t packages < "packages/main"
+
+${install_cmd} "${packages[@]}"
