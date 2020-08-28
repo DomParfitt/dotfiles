@@ -9,6 +9,7 @@ firefox
 git
 httpie
 neovim
+openssl
 python
 sxhkd
 tmux
