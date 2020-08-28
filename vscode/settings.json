@@ -20,7 +20,7 @@
   },
   "[markdown]": {},
   "[rust]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 4
   },
   "[shellscript]": {
     "editor.insertSpaces": true,
@@ -75,6 +75,8 @@
   "php.validate.executablePath": "/usr/bin/php",
   "prettier.requireConfig": true,
   "rust-analyzer.inlayHints.enable": false,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.updates.askBeforeDownload": false,
   "shellcheck.customArgs": [
     "-x"
   ],
