@@ -16,7 +16,7 @@
     - description: Installing git submodules
       command: git submodule update --init --recursive
     - description: Adding user to sudoers
-      command: echo "${USER} ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/${USER}"
+      command: echo "${USER} ALL=(ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/${USER}" > /dev/null
       stdin: true
       stdout: true
     - description: Installing Antigen
