@@ -74,15 +74,6 @@
     - description: Installing pip packages
       command: xargs pip install --user --upgrade < packages/pip
     - description: Setting default shell to zsh
-      command: |
-        if [[ $(getent passwd $USER | cut -d: -f7) =~ zsh$ ]]; then
-          exit 0
-        fi
-
-        if command -v chsh > /dev/null 2>&1; then
-          chsh -s $(which zsh)
-        else
-          sudo lchsh
-        fi
+      command: "[[ $(getent passwd $USER | cut -d: -f7) =~ zsh$ ]] || chsh -s $(which zsh)"
       stdin: true
       stdout: true
