@@ -1,6 +1,7 @@
-alias ls='ls --color=auto'
+alias ls='ls --color=always'
 alias l='ls -hl'
 alias ll='ls -ahl'
+alias lls='ll | less'
 
 # Prints out $PATH entries on separate lines
 export function path() {
@@ -34,7 +35,7 @@ fi
 
 # Use `exa` if it's installed
 if command -v exa > /dev/null 2>&1; then
-  alias ls='exa'
+  alias ls='exa --color=always'
 fi
 
 # Use `ripgrep` if it's installed
