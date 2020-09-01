@@ -5,8 +5,10 @@ from shutil import which
 from subprocess import run
 from sys import exit
 
+
 def get_file_path(file):
     return os.path.join(os.path.dirname(__file__), file)
+
 
 def apt(packages):
     ppas_file = get_file_path('ppa')
@@ -18,8 +20,8 @@ def apt(packages):
 
     run(['sudo', 'apt', 'update'])
 
-    for package in packages:
-        run(['sudo', 'apt', 'install', '-y', package])
+    run(['sudo', 'apt', 'install', '-y', '--ignore-missing'] + packages)
+
 
 def dnf(packages):
     coprs_file = get_file_path('copr')
@@ -33,11 +35,15 @@ def dnf(packages):
     run(['sudo', 'rpm', '--import', 'https://packages.microsoft.com/keys/microsoft.asc'])
     # TODO: write vscode.repo to /etc/yum.repos.d
 
-    for package in packages:
-        run(['sudo', 'dnf', 'install', 'y', package])
+    # Update repositories
+    run(['sudo', 'dnf', 'check-update'])
+
+    run(['sudo', 'dnf', 'install', '-y',  '--skip-broken'] + packages)
+
 
 def pacman(packages):
     pass
+
 
 def main():
     packages_file = get_file_path('main')
@@ -54,6 +60,7 @@ def main():
         else:
             print('Unknown package manager')
             exit(1)
+
 
 if __name__ == '__main__':
     main()
