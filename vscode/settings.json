@@ -74,6 +74,7 @@
   "markdown.extension.toc.orderedList": true,
   "php.validate.executablePath": "/usr/bin/php",
   "prettier.requireConfig": true,
+  "python.showStartPage": false,
   "rust-analyzer.inlayHints.enable": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.askBeforeDownload": false,
