@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+packages_dir=$(dirname "${BASH_SOURCE[0]}")
+
 if command -v dnf > /dev/null 2>&1; then
   # Set install command for dnf
   install_cmd="sudo dnf install -y"
 
   # Add COPRs
-  xargs -L 1 sudo dnf copr enable -y < "packages/copr"
+  xargs -L 1 sudo dnf copr enable -y < "${packages_dir}/copr"
   
   # Add Microsoft repository for VSCode
   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -18,7 +20,7 @@ elif command -v apt > /dev/null 2>&1; then
   install_cmd="sudo apt install -y"
   
   # Add PPAs
-  xargs -I {} sudo add-apt-repository ppa:{} < "packages/ppa"
+  xargs -I {} sudo add-apt-repository ppa:{} < "${packages_dir}/ppa"
   
   # Update the DB
   sudo apt update
@@ -29,6 +31,6 @@ else
   exit 1
 fi
 
-mapfile -t packages < "packages/main"
+mapfile -t packages < "${packages_dir}/main"
 
 ${install_cmd} "${packages[@]}"
