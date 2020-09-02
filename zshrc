@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Start tmux automatically and close the terminal on exiting tmux
 # Check we're on a graphical shell
 if [[ "$DISPLAY" ]]; then
@@ -57,6 +59,9 @@ export PATH
 
 # Import and set aliases
 source "$HOME/.aliases"
+
+# Import utility functions
+source "$HOME/.functions"
 
 # Set FPath for functions
 fpath+=(

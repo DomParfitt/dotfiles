@@ -1,41 +1,18 @@
+#!/usr/bin/env bash
+
 alias ls='ls --color=always'
 alias l='ls -hl'
 alias ll='ls -ahl'
 alias lls='ll | less'
 
-# Prints out $PATH entries on separate lines
-export function path() {
- echo $PATH | tr ':' '\n'
-}
-
-# Rename a tmux pane
-export function rename() {
-  name=$1
-  if [[ -z $name ]]; then
-    return 1
-  fi
-
-  tmux select-pane -t $(tmux display-message -p "#P") -T "${name}"
-}
-
-# Close a specified tmux pane, or all panes
-export function close() {
-  pane_id=$1
-  if [[ -z $pane_id ]]; then
-    tmux kill-session -t $(tmux display-message -p "#S")
-  else
-    tmux kill-pane -t "${pane_id}"
-  fi
-}
+# Use `exa` if it's installed
+if command -v exa > /dev/null 2>&1; then
+  alias ls='exa --color=always'
+fi
 
 # Use `bat` if it's installed
 if command -v bat > /dev/null 2>&1; then
   alias cat='bat'
-fi
-
-# Use `exa` if it's installed
-if command -v exa > /dev/null 2>&1; then
-  alias ls='exa --color=always'
 fi
 
 # Use `ripgrep` if it's installed
@@ -56,10 +33,12 @@ if command -v python3 > /dev/null 2>&1; then
     alias python="python3"
 fi
 
+# Alias pip to pip3
 if command -v pip3 > /dev/null 2>&1; then
     alias pip="pip3"
 fi
 
+# Use `neovim` if it's installed
 if command -v nvim > /dev/null 2>&1; then
     alias vim="nvim"
 fi

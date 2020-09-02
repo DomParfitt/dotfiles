@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Prints out $PATH entries on separate lines
+function path() {
+ echo "${PATH}" | tr ':' '\n'
+}
+
+# Rename the current tmux pane
+function rename() {
+  name=$1
+  if [[ -z $name ]]; then
+    return 1
+  fi
+
+  tmux select-pane -t "$(tmux display-message -p '#P')" -T "${name}"
+}
+
+# Close a specified tmux pane, or all panes
+function close() {
+  pane_id=$1
+  if [[ -z $pane_id ]]; then
+    tmux kill-session -t "$(tmux display-message -p '#S')"
+  else
+    tmux kill-pane -t "${pane_id}"
+  fi
+}
