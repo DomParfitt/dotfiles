@@ -4,10 +4,8 @@
 
 # Check tmux is installed
 if command -v tmux > /dev/null 2>&1; then
-
   # Check we're running an interactive shell and we're not already in tmux
   if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
-    
     # Run tmux and when that process closes exit the terminal
     tmux && exit
   fi
