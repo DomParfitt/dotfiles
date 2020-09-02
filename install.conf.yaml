@@ -58,7 +58,7 @@
 
 - shell:
     - description: Installing Node via NVM
-      command: zsh -ic 'nvm install --lts && exit'
+      command: zsh -ic 'nvm install --lts'
     - description: Installing npm packages
       command: zsh -ic 'xargs npm install -g < packages/npm'
     - description: Installing VSCode Extensions
