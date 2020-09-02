@@ -60,7 +60,7 @@
     - description: Installing Node via NVM
       command: zsh -ic 'nvm install --lts && exit'
     - description: Installing npm packages
-      command: xargs npm install -g < packages/npm
+      command: zsh -ic 'xargs npm install -g < packages/npm'
     - description: Installing VSCode Extensions
       command: xargs -L 1 code --install-extension < vscode/extensions.txt
     - description: Installing/Updating Rust
@@ -71,7 +71,7 @@
           rustup update
         fi
     - description: Installing cargo packages
-      command: xargs cargo install < packages/cargo
+      command: zsh -ic 'xargs cargo install < packages/cargo'
     - description: Installing pip packages
       command: xargs pip install --user --upgrade < packages/pip
     - description: Setting default shell to zsh
