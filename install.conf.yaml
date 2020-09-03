@@ -33,6 +33,7 @@
     ~/.config/git: git
     ~/.config/i3: i3
     ~/.config/i3status: i3status
+    ~/.config/kitty: kitty
     ~/.config/nvim: nvim
     ~/.config/polybar: polybar
     ~/.config/sxhkd: sxhkd
