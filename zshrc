@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
 
+# Only run compinit once a day for performance
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+
 # If `NO_TMUX` is set then open shell without tmux
 if [[ -z "$NO_TMUX" ]]; then
   # Check tmux is installed
@@ -14,6 +23,9 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Lazy load NVM for better performance
+export NVM_LAZY_LOAD=true
 
 # Set up Antigen
 source "$HOME/antigen.zsh"
