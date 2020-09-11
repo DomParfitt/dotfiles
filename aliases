@@ -20,6 +20,10 @@ if command -v rg > /dev/null 2>&1; then
   alias grep='rg'
 fi
 
+if command -v btm > /dev/null 2>&1; then
+  alias top='btm -b'
+fi
+
 # Use `most` as the `man` pager if it's installed
 if command -v most > /dev/null 2>&1; then
   alias man='man -P most'
