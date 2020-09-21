@@ -21,13 +21,13 @@ def apt(packages):
     with open(ppas_file) as f:
         ppas = [line.rstrip() for line in f]
         for ppa in ppas:
-            run(['sudo', 'add-apt-repository', f'ppa:{ppa}'])
+            run(['add-apt-repository', f'ppa:{ppa}'])
 
     # Update the package lists
-    run(['sudo', 'apt', 'update'])
+    run(['apt', 'update'])
 
     # Install packages
-    run(['sudo', 'apt', 'install', '-y', '--ignore-missing'] + packages)
+    run(['apt', 'install', '-y', '--ignore-missing'] + packages)
 
 
 def dnf(packages):
@@ -41,20 +41,20 @@ def dnf(packages):
     with open(coprs_file) as f:
         coprs = [line.rstrip() for line in f]
         for copr in coprs:
-            run(['sudo', 'dnf', 'copr', 'enable', '-y', copr])
+            run(['dnf', 'copr', 'enable', '-y', copr])
 
     # Add Microsoft repository for VSCode
-    run(['sudo', 'rpm', '--import', 'https://packages.microsoft.com/keys/microsoft.asc'])
+    run(['rpm', '--import', 'https://packages.microsoft.com/keys/microsoft.asc'])
 
     # TODO: Not sure if this will work because of root privileges
     with open('/etc/yum.repos.d/vscode.repo', 'w') as f:
         f.write('[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc')
 
     # Update repositories
-    run(['sudo', 'dnf', 'check-update'])
+    run(['dnf', 'check-update'])
 
     # Install packages
-    run(['sudo', 'dnf', 'install', '--assumeyes',  '--skip-broken'] + packages)
+    run(['dnf', 'install', '--assumeyes',  '--skip-broken'] + packages)
 
 
 def pacman(packages):
@@ -64,8 +64,12 @@ def pacman(packages):
 def main():
     if version_info.major != 3:
         print(
-            f"Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}")
+            f'Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}')
         exit(1)
+
+    if os.geteuid() != 0:
+        print('Script must be run with sudo')
+        exit(2)
 
     packages_file = get_file_path('main')
 
@@ -80,7 +84,7 @@ def main():
             pacman(packages)
         else:
             print('Unknown package manager')
-            exit(1)
+            exit(3)
 
 
 if __name__ == '__main__':
