@@ -62,7 +62,7 @@ def pacman(packages):
 
 
 def main():
-    if version_info.major == 3:
+    if version_info.major != 3:
         print(
             f"Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}")
         exit(1)
