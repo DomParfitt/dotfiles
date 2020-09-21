@@ -12,6 +12,10 @@
     ~/.config:
       recursive: true
 
+- create:
+    - ~/projects
+    - ~/.zfunc
+
 - shell:
     - description: Installing git submodules
       command: git submodule update --init --recursive
@@ -43,19 +47,13 @@
     ~/.fonts: fonts
     ~/.functions: functions
     ~/.p10k.zsh: p10k.zsh
-    ~/.profile: profile
     ~/.ssh/config: ssh/config
     ~/.tmux.conf: tmux.conf
     ~/.vim/autoload/plug.vim: plug.vim
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
-    ~/.zprofile: profile
     ~/.zshrc: zshrc
     ~/bin: bin
-
-- create:
-    - ~/projects
-    - ~/.zfunc
 
 - shell:
     - description: Installing Node via NVM
