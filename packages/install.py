@@ -46,7 +46,7 @@ def dnf(packages):
     # Add Microsoft repository for VSCode
     run(['rpm', '--import', 'https://packages.microsoft.com/keys/microsoft.asc'])
 
-    # TODO: Not sure if this will work because of root privileges
+    # Add the VSCode repo details
     with open('/etc/yum.repos.d/vscode.repo', 'w') as f:
         f.write('[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc')
 
