@@ -10,10 +10,8 @@ git
 httpie
 kitty
 lazygit
-libssl-dev
 most
 neovim
-openssl-dev
 pkg-config
 python
 sxhkd
