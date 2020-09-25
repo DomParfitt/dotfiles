@@ -5,21 +5,22 @@ alias l='ls -hl'
 alias ll='ls -ahl'
 alias lls='ll | less'
 
-# Use `exa` if it's installed
+# Use `exa` as an `ls` replacement
 if command -v exa > /dev/null 2>&1; then
   alias ls='exa --color=always'
 fi
 
-# Use `bat` if it's installed
+# Use `bat` as a `cat` replacement
 if command -v bat > /dev/null 2>&1; then
   alias cat='bat'
 fi
 
-# Use `ripgrep` if it's installed
+# Use `ripgrep` as a `grep` replacement
 if command -v rg > /dev/null 2>&1; then
   alias grep='rg'
 fi
 
+# Use `bottom` (`btm`) as a `top` replacement
 if command -v btm > /dev/null 2>&1; then
   alias top='btm -b'
 fi
@@ -32,19 +33,25 @@ fi
 # Alias xclip to use `clipboard` by default
 alias xclip="xclip -selection clipboard"
 
-# Alias python to python3
+# Alias `python` to `python3`
 if command -v python3 > /dev/null 2>&1; then
     alias python="python3"
 fi
 
-# Alias pip to pip3
+# Alias `pip` to `pip3`
 if command -v pip3 > /dev/null 2>&1; then
     alias pip="pip3"
 fi
 
-# Use `neovim` if it's installed
+# Use `neovim` as a `vim` replacement
+# coc.vim requires node, which is installed using nvm via the 
+# nvm-zsh plugin. This plugin lazy loads for performance, so
+# we call nvm_load first to make node available for vim if it
+# is not already available.
 if command -v nvim > /dev/null 2>&1; then
-    alias vim="nvim"
+    alias vim="nvm_load; nvim"
+else
+    alias vim="nvm_load; vim"
 fi
 
 alias ts='yo simple-ts'

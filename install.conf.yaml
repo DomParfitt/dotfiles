@@ -59,7 +59,7 @@
     - description: Installing Node via NVM
       command: zsh -ic 'nvm install --lts'
     - description: Installing npm packages
-      command: zsh -ic 'xargs npm install -g < packages/npm'
+      command: zsh -ic 'nvm_load && xargs npm install -g < packages/npm'
     - description: Installing VSCode Extensions
       command: xargs -L 1 code --install-extension < vscode/extensions.txt
     - description: Installing/Updating Rust
@@ -74,6 +74,6 @@
     - description: Installing pip packages
       command: xargs pip install --user --upgrade < packages/pip
     - description: Setting default shell to zsh
-      command: "[[ $(getent passwd $USER | cut -d: -f7) =~ zsh$ ]] || chsh -s $(which zsh)"
+      command: '[[ $(getent passwd $USER | cut -d: -f7) =~ zsh$ ]] || chsh -s $(which zsh)'
       stdin: true
       stdout: true
