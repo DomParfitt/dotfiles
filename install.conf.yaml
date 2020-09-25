@@ -61,7 +61,7 @@
     - description: Installing npm packages
       command: zsh -ic 'nvm_load && xargs npm install -g < packages/npm'
     - description: Installing VSCode Extensions
-      command: xargs -L 1 code --install-extension < vscode/extensions.txt
+      command: comm -13 <(code --list-extensions) <(cat vscode/extensions.txt) | xargs -L 1 code --install-extension
     - description: Installing/Updating Rust
       command: |
         if ! [[ -d "$HOME/.rustup" ]]; then
