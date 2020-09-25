@@ -4,6 +4,5 @@ cargo-edit
 cargo-tarpaulin
 exa
 git-delta
-gitui
 ripgrep
 tealdeer
