@@ -75,7 +75,6 @@ def main():
 
     with open(packages_file) as f:
         packages = [line.rstrip() for line in f]
-        print(packages)
         if which('dnf') is not None:
             dnf(packages)
         elif which('apt') is not None:
