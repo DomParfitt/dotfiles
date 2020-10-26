@@ -107,6 +107,6 @@ if [[ -r "$HOME/.p10k.zsh" ]]; then
 fi
 
 # Source GHCUP
-if [[ -f "$HOME/.ghcup/env"] ]; then
+if [[ -f "$HOME/.ghcup/env" ]]; then
   source "$HOME/.ghcup/env"
 fi
