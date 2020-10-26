@@ -56,6 +56,8 @@
     ~/bin: bin
 
 - shell:
+    - description: Configuring Gnome
+      command: for file in gnome/*.ini; do dconf load / < $file; done
     - description: Installing Node via NVM
       command: zsh -ic 'nvm install --lts'
     - description: Installing npm packages
