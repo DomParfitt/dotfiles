@@ -38,6 +38,9 @@ antigen bundles <<EOBUNDLES
   aws
   rust
   cargo
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 
 # Install themes
@@ -101,4 +104,9 @@ fi
 # Source Powerlevel10k config
 if [[ -r "$HOME/.p10k.zsh" ]]; then
   source "$HOME/.p10k.zsh"
+fi
+
+# Source GHCUP
+if [[ -f "$HOME/.ghcup/env"] ]; then
+  source "$HOME/.ghcup/env"
 fi
