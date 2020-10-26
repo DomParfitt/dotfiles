@@ -3,9 +3,6 @@
     "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2
   },
-  "[haskell]": {
-    "editor.defaultFormatter": "alanz.vscode-hie-server"
-  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -18,7 +15,10 @@
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
   },
-  "[markdown]": {},
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.tabSize": 2
+  },
   "[rust]": {
     "editor.tabSize": 4
   },
@@ -27,7 +27,7 @@
     "editor.tabSize": 2
   },
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "[typescriptreact]": {
@@ -41,7 +41,7 @@
   ],
   "cfnLint.appendRules": [],
   "cfnLint.enableAutocomplete": true,
-  "coverage-gutters.coverageReportFileName": "test-results/jest/**",
+  "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**",
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
@@ -49,6 +49,7 @@
   },
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
   "editor.insertSpaces": true,
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
@@ -68,13 +69,13 @@
   "gitlens.views.lineHistory.location": "gitlens",
   "gitlens.views.repositories.location": "gitlens",
   "gitlens.views.search.location": "gitlens",
-  "haskell.serverExecutablePath": "~/.local/bin/hie-wrapper",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "markdown.extension.toc.levels": "2..6",
   "markdown.extension.toc.orderedList": true,
   "php.validate.executablePath": "/usr/bin/php",
   "prettier.requireConfig": true,
   "python.showStartPage": false,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.inlayHints.enable": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.askBeforeDownload": false,
@@ -87,7 +88,6 @@
   },
   "terminal.integrated.shell.linux": "/usr/bin/zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "view-in-browser.customBrowser": "chrome",
   "window.titleBarStyle": "custom",
   "window.zoomLevel": 0,
   "workbench.colorTheme": "One Dark Pro",
@@ -125,5 +125,6 @@
     "!Sub"
   ],
   "yaml.format.enable": true,
+  "yaml.format.singleQuote": true,
   "yaml.validate": false
 }
