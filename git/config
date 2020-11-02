@@ -15,5 +15,8 @@
 [includeIf "gitdir:~/projects/work/**"]
   path = ~/.config/git/work-config
 
+[pull]
+	rebase = false
+
 [rebase]
     autosquash = true
