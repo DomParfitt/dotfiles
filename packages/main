@@ -16,6 +16,7 @@ neovim
 pkg-config
 python
 sxhkd
+texlive
 tmux
 vim
 zsh
