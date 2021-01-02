@@ -36,6 +36,7 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
   lukechilds/zsh-nvm
   aws
+  fzf
   rust
   cargo
   zsh-users/zsh-autosuggestions
@@ -110,3 +111,4 @@ fi
 if [[ -f "$HOME/.ghcup/env" ]]; then
   source "$HOME/.ghcup/env"
 fi
+
