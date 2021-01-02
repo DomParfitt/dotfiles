@@ -4,6 +4,7 @@ import os
 from shutil import which
 from subprocess import run
 from sys import version_info, exit
+from urllib.request import urlopen
 
 
 def get_file_path(file):
@@ -22,6 +23,13 @@ def apt(packages):
         ppas = [line.rstrip() for line in f]
         for ppa in ppas:
             run(['add-apt-repository', f'ppa:{ppa}'])
+
+    with urlopen('https://packages.microsoft.com/keys/microsoft.asc') as response:
+        response.read()
+
+    # Add the VSCode repo details
+    with open('/etc/apt/sources.list.d/vscode.list', 'w') as f:
+        f.write('deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main')
 
     # Update the package lists
     run(['apt', 'update'])
