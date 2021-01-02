@@ -1,6 +1,5 @@
 alacritty
 bspwm
-chromium
 code
 compton
 curl
@@ -11,6 +10,7 @@ httpie
 jq
 kitty
 lazygit
+lightdm
 most
 neovim
 pkg-config

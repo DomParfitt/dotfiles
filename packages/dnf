@@ -1,4 +1,10 @@
+@multimedia
 @virtualization
+chromium-freeworld
+dnf-plugins-core
+docker-ce
+docker-ce-cli
+containerd.io
 flat-remix-icon-theme
 gnome-shell-extension-dash-to-dock
 gnome-shell-extension-openweather
