@@ -3,6 +3,9 @@
     "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2
   },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -14,6 +17,9 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
+  },
+  "[latex]": {
+    "editor.defaultFormatter": "nickfode.latex-formatter"
   },
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
@@ -42,6 +48,16 @@
   "cfnLint.appendRules": [],
   "cfnLint.enableAutocomplete": true,
   "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**",
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "git-commit",
+    "latex",
+    "markdown",
+    "plaintext",
+    "restructuredtext",
+    "text"
+  ],
+  "cSpell.language": "en-GB",
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
@@ -56,27 +72,28 @@
   "editor.suggestSelection": "first",
   "eslint.alwaysShowStatus": true,
   "eslint.lintTask.enable": true,
+  "extensions.ignoreRecommendations": false,
   "files.associations": {
     "*.cf": "yaml",
     "*.inc": "php",
     "*.module": "php"
   },
   "files.insertFinalNewline": true,
+  "files.watcherExclude": {
+    "**/.ammonite": true,
+    "**/.bloop": true,
+    "**/.metals": true
+  },
   "git.autofetch": true,
   "git.confirmSync": false,
-  "gitlens.views.compare.location": "gitlens",
-  "gitlens.views.fileHistory.location": "gitlens",
-  "gitlens.views.lineHistory.location": "gitlens",
-  "gitlens.views.repositories.location": "gitlens",
-  "gitlens.views.search.location": "gitlens",
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "latex-workshop.view.pdf.viewer": "tab",
   "markdown.extension.toc.levels": "2..6",
   "markdown.extension.toc.orderedList": true,
   "php.validate.executablePath": "/usr/bin/php",
   "prettier.requireConfig": true,
   "python.showStartPage": false,
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
-  "rust-analyzer.inlayHints.enable": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.askBeforeDownload": false,
   "shellcheck.customArgs": [
