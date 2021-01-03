@@ -1,4 +1,5 @@
 alacritty
+awesome
 bspwm
 code
 compton
@@ -12,6 +13,7 @@ kitty
 lazygit
 lightdm
 most
+neofetch
 neovim
 pkg-config
 python

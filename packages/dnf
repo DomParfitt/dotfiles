@@ -1,11 +1,14 @@
 @multimedia
 @virtualization
 chromium-freeworld
+containerd.io
 dnf-plugins-core
 docker-ce
 docker-ce-cli
-containerd.io
 flat-remix-icon-theme
+gdm-wallpaper
+libappindicator-gtk3
+gnome-shell-extension-appindicator
 gnome-shell-extension-dash-to-dock
 gnome-shell-extension-openweather
 gnome-shell-extension-user-theme
