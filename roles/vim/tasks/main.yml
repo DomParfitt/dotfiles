@@ -1,0 +1,35 @@
+- name: Install
+  package:
+    name:
+      - vim
+      - neovim
+    state: latest
+  become: true
+
+- name: Create directories
+  file:
+    path: "~/.vim/{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - autoload
+    - plugged
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    force: true
+  with_items:
+    - src: vimrc
+      dest: ~/.vimrc
+    - src: nvim
+      dest: ~/.config/nvim
+    - src: plug.vim
+      dest: ~/.vim/autoload/plug.vim
+
+# - name: Install plugins
+#   shell: vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qall
+#   ignore_errors: true
+#   # shell: vim +PlugInstall +qall
