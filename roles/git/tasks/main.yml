@@ -1,0 +1,25 @@
+- name: Install
+  package:
+    name: git
+    state: latest
+  become: true
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files"
+    dest: ~/.config/git
+    state: link
+    force: true
+
+- name: Install delta (cargo)
+  shell: ~/.cargo/bin/cargo install git-delta
+  args:
+    creates: "~/.cargo/bin/delta"
+  when: git_delta_install_with_cargo is true
+
+- name: Install delta
+  package:
+    name: git-delta
+    state: present
+  when: git_delta_install_with_cargo is not true
+  become: true

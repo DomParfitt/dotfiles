@@ -1,0 +1,3 @@
+dependencies:
+  - role: rust
+    when: git_delta_install_with_cargo is true
