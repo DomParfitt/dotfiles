@@ -1,0 +1,30 @@
+- name: Install
+  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  args:
+    creates: ~/.rustup
+    warn: false
+
+- name: Set toolchain
+  shell: ~/.cargo/bin/rustup default stable
+  args:
+    creates: ~/.rustup/toolchains/stable*
+
+- name: Check for OS specific tasks
+  stat:
+    path: "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+  register: file_result
+
+- name: Run OS specific tasks
+  include_tasks: "{{ file_result.stat.path }}"
+  when: file_result.stat.exists
+
+- name: Install packages
+  shell: ~/.cargo/bin/cargo install {{ item.package }}
+  args:
+    creates: "~/.cargo/bin/{{ item.bin }}"
+  when: install_rust_packages is true
+  with_items:
+    - package: cargo-edit
+      bin: carg-add
+    - package: cargo-tarpaulin
+      bin: cargo-tarpaulin

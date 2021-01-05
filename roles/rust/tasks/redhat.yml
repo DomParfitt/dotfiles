@@ -1,0 +1,6 @@
+- name: Install OpenSSL dependencies
+  dnf:
+    name: openssl-devel
+    state: latest
+  become: true
+  
