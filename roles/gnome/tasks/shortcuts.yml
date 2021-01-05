@@ -1,0 +1,37 @@
+- name: Configure WM keybindings
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/{{ item.key }}"
+    value: "{{ item.value | string }}"
+  with_items:
+    - key: switch-applications
+      value: "'@as []'"
+    - key: switch-applications-backward
+      value: "'@as []'"
+    - key: switch-windows
+      value: "['<Alt>Tab']"
+    - key: switch-windows-backward
+      value: "['<Shift><Alt>Tab']"
+
+- name: Configure terminal shortcut
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0"
+    value: "{{ item.value | string }}"
+  with_items:
+    - key: binding
+      value: "'<Primary><Alt>t'"
+    - key: command
+      value: "'alacritty'"
+    - key: name
+      value: "'Terminal'"
+
+- name: Configure file explorer shortcut
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1"
+    value: "{{ item.value | string }}"
+  with_items:
+    - key: binding
+      value: "'<Super>e'"
+    - key: command
+      value: "'nautilus'"
+    - key: name
+      value: "'File Explorer'"

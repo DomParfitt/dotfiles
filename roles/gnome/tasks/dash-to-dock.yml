@@ -1,0 +1,53 @@
+
+- name: Install
+  dnf:
+    name:
+      - gnome-shell-extension-dash-to-dock
+    state: latest
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'
+
+- name: Configure
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/dash-to-dock/{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: apply-custom-theme
+      value: "true"
+    - key: background-color
+      value: "'#555753'"
+    - key: click-action
+      value: "'previews'"
+    - key: custom-background-color
+      value: "false"
+    - key: custom-theme-shrink
+      value: "false"
+    - key: dash-max-icon-size
+      value: "64"
+    - key: dock-fixed
+      value: "false"
+    - key: dock-position
+      value: "'BOTTOM'"
+    - key: extend-height
+      value: "false"
+    - key: force-straight-corner
+      value: "false"
+    - key: icon-size-fixed
+      value: "false"
+    - key: intellihide
+      value: "false"
+    - key: intellihide-mode
+      value: "'FOCUS_APPLICATION_WINDOWS'"
+    - key: preferred-monitor
+      value: "0"
+    - key: running-indicator-style
+      value: "'DOTS'"
+    - key: scroll-action
+      value: "'do-nothing'"
+
+# - name: Get full name
+#   shell: gnome-extensions list | grep dash-to-dock
+#   register: extension_name
+
+# - name: Enable
+#   shell: gnome-extensions enable {{ extension_name.stdout }}
