@@ -1,0 +1,6 @@
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files/config"
+    dest: ~/.ssh/config
+    state: link
+    force: true
