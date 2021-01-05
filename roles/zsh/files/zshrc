@@ -1,0 +1,121 @@
+#!/usr/bin/env zsh
+
+# Only run compinit once a day for performance
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+
+# If `NO_TMUX` is set then open shell without tmux
+if [[ -z "$NO_TMUX" ]]; then
+  # Check tmux is installed
+  if command -v tmux > /dev/null 2>&1; then
+    # Check we're running an interactive shell and we're not already in tmux
+    if [[ $- == *i* ]] && [[ -z "$TMUX" ]]; then
+      # Run tmux and when that process closes exit the terminal
+      tmux && exit
+    fi
+  fi
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Lazy load NVM for better performance
+export NVM_LAZY_LOAD=true
+
+# Set up Antigen
+source "$HOME/antigen.zsh"
+
+antigen use oh-my-zsh
+
+# Install plugins
+antigen bundles <<EOBUNDLES
+  lukechilds/zsh-nvm
+  aws
+  docker
+  docker-compose
+  fzf
+  gradle
+  rust
+  cargo
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
+EOBUNDLES
+
+# Install themes
+antigen theme romkatv/powerlevel10k
+
+# Apply antigen config
+antigen apply
+
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=7
+
+# Run Oh My ZSH
+source "$ZSH/oh-my-zsh.sh"
+
+# Set PATH
+export GOPATH="$HOME/go"
+
+path+=(
+  "$HOME/.cargo/bin"
+  "$HOME/.local/bin"
+  "$HOME/bin"
+  "$GOPATH/bin"
+  "/usr/local/bin"
+  "/usr/local/go/bin"
+)
+
+export PATH
+
+# Import and set aliases
+source "$HOME/.aliases"
+
+# Import utility functions
+source "$HOME/.functions"
+
+# Set FPath for functions
+fpath+=(
+  "$HOME/.zfunc"
+)
+
+# If `bat` is installed use it as the `man` pager
+if command -v bat > /dev/null 2>&1; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  export MANROFFOPT="-c"
+fi
+
+# Completion for NVM
+if [[ -r "$NVM_DIR/bash_completion" ]]; then
+  source "$NVM_DIR/bash_completion"
+fi
+
+# Completion for AWS CLI
+if [[ -r "$HOME/.local/bin/aws_zsh_completer.sh" ]]; then
+  source "$HOME/.local/bin/aws_zsh_completer.sh"
+fi
+
+# Completions for Rust/Cargo
+if ! [[ -r "$HOME/.zfunc/_rustup" ]]; then
+  rustup completions zsh >"$HOME/.zfunc/_rustup"
+fi
+
+# Source Powerlevel10k config
+if [[ -r "$HOME/.p10k.zsh" ]]; then
+  source "$HOME/.p10k.zsh"
+fi
+
+# Source GHCUP
+if [[ -f "$HOME/.ghcup/env" ]]; then
+  source "$HOME/.ghcup/env"
+fi
+
+# Allow option stack for Docker completions
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
