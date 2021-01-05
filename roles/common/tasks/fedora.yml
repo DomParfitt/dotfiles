@@ -1,0 +1,32 @@
+- name: Configure dnf
+  lineinfile:
+    path: /etc/dnf/dnf.conf
+    line: "{{ item.key }}={{ item.value }}"
+    regexp: "^{{ item.key }}="
+  with_items:
+    - key: defaultyes
+      value: 'True'  
+    - key: fastestmirror
+      value: 'True'
+    - key: max_parallel_download
+      value: 10
+    - key: metadata_timer_sync
+      value: 3600
+  become: true
+
+- name: Enable RPM Fusion
+  dnf:
+    name:
+      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    disable_gpg_check: true
+    state: latest
+  become: true
+
+- name: Install packages
+  dnf:
+    name:
+      - '@multimedia'
+      - '@virtualization'
+    state: latest
+  become: true
