@@ -1,0 +1,26 @@
+- hosts: 
+    - all
+    - localhost
+  connection: local
+  roles:
+    - common
+    - alacritty
+    - awesome
+    - bspwm
+    - docker
+    - git
+    - gnome
+    - haskell
+    - i3
+    - kitty
+    - lazygit
+    - node
+    - polybar
+    - python
+    - rust
+    - ssh
+    - tealdeer
+    - tmux
+    - vim
+    - vscode
+    - zsh
