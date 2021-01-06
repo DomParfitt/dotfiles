@@ -1,5 +1,0 @@
-Host github.com
-	User domparfitt
-	HostName github.com
-	PreferredAuthentications publickey
-	IdentityFile ~/.ssh/github/id_rsa
