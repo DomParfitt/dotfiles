@@ -1,0 +1,15 @@
+- name: Install
+  shell: zsh -ic 'nvm install {{ item }}'
+  loop:
+    - --lts
+    - 12
+    - 10
+
+- name: Install packages
+  shell: zsh -ic 'nvm_load && npm install -g {{ item }}'
+  loop:
+    - aws-cdk
+    - eslint
+    - generator-simple-ts
+    - typescript
+    - yo
