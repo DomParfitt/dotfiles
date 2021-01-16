@@ -4,7 +4,7 @@
 
 # Open a terminal
 super + Return
-    $TERMINAL
+    alacritty
 
 # Open file explorer
 super + e
