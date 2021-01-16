@@ -1,6 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local theme = require("theme")
+-- local theme = require("theme")
 local utils = require("utils")
 
 -- Signal function to execute when a new client appears.
@@ -24,7 +24,7 @@ client.connect_signal(
             c.floating = true
         end
 
-        show_titlebar(c, c.floating)
+        utils.show_titlebar(c, c.floating)
     end
 )
 
@@ -32,7 +32,7 @@ client.connect_signal(
 client.connect_signal(
     "property::floating",
     function(c)
-        show_titlebar(c, c.floating)
+        utils.show_titlebar(c, c.floating)
     end
 )
 
@@ -44,7 +44,7 @@ tag.connect_signal(
         local floating = t.layout == awful.layout.suit.floating
         for _, c in pairs(t:clients()) do
             c.floating = floating
-            show_titlebar(c, floating)
+            utils.show_titlebar(c, floating)
         end
     end
 )
@@ -76,4 +76,4 @@ client.connect_signal(
 )
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", theme.set_wallpaper)
+screen.connect_signal("property::geometry", utils.set_wallpaper)
