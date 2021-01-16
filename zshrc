@@ -36,6 +36,8 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
   lukechilds/zsh-nvm
   aws
+  docker
+  docker-compose
   fzf
   rust
   cargo
@@ -112,3 +114,6 @@ if [[ -f "$HOME/.ghcup/env" ]]; then
   source "$HOME/.ghcup/env"
 fi
 
+# Allow option stack for Docker completions
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
