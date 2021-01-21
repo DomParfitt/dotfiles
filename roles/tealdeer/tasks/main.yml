@@ -1,0 +1,22 @@
+- name: Install (cargo)
+  shell: ~/.cargo/bin/cargo install tealdeer
+  args:
+    creates: "~/.cargo/bin/tldr"
+  with_items:
+    - package: tealdeer
+      bin: tldr
+  when: tealdear_install_with_cargo is true
+
+- name: Install
+  package:
+    name: tealdeer
+    state: present
+  when: tealdear_install_with_cargo is not true
+  become: true
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files"
+    dest: ~/.config/tealdeear
+    state: link
+    force: true
