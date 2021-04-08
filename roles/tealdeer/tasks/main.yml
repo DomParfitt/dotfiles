@@ -17,6 +17,6 @@
 - name: Copy config
   file:
     src: "{{ role_path }}/files"
-    dest: ~/.config/tealdeear
+    dest: ~/.config/tealdeer
     state: link
     force: true
