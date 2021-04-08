@@ -1,0 +1,19 @@
+- name: Enable COPR
+  command: dnf copr enable -y atim/lazygit
+  args:
+    warn: false
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:atim:lazygit.repo
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'
+
+- name: Enable PPA
+  apt_repository:
+      repo: lazygit-team/release
+  become: true
+  when: ansible_facts['os_family'] | lower == 'debian'
+
+- name: Install
+  package:
+    name: lazygit
+    state: latest
+  become: true

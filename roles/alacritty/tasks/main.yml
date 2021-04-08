@@ -1,0 +1,26 @@
+- name: Enable COPR
+  command: dnf copr enable -y pschyska/alacritty
+  args:
+    warn: false
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:pschyska:alacritty.repo
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'
+
+- name: Enable PPA
+  apt_repository:
+    repo: mmstick76/alacritty
+  become: true
+  when: ansible_facts['os_family'] | lower == 'debian'
+
+- name: Install
+  package:
+    name: alacritty
+    state: latest
+  become: true
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files"
+    dest: ~/.config/alacritty
+    state: link
+    force: true

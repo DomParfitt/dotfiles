@@ -1,0 +1,36 @@
+- name: Check for OS specific tasks
+  stat:
+    path: "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+  register: file_result
+
+- name: Run OS specific tasks
+  include_tasks: "{{ file_result.stat.path }}"
+  when: file_result.stat.exists
+
+- name: Install
+  package:
+    name: code
+    state: latest
+  become: true
+
+- name: Create config directory
+  file: 
+    path: ~/.config/Code/User
+    state: directory
+    mode: '0755'
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: ~/.config/Code/User/{{ item }}
+    state: link
+    force: true
+  loop:
+    - keybindings.json
+    - settings.json
+
+- name: Install extensions
+  shell: "code --install-extension {{ item }}"
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.vscode/extensions/{{ item }}*"
+  loop: "{{ lookup('file', '{{ role_path }}/files/extensions.txt').splitlines() }}"

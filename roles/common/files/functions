@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# Prints out $PATH entries on separate lines
+function path() {
+ echo "${PATH}" | tr ':' '\n'
+}
+
+# Rename the current tmux pane
+function rename() {
+  name=$1
+  if [[ -z $name ]]; then
+    return 1
+  fi
+
+  tmux select-pane -t "$(tmux display-message -p '#P')" -T "${name}"
+}
+
+# Close a specified tmux pane, or all panes
+function close() {
+  pane_id=$1
+  if [[ -z $pane_id ]]; then
+    tmux kill-session -t "$(tmux display-message -p '#S')"
+  else
+    tmux kill-pane -t "${pane_id}"
+  fi
+}
+
+# Returns the type of a command (e.g. command, shell built-in)
+function type() {
+  local cmd=$1
+  if [[ -z "${cmd}" ]]; then
+    echo Please provide a command
+    return 1
+  fi
+  whence -w "${cmd}" | awk '{print $2}'
+}
+
+# Loads node if it is not already loaded
+function nvm_load() {
+  local node
+  node=$(type node)
+  if [[ "${node}" != "command" ]]; then
+    nvm ls > /dev/null
+  fi
+}
+
+# Git pull and show the changes if there are any
+function pull_and_diff() {
+  # Git pull and grab the output
+  output=$(git pull)
+
+  # Try and grab the diff range (e.g. 12345..abcdef) from the git pull output
+  diff=$(echo "${output}" | sed -n 's/^Updating\s*\(\S*\)$/\1/p')
+
+  # If we found a diff range then show the diff
+  if [[ -n "${diff}" ]]; then
+    git diff "${diff}"
+  fi
+
+  # Finish by showing the standard git pull output
+  echo "${output}"
+}

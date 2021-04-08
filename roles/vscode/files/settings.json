@@ -1,0 +1,164 @@
+{
+  "[css]": {
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2
+  },
+  "[haskell]": {
+    "editor.defaultFormatter": "haskell.haskell"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2
+  },
+  "[latex]": {
+    "editor.defaultFormatter": "nickfode.latex-formatter"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.tabSize": 2
+  },
+  "[rust]": {
+    "editor.tabSize": 4
+  },
+  "[shellscript]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "breadcrumbs.enabled": true,
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "C_Cpp.default.includePath": [
+    "../include"
+  ],
+  "cfnLint.appendRules": [],
+  "cfnLint.enableAutocomplete": true,
+  "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**, results/unit/**",
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "git-commit",
+    "latex",
+    "markdown",
+    "plaintext",
+    "restructuredtext",
+    "text"
+  ],
+  "cSpell.language": "en-GB",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.insertSpaces": true,
+  "editor.largeFileOptimizations": false,
+  "editor.minimap.enabled": false,
+  "editor.suggestSelection": "first",
+  "eslint.alwaysShowStatus": true,
+  "eslint.lintTask.enable": true,
+  "extensions.ignoreRecommendations": false,
+  "files.associations": {
+    "*.cf": "yaml",
+    "*.inc": "php",
+    "*.module": "php",
+    "*.vtc": "vcl"
+  },
+  "files.insertFinalNewline": true,
+  "files.watcherExclude": {
+    "**/.ammonite": true,
+    "**/.bloop": true,
+    "**/.metals": true
+  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "go.autocompleteUnimportedPackages": true,
+  "go.toolsManagement.autoUpdate": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "markdown.extension.toc.levels": "2..6",
+  "markdown.extension.toc.orderedList": true,
+  "php.validate.executablePath": "/usr/bin/php",
+  "prettier.requireConfig": true,
+  "prettier.singleQuote": true,
+  "python.showStartPage": false,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.updates.askBeforeDownload": false,
+  "shellcheck.customArgs": [
+    "-x"
+  ],
+  "shellcheck.disableVersionCheck": true,
+  "shellcheck.enableQuickFix": true,
+  "shellcheck.ignorePatterns": {
+    "**/*.zsh": true
+  },
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.editor.enablePreview": false,
+  "workbench.editorAssociations": [
+    {
+      "filenamePattern": "*.ipynb",
+      "viewType": "jupyter.notebook.ipynb"
+    }
+  ],
+  "workbench.startupEditor": "newUntitledFile",
+  "xml.format.enabled": false,
+  "yaml.customTags": [
+    "!And sequence",
+    "!And",
+    "!Base64",
+    "!Cidr",
+    "!Equals sequence",
+    "!Equals",
+    "!FindInMap sequence",
+    "!FindInMap",
+    "!GetAZs",
+    "!GetAtt sequence",
+    "!GetAtt",
+    "!If sequence",
+    "!If",
+    "!ImportValue sequence",
+    "!ImportValue",
+    "!Join sequence",
+    "!Join",
+    "!Not sequence",
+    "!Not",
+    "!Or sequence",
+    "!Or",
+    "!Ref",
+    "!Select sequence",
+    "!Select",
+    "!Split sequence",
+    "!Split",
+    "!Sub sequence",
+    "!Sub"
+  ],
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": true,
+  "yaml.validate": false
+}

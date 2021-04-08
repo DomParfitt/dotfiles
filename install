@@ -1,15 +1,65 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python
 
-set -e
+from shutil import which
+from subprocess import run
+from sys import version_info, exit
+from re import match
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+def install_ansible():
+    package_managers = {
+        "dnf": ["sudo", "dnf", "install", "-y", "ansible"],
+        "apt": ["sudo", "apt", "install", "ansible"],
+        "pacman": "",
+    }
 
-cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
+    system_package_manager = None
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+    for key in package_managers:
+        if which(key):
+            system_package_manager = key
+            break
+
+    if system_package_manager is None:
+        use_pip = input(
+            "Unknown system package manager. Install Ansible using pip [y/N]? ")
+
+        if match("y", str.lower(use_pip)):
+            run(['pip', 'install', '--user', '--upgrade', 'ansible'])
+        else:
+            print("Not installing Ansible")
+            exit(2)
+    else:
+        install = input(
+            f"System package manager is {system_package_manager}. Install Ansible using {system_package_manager} (1) or pip (2)? ")
+
+        if install == "1":
+            run(package_managers[system_package_manager])
+        elif install == "2":
+            run(['pip', 'install', '--user', '--upgrade', 'ansible'])
+        else:
+            print("Unknown selection")
+            exit(2)
+
+
+def main():
+    # Make sure we're using Python 3
+    if version_info.major != 3:
+        print(
+            f'Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}')
+        exit(1)
+
+    # If ansible is not installed, install it
+    if which('ansible') is None:
+        print("Ansible is not currently installed.")
+        install_ansible()
+
+    # Install additional modules
+    run(['ansible-galaxy', 'install', '-r', 'requirements.yml'])
+
+    # Run the playbook
+    run(['ansible-playbook', 'main.yml'])
+
+
+if __name__ == '__main__':
+    main()

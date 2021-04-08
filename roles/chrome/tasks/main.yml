@@ -1,0 +1,23 @@
+- name: Enable repository
+  yum_repository:
+    file: google-chrome
+    name: google-chrome
+    description: Google Chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'
+
+- name: Install
+  package:
+    name: google-chrome
+    state: latest
+  become: true
+
+- name: Install Chromium
+  dnf:
+    name: chromium-freeworld
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'

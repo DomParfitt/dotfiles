@@ -1,0 +1,25 @@
+[user]
+	name = Dom Parfitt
+	email = mail@domparfitt.com
+
+[alias]
+  dpull = ! source $HOME/.functions && pull_and_diff
+
+[credential]
+	helper = store
+
+[core]
+  editor = vim
+  excludesfile = ~/.config/git/gitignore
+
+[include]
+    path = ~/.config/git/delta
+
+[includeIf "gitdir:~/projects/work/**"]
+  path = ~/.config/git/work-config
+
+[pull]
+	rebase = false
+
+[rebase]
+    autosquash = true

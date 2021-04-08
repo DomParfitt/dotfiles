@@ -1,0 +1,61 @@
+- name: Add user to sudoers
+  copy:
+    content: "{{ lookup('env', 'USER') }} ALL=(ALL) NOPASSWD:ALL"
+    dest: "/etc/sudoers.d/{{ lookup('env', 'USER') }}"
+    validate: visudo -csf %s
+  become: true
+
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - ~/.config
+    - ~/.zfunc
+    - ~/Pictures
+    - ~/projects
+
+- name: Copy files
+  file:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - src: aliases
+      dest: ~/.aliases
+    - src: fonts
+      dest: ~/.fonts
+    - src: functions
+      dest: ~/.functions
+    - src: Xresources
+      dest: ~/.Xresources
+    - src: wallpapers
+      dest: ~/Pictures/wallpapers
+
+- name: Check for OS specific tasks
+  stat:
+    path: "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml"
+  register: file_result
+
+- name: Run OS specific tasks
+  include_tasks: "{{ file_result.stat.path }}"
+  when: file_result.stat.exists
+
+- name: Install packages
+  package:
+    name:
+      - compton
+      - curl
+      - feh
+      - firefox
+      - fzf
+      - httpie
+      - jq
+      - latexmk
+      - make
+      - most
+      - neofetch
+      - texlive
+    state: latest
+  become: true

@@ -1,0 +1,16 @@
+- name: Install
+  dnf:
+    name:
+      - gnome-shell-extension-user-theme
+      - gnome-shell-theme-yaru
+    state: latest
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'
+
+- name: Configure
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/user-theme/{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: name
+      value: "'Yaru-dark'"

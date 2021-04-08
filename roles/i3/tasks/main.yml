@@ -1,0 +1,14 @@
+- name: Install
+  package:
+    name: i3
+    state: latest
+  become: true
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "~/.config/{{ item }}"
+    state: link
+  with_items:
+    - i3
+    - i3status

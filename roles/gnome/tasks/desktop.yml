@@ -1,0 +1,53 @@
+- name: Configure background
+  community.general.dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file://{{ lookup('env', 'HOME') }}/Pictures/wallpapers/hjpomji7vgc41.jpg'"
+
+- name: Configure interface
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: clock-show-date
+      value: "true"
+    - key: clock-show-seconds
+      value: "false"
+    - key: clock-show-weekday
+      value: "true"
+    - key: cursor-theme
+      value: "'DMZ-White'"
+    - key: enable-animations
+      value: "true"
+    - key: enable-hot-corners
+      value: "false"
+    - key: font-name
+      value: "'Noto Sans Regular 10'"
+    - key: gtk-im-module
+      value: "'gtk-im-context-simple'"
+    - key: gtk-theme
+      value: "'Adwaita-dark'"
+    - key: icon-theme
+      value: "'Flat-Remix-Blue-Dark'"
+    - key: monospace-font-name
+      value: "'Hack NF 13'"
+    - key: show-battery-percentage
+      value: "true"
+    - key: text-scaling-factor
+      value: "1.0"
+    - key: toolbar-style
+      value: "'icons'"
+    - key: toolkit-accessibility
+      value: "false"
+
+- name: Configure window manager
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/preferences/{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: button-layout
+      value: "':appmenu,minimize,maximize,close'"
+
+- name: Set GDM wallpaper
+  shell: "set-gdm-wallpaper {{ lookup('env', 'HOME') }}/Pictures/wallpapers/hjpomji7vgc41.jpg"
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'

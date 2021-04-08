@@ -1,0 +1,7 @@
+- name: Install OpenSSL dependencies
+  apt:
+    name: 
+      - pkg-config
+      - libssl-dev
+    state: latest
+  become: true

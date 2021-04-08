@@ -1,0 +1,58 @@
+
+- name: Install
+  dnf:
+    name:
+      - gnome-shell-extension-openweather
+    state: latest
+  become: true
+  when: ansible_facts['os_family'] | lower == 'redhat'
+
+- name: Configure
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/openweather/{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: actual-city
+      value: "0"
+    - key: appid-fc
+      value: "'28e0a3c6d760b6a73f7505dfcc80341d'"
+    - key: center-forecast
+      value: "false"
+    - key: city
+      value: "'52.502065,-1.874289>Birmingham>-1'"
+    - key: days-forecast
+      value: "2"
+    - key: decimal-places
+      value: "1"
+    - key: geolocation-provider
+      value: "'openstreetmaps'"
+    - key: menu-alignment
+      value: "0.0"
+    - key: position-in-panel
+      value: "'center'"
+    - key: pressure-unit
+      value: "'bar'"
+    - key: refresh-interval-forecast
+      value: "1800"
+    - key: show-comment-in-forecast
+      value: "true"
+    - key: show-comment-in-panel
+      value: "true"
+    - key: show-text-in-panel
+      value: "true"
+    - key: translate-condition
+      value: "true"
+    - key: unit
+      value: "'celsius'"
+    - key: use-default-owm-key
+      value: "true"
+    - key: use-symbolic-icons
+      value: "true"
+    - key: use-text-on-buttons
+      value: "true"
+    - key: weather-provider
+      value: "'openweathermap'"
+    - key: wind-direction
+      value: "true"
+    - key: wind-speed-unit
+      value: "'mph'"
