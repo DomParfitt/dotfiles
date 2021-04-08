@@ -1,0 +1,21 @@
+- name: Install CLI tools
+  pip:
+    name:
+      - awscli
+      - aws-shell
+      - cfn-lint
+    extra_args: "--user --upgrade"
+
+- name: Copy key rotation script
+  file:
+    src: "{{ role_path }}/files/rotate-iam-keys"
+    dest: "~/bin/rotate-iam-keys"
+    state: link
+    force: true
+
+- name: Setup key rotation cron job
+  cron:
+    name: rotate IAM keys
+    minute: '1'
+    hour: '12'
+    job: AWS_SHARED_CREDENTIALS_FILE=${HOME}/.aws/credentials ~/bin/rotate-iam-keys &>/var/log/rotate-iam-keys.log
