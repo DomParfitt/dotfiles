@@ -44,14 +44,8 @@ if command -v pip3 > /dev/null 2>&1; then
 fi
 
 # Use `neovim` as a `vim` replacement
-# coc.vim requires node, which is installed using nvm via the 
-# nvm-zsh plugin. This plugin lazy loads for performance, so
-# we call nvm_load first to make node available for vim if it
-# is not already available.
 if command -v nvim > /dev/null 2>&1; then
-    alias vim="nvm_load; nvim"
-else
-    alias vim="nvm_load; vim"
+    alias vim="nvim"
 fi
 
 alias ts='yo simple-ts'
