@@ -13,6 +13,7 @@
   with_items:
     - ~/.config
     - ~/.zfunc
+    - ~/bin
     - ~/Pictures
     - ~/projects
 

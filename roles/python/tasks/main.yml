@@ -1,7 +1,0 @@
-- name: Install packages
-  pip:
-    name:
-      - awscli
-      - aws-shell
-      - cfn-lint
-    extra_args: "--user --upgrade"
