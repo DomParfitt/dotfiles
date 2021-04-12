@@ -9,6 +9,11 @@
   args:
     creates: ~/.rustup/toolchains/stable*
 
+- name: Generate shell completions
+  shell: ~/.cargo/bin/rustup completions zsh > "~/.zfunc/_rustup"
+  args:
+    creates: ~/.zfunc/_rustup
+
 - name: Check for OS specific tasks
   stat:
     path: "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
