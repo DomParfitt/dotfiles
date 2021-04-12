@@ -28,5 +28,6 @@
     name:
       - '@multimedia'
       - '@virtualization'
+      - cronie
     state: latest
   become: true
