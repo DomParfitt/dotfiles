@@ -13,9 +13,16 @@
     state: link
     force: true
 
+- name: Create log directory
+  file:
+    path: /var/log/aws-iam
+    state: directory
+    mode: '0777'  
+  become: true
+
 - name: Setup key rotation cron job
   cron:
     name: rotate IAM keys
     minute: '1'
     hour: '12'
-    job: AWS_SHARED_CREDENTIALS_FILE=${HOME}/.aws/credentials ~/bin/rotate-iam-keys &>/var/log/rotate-iam-keys.log
+    job: ~/bin/rotate-iam-keys &> /var/log/aws-iam/$(date +\%Y-\%m-\%d).log
