@@ -34,3 +34,9 @@
     name: docker
     enabled: true
   become: true
+
+- name: Setup prune cron job
+  cron:
+    name: prune Docker images
+    special_time: daily
+    job: docker image prune --force
