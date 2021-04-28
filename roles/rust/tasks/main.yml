@@ -10,9 +10,13 @@
     creates: ~/.rustup/toolchains/stable*
 
 - name: Generate shell completions
-  shell: ~/.cargo/bin/rustup completions zsh > "~/.zfunc/_rustup"
-  args:
-    creates: ~/.zfunc/_rustup
+  shell: ~/.cargo/bin/rustup completions zsh
+  register: rust_completions
+
+- name: Save completions
+  copy:
+    content: "{{ rust_completions.stdout }}"
+    dest: ~/.zfunc/_rustup
 
 - name: Check for OS specific tasks
   stat:
