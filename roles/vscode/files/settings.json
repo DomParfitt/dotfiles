@@ -55,6 +55,7 @@
   "cfnLint.appendRules": [],
   "cfnLint.enableAutocomplete": true,
   "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**, results/unit/**",
+  "cSpell.enabled": false,
   "cSpell.enabledLanguageIds": [
     "asciidoc",
     "git-commit",
@@ -77,8 +78,6 @@
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
-  "eslint.alwaysShowStatus": true,
-  "eslint.lintTask.enable": true,
   "extensions.ignoreRecommendations": false,
   "files.associations": {
     "*.cf": "yaml",
@@ -104,8 +103,10 @@
   "prettier.requireConfig": true,
   "prettier.singleQuote": true,
   "python.showStartPage": false,
+  "redhat.telemetry.enabled": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.askBeforeDownload": false,
+  "security.workspace.trust.enabled": false,
   "shellcheck.customArgs": [
     "-x"
   ],
@@ -120,12 +121,9 @@
   "window.zoomLevel": 0,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.enablePreview": false,
-  "workbench.editorAssociations": [
-    {
-      "filenamePattern": "*.ipynb",
-      "viewType": "jupyter.notebook.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   "workbench.startupEditor": "newUntitledFile",
   "xml.format.enabled": false,
   "yaml.customTags": [
