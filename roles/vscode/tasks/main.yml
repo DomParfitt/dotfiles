@@ -34,3 +34,9 @@
   args:
     creates: "{{ lookup('env', 'HOME') }}/.vscode/extensions/{{ item }}*"
   loop: "{{ lookup('file', '{{ role_path }}/files/extensions.txt').splitlines() }}"
+
+- name: Setup extensions cron job
+  cron:
+    name: backup VSCode extensions
+    special_time: weekly
+    job: code --list-extensions > ~/.dotfiles/roles/vscode/files/extensions.txt
