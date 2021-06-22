@@ -34,14 +34,14 @@
     - src: wallpapers
       dest: ~/Pictures/wallpapers
 
-- name: Check for OS specific tasks
-  stat:
-    path: "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml"
-  register: file_result
-
 - name: Run OS specific tasks
-  include_tasks: "{{ file_result.stat.path }}"
-  when: file_result.stat.exists
+  include_tasks: '{{ item }}'
+  vars:
+    params:
+      files:
+        - "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml"
+        - "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
 
 - name: Install packages
   package:

@@ -1,0 +1,6 @@
+- name: Enable COPR
+  command: dnf copr enable -y pschyska/alacritty
+  args:
+    warn: false
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:pschyska:alacritty.repo
+  become: true

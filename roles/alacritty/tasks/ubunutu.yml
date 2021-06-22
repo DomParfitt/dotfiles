@@ -1,0 +1,4 @@
+- name: Enable PPA
+  apt_repository:
+    repo: mmstick76/alacritty
+  become: true

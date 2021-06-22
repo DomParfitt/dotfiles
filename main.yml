@@ -5,18 +5,23 @@
   roles:
     - common
     - alacritty
-    - awesome
+    - role: awesome
+      when: ansible_facts['system'] | lower == 'linux'
     - aws
-    - bspwm
+    - role: bspwm
+      when: ansible_facts['system'] | lower == 'linux'
     - docker
     - git
-    - gnome
+    - role: gnome
+      when: ansible_facts['system'] | lower == 'linux'
     - haskell
-    - i3
+    - role: i3
+      when: ansible_facts['system'] | lower == 'linux'
     - kitty
     - lazygit
     - node
-    - polybar
+    - role: polybar
+      when: ansible_facts['system'] | lower == 'linux'
     - rust
     - ssh
     - tealdeer

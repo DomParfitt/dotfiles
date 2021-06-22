@@ -1,8 +1,8 @@
 - name: Configure dnf
   lineinfile:
     path: /etc/dnf/dnf.conf
-    line: "{{ item.key }}={{ item.value }}"
-    regexp: "^{{ item.key }}="
+    line: "{{ option.key }}={{ option.value }}"
+    regexp: "^{{ option.key }}="
   with_items:
     - key: defaultyes
       value: 'True'  
@@ -12,6 +12,8 @@
       value: 10
     - key: metadata_timer_sync
       value: 3600
+  loop_control:
+    loop_var: option
   become: true
 
 - name: Enable RPM Fusion
