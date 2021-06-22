@@ -3,6 +3,7 @@ alexkrechik.cucumberautocomplete
 alphabotsec.vscode-eclipse-keybindings
 bbenoist.vagrant
 bungcip.better-toml
+chenglou92.rescript-vscode
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 CoenraadS.bracket-pair-colorizer-2
@@ -18,9 +19,10 @@ firsttris.vscode-jest-runner
 floone.varnish-vcl
 golang.go
 haskell.haskell
+hilleer.yaml-plus-json
 hoovercj.haskell-linter
+Ionide.Ionide-fsharp
 James-Yu.latex-workshop
-jaredly.reason-vscode
 joaompinto.vscode-graphviz
 johnpapa.vscode-peacock
 joshuapoehls.json-escaper
@@ -37,6 +39,7 @@ mechatroner.rainbow-csv
 ms-azuretools.vscode-docker
 ms-dotnettools.csharp
 ms-python.python
+ms-python.vscode-pylance
 ms-toolsai.jupyter
 ms-vscode.cpptools
 ms-vscode.vscode-typescript-tslint-plugin
@@ -45,11 +48,15 @@ ms-vsliveshare.vsliveshare-audio
 ms-vsliveshare.vsliveshare-pack
 nextfaze.json-parse-stringify
 nickfode.latex-formatter
+ocamllabs.ocaml-platform
+redhat.vscode-commons
 redhat.vscode-xml
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
 ryanluker.vscode-coverage-gutters
 ryu1kn.partial-diff
+scala-lang.scala
+scalameta.metals
 sodatea.velocity
 streetsidesoftware.code-spell-checker
 sumneko.lua
