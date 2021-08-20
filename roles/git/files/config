@@ -4,6 +4,8 @@
 
 [alias]
   dpull = ! source $HOME/.functions && pull_and_diff
+  publish = ! git push -u origin $(git branch --show-current)
+  pub = publish
 
 [credential]
 	helper = store
@@ -13,13 +15,19 @@
   excludesfile = ~/.config/git/gitignore
 
 [include]
-    path = ~/.config/git/delta
+  path = ~/.config/git/delta
 
 [includeIf "gitdir:~/projects/work/**"]
+  path = ~/.config/git/work-config
+
+[includeIf "gitdir:~/go/src/github.com/EconomistDigitalSolutions/**"]
   path = ~/.config/git/work-config
 
 [pull]
 	rebase = false
 
 [rebase]
-    autosquash = true
+  autosquash = true
+
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
