@@ -2,7 +2,7 @@
 
 from os import path, mkdir
 
-role_name = input('Role name: ')
+role_name = input('Role name: ').lower()
 
 role_path = path.join(path.dirname(__file__), 'roles', role_name)
 
