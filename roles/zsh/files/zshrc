@@ -73,20 +73,6 @@ path+=(
 
 export PATH
 
-# Import and set aliases
-source "$HOME/.aliases"
-
-# Import utility functions
-source "$HOME/.functions"
-
-# Import custom Powerlevel10k theme config
-source "$HOME/.p10k.zsh"
-
-# Set FPath for functions
-fpath+=(
-  "$HOME/.zfunc"
-)
-
 # If `bat` is installed use it as the `man` pager
 if command -v bat > /dev/null 2>&1; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -111,3 +97,18 @@ fi
 # Allow option stack for Docker completions
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+# Import and set aliases
+source "$HOME/.aliases"
+
+# Import utility functions
+source "$HOME/.functions"
+
+# Import custom Powerlevel10k theme config
+source "$HOME/.p10k.zsh"
+
+# Set FPath for functions
+fpath+=(
+  "$HOME/.zfunc"
+)
