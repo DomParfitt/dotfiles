@@ -4,6 +4,14 @@
     creates: ~/.rustup
     warn: false
 
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files/config.toml"
+    dest: ~/.cargo/config.toml
+    state: link
+    force: true
+
+
 - name: Set toolchain
   shell: ~/.cargo/bin/rustup default stable
   args:
