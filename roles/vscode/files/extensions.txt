@@ -2,11 +2,10 @@
 alexkrechik.cucumberautocomplete
 alphabotsec.vscode-eclipse-keybindings
 bbenoist.vagrant
+betterthantomorrow.calva
 bungcip.better-toml
-chenglou92.rescript-vscode
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
-CoenraadS.bracket-pair-colorizer-2
 coolbear.systemd-unit-file
 dbaeumer.vscode-eslint
 DigitalBrainstem.javascript-ejs-support
@@ -22,6 +21,7 @@ haskell.haskell
 hilleer.yaml-plus-json
 hoovercj.haskell-linter
 Ionide.Ionide-fsharp
+JakeBecker.elixir-ls
 James-Yu.latex-workshop
 joaompinto.vscode-graphviz
 johnpapa.vscode-peacock
@@ -40,12 +40,7 @@ ms-azuretools.vscode-docker
 ms-dotnettools.csharp
 ms-python.python
 ms-python.vscode-pylance
-ms-toolsai.jupyter
 ms-vscode.cpptools
-ms-vscode.vscode-typescript-tslint-plugin
-ms-vsliveshare.vsliveshare
-ms-vsliveshare.vsliveshare-audio
-ms-vsliveshare.vsliveshare-pack
 nextfaze.json-parse-stringify
 nickfode.latex-formatter
 ocamllabs.ocaml-platform
@@ -64,9 +59,7 @@ timonwong.shellcheck
 twxs.cmake
 usernamehw.errorlens
 vadimcn.vscode-lldb
-WallabyJs.quokka-vscode
 wayou.vscode-todo-highlight
-whatwedo.twig
 william-voyek.vscode-nginx
 XadillaX.viml
 yzhang.markdown-all-in-one

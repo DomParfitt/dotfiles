@@ -52,6 +52,7 @@
   "C_Cpp.default.includePath": [
     "../include"
   ],
+  "calva.paredit.defaultKeyMap": "strict",
   "cfnLint.appendRules": [],
   "cfnLint.enableAutocomplete": true,
   "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**, results/unit/**",
@@ -67,6 +68,7 @@
   ],
   "cSpell.language": "en-GB",
   "diffEditor.ignoreTrimWhitespace": false,
+  "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.organizeImports": false
@@ -100,9 +102,9 @@
   "markdown.extension.toc.levels": "2..6",
   "markdown.extension.toc.orderedList": true,
   "php.validate.executablePath": "/usr/bin/php",
-  "prettier.requireConfig": true,
+  "prettier.requireConfig": false,
   "prettier.singleQuote": true,
-  "python.showStartPage": false,
+  "python.defaultInterpreterPath": "/bin/python",
   "redhat.telemetry.enabled": false,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.askBeforeDownload": false,
@@ -115,10 +117,9 @@
   "shellcheck.ignorePatterns": {
     "**/*.zsh": true
   },
-  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "terminal.integrated.defaultProfile.linux": "zsh",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.titleBarStyle": "custom",
-  "window.zoomLevel": 0,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.enablePreview": false,
   "workbench.editorAssociations": {
