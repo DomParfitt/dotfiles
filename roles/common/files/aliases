@@ -25,11 +25,6 @@ if command -v btm > /dev/null 2>&1; then
   alias top='btm -b'
 fi
 
-# Use `fd` as a `find` replacement
-if command -v fd > /dev/null 2>&1; then
-  alias find='fd'
-fi
-
 # Alias xclip to use `clipboard` by default
 alias xclip="xclip -selection clipboard"
 
@@ -51,3 +46,5 @@ fi
 alias ts='yo simple-ts'
 
 alias dc='docker-compose'
+
+alias awsv1=$HOME/.local/bin/aws
