@@ -12,6 +12,8 @@
       when: ansible_facts['system'] | lower == 'linux'
     - chrome
     - docker
+    - role: flatpak
+      when: ansible_facts['system'] | lower == 'linux'
     - git
     - role: gnome
       when: ansible_facts['system'] | lower == 'linux'
