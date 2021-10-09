@@ -10,6 +10,7 @@
     - aws
     - role: bspwm
       when: ansible_facts['system'] | lower == 'linux'
+    - chrome
     - docker
     - git
     - role: gnome
