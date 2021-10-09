@@ -3,4 +3,5 @@
     src: "{{ role_path }}/files/config"
     dest: ~/.ssh/config
     state: link
+    mode: '0600'
     force: true
