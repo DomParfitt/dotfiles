@@ -1,6 +1,6 @@
 [user]
-	name = Dom Parfitt
-	email = mail@domparfitt.com
+  name = Dom Parfitt
+  email = mail@domparfitt.com
 
 [alias]
   dpull = ! source $HOME/.functions && pull_and_diff
@@ -24,10 +24,7 @@
   path = ~/.config/git/work-config
 
 [pull]
-	rebase = false
+  rebase = false
 
 [rebase]
   autosquash = true
-
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
