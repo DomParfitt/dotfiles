@@ -11,10 +11,12 @@
       value: "['<Alt>Tab']"
     - key: switch-windows-backward
       value: "['<Shift><Alt>Tab']"
+    - key: show-desktop
+      value: "['<Super>d']"
 
 - name: Configure terminal shortcut
   community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0"
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/{{ item.key }}"
     value: "{{ item.value | string }}"
   with_items:
     - key: binding
@@ -26,7 +28,7 @@
 
 - name: Configure file explorer shortcut
   community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1"
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/{{ item.key }}"
     value: "{{ item.value | string }}"
   with_items:
     - key: binding
