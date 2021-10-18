@@ -1,0 +1,4 @@
+- name: Enable COPR
+  community.general.copr:
+    name: atim/lazygit
+  become: true

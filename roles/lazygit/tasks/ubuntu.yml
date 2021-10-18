@@ -1,0 +1,4 @@
+- name: Enable PPA
+  apt_repository:
+      repo: lazygit-team/release
+  become: true

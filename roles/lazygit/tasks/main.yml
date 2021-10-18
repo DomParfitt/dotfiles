@@ -1,14 +1,11 @@
-- name: Enable COPR
-  community.general.copr:
-    name: atim/lazygit
-  become: true
-  when: ansible_facts['os_family'] | lower == 'redhat'
-
-- name: Enable PPA
-  apt_repository:
-      repo: lazygit-team/release
-  become: true
-  when: ansible_facts['os_family'] | lower == 'debian'
+- name: Run OS specific tasks
+  include_tasks: '{{ item }}'
+  vars:
+    params:
+      files:
+        - "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml"
+        - "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
 
 - name: Install
   package:
