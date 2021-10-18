@@ -11,10 +11,8 @@
   when: ansible_facts['os_family'] | lower == 'debian'
 
 - name: Enable GDM Wallpaper COPR
-  command: dnf copr enable -y zirix/gdm-wallpaper
-  args:
-    warn: false
-    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:zirix:gdm-wallpaper.repo
+  community.general.copr:
+    name: zirix/gdm-wallpaper
   become: true
   when: ansible_facts['os_family'] | lower == 'redhat'
 

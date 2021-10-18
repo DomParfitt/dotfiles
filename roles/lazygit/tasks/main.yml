@@ -1,8 +1,6 @@
 - name: Enable COPR
-  command: dnf copr enable -y atim/lazygit
-  args:
-    warn: false
-    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:atim:lazygit.repo
+  community.general.copr:
+    name: atim/lazygit
   become: true
   when: ansible_facts['os_family'] | lower == 'redhat'
 
