@@ -1,0 +1,21 @@
+- name: Add stable repository
+  yum_repository:
+    file: hashicorp
+    name: hashicorp
+    description: Hashicorp Stable - $basearch
+    baseurl: https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+  become: true
+
+- name: Add testing repository
+  yum_repository:
+    file: hashicorp
+    name: hashicorp-test
+    description: Hashicorp Test - $basearch
+    baseurl: https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/test
+    enabled: 0
+    gpgcheck: 1
+    gpgkey: https://rpm.releases.hashicorp.com/gpg
+  become: true

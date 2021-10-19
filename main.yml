@@ -23,6 +23,7 @@
     - kitty
     - lazygit
     - node
+    - nomad
     - role: polybar
       when: ansible_facts['system'] | lower == 'linux'
     - rust
