@@ -94,6 +94,11 @@ if [[ -f "$HOME/.ghcup/env" ]]; then
   source "$HOME/.ghcup/env"
 fi
 
+if command -v nomad > /dev/null 2>&1; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C /usr/bin/nomad nomad
+fi
+
 # Allow option stack for Docker completions
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
@@ -112,3 +117,4 @@ source "$HOME/.p10k.zsh"
 fpath+=(
   "$HOME/.zfunc"
 )
+
