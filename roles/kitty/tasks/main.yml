@@ -10,3 +10,5 @@
     dest: ~/.config/kitty
     state: link
     force: true
+  tags:
+    - config

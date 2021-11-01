@@ -5,3 +5,5 @@
     state: link
     mode: '0600'
     force: true
+  tags:
+    - config

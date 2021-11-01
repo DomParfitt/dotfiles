@@ -19,3 +19,5 @@
     dest: ~/.config/alacritty
     state: link
     force: true
+  tags:
+    - config

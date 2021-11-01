@@ -26,6 +26,8 @@
       dest: ~/.zshrc
     - src: p10k.zsh
       dest: ~/.p10k.zsh
+  tags:
+    - config
 
 - name: Set default shell
   user:

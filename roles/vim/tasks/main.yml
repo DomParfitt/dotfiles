@@ -28,6 +28,8 @@
       dest: ~/.config/nvim
     - src: plug.vim
       dest: ~/.vim/autoload/plug.vim
+  tags:
+    - config
 
 # - name: Install plugins
 #   shell: vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qall

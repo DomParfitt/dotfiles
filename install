@@ -55,7 +55,9 @@ def main():
 
     parser = argparse.ArgumentParser(description="Install stuff")
     parser.add_argument('roles', nargs='?', choices=roles, metavar='roles',
-                        help="Comma-separate list of roles to run")
+                        help='Comma-separate list of roles to run')
+    parser.add_argument('-c', '--config-only', action='store_true',
+                        help="Only copy config files (i.e. don't install anything). Runs for all roles regardless of whether the roles arg is present")
 
     args = parser.parse_args()
 
@@ -67,9 +69,14 @@ def main():
     # Install additional modules
     run(['ansible-galaxy', 'collection', 'install', '-r', 'requirements.yml'])
 
+    if args.config_only:
+        tag = 'config'
+    elif args.roles:
+        tag = args.roles
+
     additional_args = []
-    if not args.roles == None:
-        additional_args = ['--tags', args.roles]
+    if tag:
+        additional_args = ['--tags', tag]
 
     # Run the playbook
     run(['ansible-playbook', 'main.yml'] + additional_args)

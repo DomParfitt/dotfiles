@@ -10,3 +10,5 @@
     dest: ~/.tmux.conf
     state: link
     force: true
+  tags:
+    - config

@@ -10,7 +10,8 @@
     dest: ~/.cargo/config.toml
     state: link
     force: true
-
+  tags:
+    - config
 
 - name: Set toolchain
   shell: ~/.cargo/bin/rustup default stable

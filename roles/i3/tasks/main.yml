@@ -12,3 +12,5 @@
   with_items:
     - i3
     - i3status
+  tags:
+    - config

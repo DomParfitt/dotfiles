@@ -10,7 +10,9 @@
     dest: ~/.config/git
     state: link
     force: true
-
+  tags:
+    - config
+    
 - name: Install delta (cargo)
   shell: ~/.cargo/bin/cargo install git-delta
   args:

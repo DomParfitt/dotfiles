@@ -28,6 +28,8 @@
   loop:
     - keybindings.json
     - settings.json
+  tags:
+    - config
 
 - name: Install extensions
   shell: "code --install-extension {{ item }}"

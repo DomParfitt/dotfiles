@@ -10,3 +10,5 @@
     dest: ~/.config/polybar
     state: link
     force: true
+  tags:
+    - config

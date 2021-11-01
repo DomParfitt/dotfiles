@@ -10,3 +10,5 @@
     dest: ~/.config/awesome
     state: link
     force: true
+  tags:
+    - config
