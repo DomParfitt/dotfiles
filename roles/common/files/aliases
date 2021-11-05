@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-alias ls='ls --color=always'
 alias l='ls -hl'
 alias ll='ls -ahl'
 alias lls='ll | less'
@@ -46,5 +45,3 @@ fi
 alias ts='yo simple-ts'
 
 alias dc='docker-compose'
-
-alias awsv1=$HOME/.local/bin/aws

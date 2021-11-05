@@ -4,6 +4,7 @@
     dest: "/etc/sudoers.d/{{ lookup('env', 'USER') }}"
     validate: visudo -csf %s
   become: true
+  when: is_linux
 
 - name: Create directories
   file:
@@ -16,6 +17,7 @@
     - ~/bin
     - ~/Pictures
     - ~/projects
+    - ~/projects/work
 
 - name: Copy files
   file:
@@ -46,17 +48,14 @@
 - name: Install packages
   package:
     name:
-      - compton
       - curl
       - feh
       - firefox
       - fzf
       - httpie
       - jq
-      - latexmk
       - make
       - most
       - neofetch
-      - texlive
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"
