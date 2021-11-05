@@ -1,0 +1,7 @@
+- name: Install packages
+  package:
+    name:
+      - latexmk
+      - texlive
+    state: latest
+  become: true
