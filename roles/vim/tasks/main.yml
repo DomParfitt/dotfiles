@@ -1,10 +1,10 @@
 - name: Install
   package:
     name:
-      - vim
+      # - vim
       - neovim
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"
 
 - name: Create directories
   file:
@@ -30,8 +30,3 @@
       dest: ~/.vim/autoload/plug.vim
   tags:
     - config
-
-# - name: Install plugins
-#   shell: vim -E -s -c "source ~/.vimrc" -c PluginInstall -c qall
-#   ignore_errors: true
-#   # shell: vim +PlugInstall +qall

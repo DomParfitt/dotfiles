@@ -2,7 +2,7 @@
   package:
     name: git
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:
@@ -24,4 +24,4 @@
     name: git-delta
     state: present
   when: git_delta_install_with_cargo is not true
-  become: true
+  become: "{{ should_sudo_install }}"

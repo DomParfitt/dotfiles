@@ -2,30 +2,37 @@
     - all
     - localhost
   connection: local
+  vars:
+    is_linux: "{{ (ansible_facts['os_family'] | lower == 'linux') }}"
+    is_mac: "{{ (ansible_facts['os_family'] | lower == 'darwin') }}"
+    should_sudo_install: "{{ not is_mac }}"
   roles:
+    - debug
+    - role: homebrew
+      when: is_mac
     - common
     - alacritty
     - role: awesome
-      when: ansible_facts['system'] | lower == 'linux'
+      when: is_linux
     - aws
     - role: bspwm
-      when: ansible_facts['system'] | lower == 'linux'
-    - chrome
-    - docker
+      when: is_linux
+    # - chrome
+    # - docker
     - role: flatpak
-      when: ansible_facts['system'] | lower == 'linux'
+      when: is_linux
     - git
     - role: gnome
-      when: ansible_facts['system'] | lower == 'linux'
-    - haskell
+      when: is_linux
+    # - haskell
     - role: i3
-      when: ansible_facts['system'] | lower == 'linux'
+      when: is_linux
     - kitty
     - lazygit
     - node
     - nomad
     - role: polybar
-      when: ansible_facts['system'] | lower == 'linux'
+      when: is_linux
     - rust
     - ssh
     - tealdeer

@@ -11,4 +11,4 @@
   package:
     name: nomad
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"

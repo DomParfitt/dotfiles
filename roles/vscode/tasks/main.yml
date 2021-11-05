@@ -9,20 +9,20 @@
 
 - name: Install
   package:
-    name: code
+    name: "{{ is_linux | ternary('code', 'visual-studio-code') }}"
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"
 
 - name: Create config directory
   file: 
-    path: ~/.config/Code/User
+    path: "{{ config_path }}/Code/User"
     state: directory
     mode: '0755'
 
 - name: Copy config
   file:
     src: "{{ role_path }}/files/{{ item }}"
-    dest: ~/.config/Code/User/{{ item }}
+    dest: "{{ config_path }}/Code/User/{{ item }}"
     state: link
     force: true
   loop:

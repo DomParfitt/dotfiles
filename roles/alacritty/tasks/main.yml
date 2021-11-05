@@ -11,7 +11,7 @@
   package:
     name: alacritty
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:

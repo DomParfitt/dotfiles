@@ -11,4 +11,4 @@
   package:
     name: lazygit
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"

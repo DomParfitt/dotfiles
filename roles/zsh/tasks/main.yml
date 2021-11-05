@@ -3,11 +3,21 @@
     name: zsh
     state: latest
   become: true
+  when: is_linux
 
 - name: Install Antigen
-  get_url: 
+  get_url:
     url: https://git.io/antigen
     dest: ~/antigen.zsh
+  when: is_linux
+
+# Brew install Antigen for Mac
+- name: Install Antigen
+  package:
+    name: antigen
+    state: latest
+  become: false
+  when: is_mac
 
 - name: Install Oh My Zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -34,6 +44,7 @@
     name: "{{ lookup('env', 'USER') }}"
     shell: /usr/bin/zsh
   become: true
+  when: is_linux
 
 - name: Install utilities (cargo)
   shell: ~/.cargo/bin/cargo install {{ item.package }}
@@ -44,7 +55,6 @@
       bin: bat
     - package: bottom
       bin: btm
-      force: true
     - package: exa
       bin: exa
     - package: fd-find
@@ -59,10 +69,11 @@
   package:
     name:
       - bat
+      - bottom
       - exa
-      - fd-find
+      # - fd-find
       - procs
       - ripgrep
     state: present
   when: install_utils_with_rust is not true
-  become: true
+  become: "{{ should_sudo_install }}"

@@ -2,7 +2,7 @@
   package:
     name: kitty
     state: latest
-  become: true
+  become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:

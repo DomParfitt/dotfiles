@@ -12,7 +12,7 @@
     name: tealdeer
     state: present
   when: tealdear_install_with_cargo is not true
-  become: true
+  become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:
