@@ -13,15 +13,15 @@
   tags:
     - config
     
-- name: Install delta (cargo)
-  shell: ~/.cargo/bin/cargo install git-delta
-  args:
-    creates: "~/.cargo/bin/delta"
-  when: git_delta_install_with_cargo is true
-
 - name: Install delta
   package:
     name: git-delta
     state: present
-  when: git_delta_install_with_cargo is not true
+  when: not should_use_cargo
   become: "{{ should_sudo_install }}"
+
+- name: Install delta (cargo)
+  shell: ~/.cargo/bin/cargo install git-delta
+  args:
+    creates: ~/.cargo/bin/delta
+  when: should_use_cargo
