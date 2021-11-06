@@ -3,7 +3,7 @@
     - localhost
   connection: local
   vars:
-    is_linux: "{{ (ansible_facts['os_family'] | lower == 'linux') }}"
+    is_linux: "{{ (ansible_facts['system'] | lower == 'linux') }}"
     is_mac: "{{ (ansible_facts['os_family'] | lower == 'darwin') }}"
     should_sudo_install: "{{ not is_mac }}"
     should_use_cargo: false
@@ -11,7 +11,9 @@
     - role: homebrew
       when: is_mac
     - common
-    - alacritty
+    - role: alacritty
+      tags:
+        - terminal
     - role: awesome
       when: is_linux
     - aws
@@ -22,7 +24,9 @@
     # - chrome
     - role: docker
       when: is_linux
-    - exa
+    - role: exa
+      tags:
+        - terminal
     - role: flatpak
       when: is_linux
     - git
@@ -31,7 +35,9 @@
     # - haskell
     - role: i3
       when: is_linux
-    - kitty
+    - role: kitty
+      tags:
+        - terminal
     - lazygit
     - node
     - nomad
@@ -42,7 +48,11 @@
     - rust
     - ssh
     - tealdeer
-    - tmux
+    - role: tmux
+      tags:
+        - terminal
     - vim
     - vscode
-    - zsh
+    - role: zsh
+      tags:
+        - terminal
