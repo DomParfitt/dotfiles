@@ -1,0 +1,12 @@
+- name: Install utilities
+  package:
+    name: procs
+    state: present
+  become: "{{ should_sudo_install }}"
+  when: not should_use_cargo
+
+- name: Install utilities (cargo)
+  shell: ~/.cargo/bin/cargo install procs
+  args:
+    creates: ~/.cargo/bin/procs
+  when: should_use_cargo

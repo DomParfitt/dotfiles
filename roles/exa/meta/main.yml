@@ -1,0 +1,3 @@
+dependencies:
+  - role: rust
+    when: should_use_cargo

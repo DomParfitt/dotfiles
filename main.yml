@@ -6,8 +6,8 @@
     is_linux: "{{ (ansible_facts['os_family'] | lower == 'linux') }}"
     is_mac: "{{ (ansible_facts['os_family'] | lower == 'darwin') }}"
     should_sudo_install: "{{ not is_mac }}"
+    should_use_cargo: false
   roles:
-    - debug
     - role: homebrew
       when: is_mac
     - common
@@ -15,10 +15,14 @@
     - role: awesome
       when: is_linux
     - aws
+    - bat
+    - bottom
     - role: bspwm
       when: is_linux
     # - chrome
-    # - docker
+    - role: docker
+      when: is_linux
+    - exa
     - role: flatpak
       when: is_linux
     - git
@@ -33,6 +37,8 @@
     - nomad
     - role: polybar
       when: is_linux
+    - procs
+    - ripgrep
     - rust
     - ssh
     - tealdeer

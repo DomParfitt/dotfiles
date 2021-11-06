@@ -45,35 +45,3 @@
     shell: /usr/bin/zsh
   become: true
   when: is_linux
-
-- name: Install utilities (cargo)
-  shell: ~/.cargo/bin/cargo install {{ item.package }}
-  args:
-    creates: "~/.cargo/bin/{{ item.bin }}"
-  with_items:
-    - package: bat
-      bin: bat
-    - package: bottom
-      bin: btm
-    - package: exa
-      bin: exa
-    - package: fd-find
-      bin: fd
-    - package: procs
-      bin: procs
-    - package: ripgrep
-      bin: rg
-  when: (install_utils_with_rust is true) or (item.force is true)
-
-- name: Install utilities
-  package:
-    name:
-      - bat
-      - bottom
-      - exa
-      # - fd-find
-      - procs
-      - ripgrep
-    state: present
-  when: install_utils_with_rust is not true
-  become: "{{ should_sudo_install }}"
