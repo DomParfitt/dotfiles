@@ -1,11 +1,11 @@
-- name: Install utilities
+- name: Install
   package:
     name: exa
     state: present
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 
-- name: Install utilities (cargo)
+- name: Install (cargo)
   shell: ~/.cargo/bin/cargo install exa
   args:
     creates: ~/.cargo/bin/exa

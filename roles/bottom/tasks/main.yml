@@ -7,14 +7,14 @@
         - "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
   loop: "{{ query('first_found', params, errors='ignore') }}"
 
-- name: Install utilities
+- name: Install
   package:
     name: bottom
     state: present
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 
-- name: Install utilities (cargo)
+- name: Install (cargo)
   shell: ~/.cargo/bin/cargo install bottom
   args:
     creates: ~/.cargo/bin/btm

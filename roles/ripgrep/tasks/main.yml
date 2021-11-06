@@ -1,11 +1,11 @@
-- name: Install utilities
+- name: Install
   package:
     name: ripgrep
     state: present
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 
-- name: Install utilities (cargo)
+- name: Install (cargo)
   shell: ~/.cargo/bin/cargo install ripgrep
   args:
     creates: ~/.cargo/bin/rg
