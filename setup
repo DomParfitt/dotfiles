@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 from shutil import which
@@ -6,6 +6,23 @@ from subprocess import run
 from sys import version_info, exit
 from re import match
 import argparse
+
+PSEUDO_ROLES = ['config', 'terminal']
+
+
+def parse_args():
+    roles = get_available_roles() + PSEUDO_ROLES
+
+    parser = argparse.ArgumentParser(description="Setup stuff")
+
+    parser.add_argument('roles', nargs='?', choices=roles, metavar='roles',
+                        help='Comma-separate list of roles to run')
+    parser.add_argument('-c', '--config-only', action='store_true',
+                        help="Only copy config files (i.e. don't install anything). Runs for all roles regardless of whether the roles arg is present")
+    parser.add_argument('-l', '--list-roles', action='store_true',
+                        help='List the available roles')
+
+    return parser.parse_args()
 
 
 def install_ansible():
@@ -44,23 +61,25 @@ def install_ansible():
             exit(2)
 
 
-def main():
-    # Make sure we're using Python 3
-    if version_info.major != 3:
-        print(
-            f'Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}')
-        exit(1)
+def get_available_roles():
+    return sorted(os.listdir(os.path.join(os.path.dirname(__file__), 'roles')))
 
-    roles = os.listdir(os.path.join(os.path.dirname(__file__), 'roles'))
 
-    parser = argparse.ArgumentParser(description="Install stuff")
-    parser.add_argument('roles', nargs='?', choices=roles, metavar='roles',
-                        help='Comma-separate list of roles to run')
-    parser.add_argument('-c', '--config-only', action='store_true',
-                        help="Only copy config files (i.e. don't install anything). Runs for all roles regardless of whether the roles arg is present")
+def list_roles():
+    roles = get_available_roles()
 
-    args = parser.parse_args()
+    print('ROLES:')
+    for role in roles:
+        print(f' - {role}')
+    print()
+    print('PSEUDO-ROLES:')
+    for role in PSEUDO_ROLES:
+        print(f' - {role}')
 
+    exit(0)
+
+
+def run_setup(roles):
     # If ansible is not installed, install it
     if which('ansible') is None:
         print("Ansible is not currently installed.")
@@ -70,18 +89,31 @@ def main():
     run(['ansible-galaxy', 'collection', 'install',
         '-r', 'requirements.yml', '--force'])
 
-    if args.config_only:
-        tag = 'config'
-    elif args.roles:
-        tag = args.roles
-
     additional_args = []
-    if tag:
-        additional_args = ['--tags', tag]
+    if roles:
+        additional_args = ['--tags', roles]
 
     # Run the playbook
     run(['ansible-playbook', 'main.yml'] + additional_args)
 
+
+def main():
+    # Make sure we're using Python 3
+    if version_info.major != 3:
+        print(
+            f'Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}')
+        exit(1)
+
+    args = parse_args()
+
+    if args.list_roles:
+        list_roles()
+    else:
+        if args.config_only:
+            roles = 'config'
+        elif args.roles:
+            roles = args.roles
+        run_setup(roles)
 
 if __name__ == '__main__':
     main()
