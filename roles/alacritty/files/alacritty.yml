@@ -57,7 +57,3 @@ colors:
     cyan:    '0x56b6c2'
     white:   '0xffffff'
 
-shell:
- program: /usr/bin/zsh
-#  args:
-#    - --login
