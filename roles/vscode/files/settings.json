@@ -6,6 +6,10 @@
   "[haskell]": {
     "editor.defaultFormatter": "haskell.haskell"
   },
+  "[helm]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
@@ -53,6 +57,7 @@
     "../include"
   ],
   "calva.paredit.defaultKeyMap": "strict",
+  "calva.showCalvaSaysOnStart": false,
   "cfnLint.appendRules": [],
   "cfnLint.enableAutocomplete": true,
   "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**, results/unit/**",
@@ -74,6 +79,7 @@
     "source.organizeImports": false
   },
   "editor.detectIndentation": false,
+  "editor.fontSize": 13,
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modifications",
   "editor.insertSpaces": true,
@@ -106,7 +112,6 @@
   "prettier.singleQuote": true,
   "python.defaultInterpreterPath": "/bin/python",
   "redhat.telemetry.enabled": false,
-  "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.updates.askBeforeDownload": false,
   "security.workspace.trust.enabled": false,
   "shellcheck.customArgs": [
@@ -127,37 +132,40 @@
   },
   "workbench.startupEditor": "newUntitledFile",
   "xml.format.enabled": false,
-  "yaml.customTags": [
-    "!And sequence",
-    "!And",
-    "!Base64",
-    "!Cidr",
-    "!Equals sequence",
-    "!Equals",
-    "!FindInMap sequence",
-    "!FindInMap",
-    "!GetAZs",
-    "!GetAtt sequence",
-    "!GetAtt",
-    "!If sequence",
-    "!If",
-    "!ImportValue sequence",
-    "!ImportValue",
-    "!Join sequence",
-    "!Join",
-    "!Not sequence",
-    "!Not",
-    "!Or sequence",
-    "!Or",
-    "!Ref",
-    "!Select sequence",
-    "!Select",
-    "!Split sequence",
-    "!Split",
-    "!Sub sequence",
-    "!Sub"
-  ],
+  // "yaml.customTags": [
+  //   "!And sequence",
+  //   "!And",
+  //   "!Base64",
+  //   "!Cidr",
+  //   "!Equals sequence",
+  //   "!Equals",
+  //   "!FindInMap sequence",
+  //   "!FindInMap",
+  //   "!GetAZs",
+  //   "!GetAtt sequence",
+  //   "!GetAtt",
+  //   "!If sequence",
+  //   "!If",
+  //   "!ImportValue sequence",
+  //   "!ImportValue",
+  //   "!Join sequence",
+  //   "!Join",
+  //   "!Not sequence",
+  //   "!Not",
+  //   "!Or sequence",
+  //   "!Or",
+  //   "!Ref",
+  //   "!Select sequence",
+  //   "!Select",
+  //   "!Split sequence",
+  //   "!Split",
+  //   "!Sub sequence",
+  //   "!Sub"
+  // ],
   "yaml.format.enable": true,
   "yaml.format.singleQuote": true,
+  "yaml.schemas": {
+    "Kubernetes": "*.yaml"
+  },
   "yaml.validate": false
 }

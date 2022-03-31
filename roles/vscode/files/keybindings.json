@@ -67,5 +67,25 @@
   {
     "key": "ctrl+tab",
     "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "paredit.slurpSexpForward",
+    "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
+  },
+  {
+    "key": "ctrl+alt+.",
+    "command": "-paredit.slurpSexpForward",
+    "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
+  },
+  {
+    "key": "ctrl+alt+left",
+    "command": "paredit.barfSexpForward",
+    "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
+  },
+  {
+    "key": "ctrl+alt+,",
+    "command": "-paredit.barfSexpForward",
+    "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
   }
 ]
