@@ -16,6 +16,12 @@
     loop_var: option
   become: true
 
+- name: Add user to wheel group
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    group: wheel
+  become: true
+
 - name: Enable RPM Fusion
   dnf:
     name:
