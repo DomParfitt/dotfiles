@@ -42,6 +42,10 @@ if command -v nvim > /dev/null 2>&1; then
     alias vim="nvim"
 fi
 
+if command -v kubectl > /dev/null 2>&1; then
+  alias kc="kubectl"
+fi
+
 alias ts='yo simple-ts'
 
 alias dc='docker-compose'
