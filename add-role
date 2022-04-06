@@ -2,30 +2,83 @@
 
 from os import path, mkdir
 import argparse
+import os
+import yaml
 
-parser = argparse.ArgumentParser(description='Add a new role')
-parser.add_argument('role', nargs='?', help='Name for the new role')
-args = parser.parse_args()
 
-role_name = (args.role or input('Role name: ')).lower()
+def get_tasks_file_contents(role_name):
+    return [
+        {
+            "name": "Run OS specific tasks",
+            "include_tasks": "{{ item }}",
+            "vars": {
+                "params": {
+                    "files": [
+                        "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml",
+                        "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+                    ]
+                }
+            },
+            "loop": "{{ query('first_found', params, errors='ignore') }}"
+        },
+        {
+            "name": "Install",
+            "package": {
+                "name": role_name,
+                "state": "latest"
+            },
+            "become": "{{ should_sudo_install }}"
+        },
+        {
+            "name": "Copy config",
+            "file": {
+                "src": "{{ role_path }}/files",
+                "dest": f"~/.config/{role_name}",
+                "state": "link",
+                "force": True,
+            },
+            "tags": ["config"]
+        }
+    ]
 
-role_path = path.join(path.dirname(__file__), 'roles', role_name)
 
-if path.exists(role_path) == True:
-    print(f'{role_path} already exists!')
-    exit(1)
+def create_directory_structure(role_name):
 
-mkdir(role_path)
+    role_path = path.join(path.dirname(__file__), 'roles', role_name)
 
-directories = {
-    'tasks': ['main.yml'],
-    'files': []
-}
+    if path.exists(role_path) == True:
+        print(f'{role_path} already exists!')
+        return
 
-for directory in directories:
-    directory_path = path.join(role_path, directory)
-    mkdir(directory_path)
+    mkdir(role_path)
 
-    for file in directories[directory]:
-        file_path = path.join(directory_path, file)
-        open(file_path, 'w+').close()
+    directories = {
+        'tasks': ['main.yml'],
+        'files': []
+    }
+
+    for directory in directories:
+        directory_path = path.join(role_path, directory)
+        mkdir(directory_path)
+
+        for file in directories[directory]:
+            file_path = path.join(directory_path, file)
+            f = open(file_path, 'w+')
+            if directory == 'tasks' and file == 'main.yml':
+                tasks_file = get_tasks_file_contents(role_name)
+                yaml.dump(tasks_file, f, sort_keys=False)
+            f.close()
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Add a new role')
+    parser.add_argument('role', nargs='?', help='Name for the new role')
+    args = parser.parse_args()
+
+    role_name = (args.role or input('Role name: ')).lower()
+
+    create_directory_structure(role_name)
+
+
+if __name__ == '__main__':
+    main()
