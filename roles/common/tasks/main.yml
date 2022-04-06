@@ -51,7 +51,6 @@
       - curl
       - feh
       - firefox
-      - fzf
       - httpie
       - jq
       - make

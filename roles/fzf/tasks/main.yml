@@ -1,0 +1,5 @@
+- name: Install
+  package:
+    name: fzf
+    state: latest
+  become: '{{ should_sudo_install }}'

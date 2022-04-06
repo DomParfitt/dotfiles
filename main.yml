@@ -29,6 +29,7 @@
         - terminal
     - role: flatpak
       when: is_linux
+    - fzf  
     - git
     - role: gnome
       when: is_linux
