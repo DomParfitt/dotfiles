@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
   Plug 'joshdick/onedark.vim'
+  Plug 'tpope/vim-commentary'
   Plug 'rakr/vim-one'
   Plug 'sheerun/vim-polyglot'
 
