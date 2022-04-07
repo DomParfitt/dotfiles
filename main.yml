@@ -54,6 +54,7 @@
         - terminal
     - vim
     - vscode
+    - zoxide
     - role: zsh
       tags:
         - terminal
