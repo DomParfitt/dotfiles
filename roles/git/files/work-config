@@ -1,5 +1,5 @@
 [user]
-  email = dominicparfitt@economist.com
+  email = dom.parfitt@circleci.com
 
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
