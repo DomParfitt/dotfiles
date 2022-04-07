@@ -2,8 +2,8 @@
   package:
     name: tealdeer
     state: present
-  when: not should_use_cargo
   become: "{{ should_sudo_install }}"
+  when: not should_use_cargo
 
 - name: Install (cargo)
   shell: ~/.cargo/bin/cargo install tealdeer
