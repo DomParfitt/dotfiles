@@ -1,23 +1,12 @@
-- name: Install
-  package:
-    name: zsh
-    state: latest
-  become: true
-  when: is_linux
-
-- name: Install Antigen
-  get_url:
-    url: https://git.io/antigen
-    dest: ~/antigen.zsh
-  when: is_linux
-
-# Brew install Antigen for Mac
-- name: Install Antigen
-  package:
-    name: antigen
-    state: latest
-  become: false
-  when: is_mac
+- name: Run OS specific tasks
+  include_tasks: "{{ item }}"
+  vars:
+    params:
+      files:
+        - "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml"
+        - "{{ role_path }}/tasks/{{ ansible_facts['system'] | lower }}.yml"
+        - "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
 
 - name: Install Oh My Zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -38,10 +27,3 @@
       dest: ~/.p10k.zsh
   tags:
     - config
-
-- name: Set default shell
-  user:
-    name: "{{ lookup('env', 'USER') }}"
-    shell: /usr/bin/zsh
-  become: true
-  when: is_linux

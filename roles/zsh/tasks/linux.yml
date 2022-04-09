@@ -1,0 +1,16 @@
+- name: Install
+  package:
+    name: zsh
+    state: latest
+  become: true
+
+- name: Install Antigen
+  get_url:
+    url: https://git.io/antigen
+    dest: ~/antigen.zsh
+
+- name: Set default shell
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /usr/bin/zsh
+  become: true
