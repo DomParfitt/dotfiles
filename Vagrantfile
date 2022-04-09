@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   # Base OS Image
-  config.vm.box = "generic/fedora33"
+  config.vm.box = "generic/fedora35"
   
   # Configure VM
   config.vm.provider "libvirt" do |provider|
