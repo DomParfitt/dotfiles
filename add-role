@@ -2,8 +2,40 @@
 
 from os import path, mkdir
 import argparse
-import os
 import yaml
+
+
+class Dumper(yaml.Dumper):
+    """
+    Custom YAML Dumper that indents the elements of a sequence.
+    Produces:
+        ```
+        foo:
+          - bar
+          - baz
+        ```
+    rather than:
+        ```
+        foo:
+        - bar
+        - baz
+        ```
+    """
+
+    def increase_indent(self, flow=False, *args, **kwargs):
+        return super().increase_indent(flow=flow, indentless=False)
+
+
+def represent_str(self, data):
+    style = None
+    if '{{' in data or '}}' in data:
+        style = '"'
+    return self.represent_scalar(u'tag:yaml.org,2002:str', data, style=style)
+
+
+# # Set YAML dumper to respect quotation of Ansible template strings
+# yaml.add_representer(str, represent_str)
+Dumper.add_representer(str, represent_str)
 
 
 def get_tasks_file_contents(role_name):
@@ -43,12 +75,11 @@ def get_tasks_file_contents(role_name):
 
 
 def create_directory_structure(role_name):
-
     role_path = path.join(path.dirname(__file__), 'roles', role_name)
 
     if path.exists(role_path) == True:
         print(f'{role_path} already exists!')
-        return
+        exit(1)
 
     mkdir(role_path)
 
@@ -66,9 +97,42 @@ def create_directory_structure(role_name):
             f = open(file_path, 'w+')
             if directory == 'tasks' and file == 'main.yml':
                 tasks_file = get_tasks_file_contents(role_name)
-                yaml.dump(tasks_file, f, sort_keys=False)
+                yaml.dump(tasks_file, f, Dumper=Dumper, sort_keys=False)
             f.close()
 
+
+def update_main_file(new_role):
+    with open(path.join(path.dirname(__file__), 'main.yml')) as main_file:
+        config = yaml.safe_load(main_file)
+
+    roles = config[0]['roles']
+    found_common = False
+    insert_at = len(roles)
+    for [i, role] in enumerate(roles):
+        if isinstance(role, dict):
+            role = role["role"]
+
+        # After `common` the roles should be alphabetically order, so loop until
+        # we find the `common` role
+        if role == "common":
+            found_common = True
+            continue
+
+        if not found_common:
+            continue
+
+        # Keep looping until we get to a role that's alphabetically after the new one
+        if role < new_role:
+            continue
+
+        insert_at = i
+        break
+
+    # Insert the new role at the right point
+    roles.insert(insert_at, new_role)
+
+    with open(path.join(path.dirname(__file__), 'main.yml'), 'w+') as main_file:
+        yaml.dump(config, main_file, Dumper=Dumper, sort_keys=False)
 
 def main():
     parser = argparse.ArgumentParser(description='Add a new role')
@@ -78,6 +142,7 @@ def main():
     role_name = (args.role or input('Role name: ')).lower()
 
     create_directory_structure(role_name)
+    update_main_file(role_name)
 
 
 if __name__ == '__main__':
