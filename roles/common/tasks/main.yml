@@ -51,7 +51,6 @@
       - curl
       - feh
       - firefox
-      - httpie
       - make
       - most
       - neofetch

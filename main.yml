@@ -34,6 +34,7 @@
     - role: gnome
       when: is_linux
     # - haskell
+    - httpie
     - role: i3
       when: is_linux
     - jq
