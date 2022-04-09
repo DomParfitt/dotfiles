@@ -36,6 +36,7 @@
     # - haskell
     - role: i3
       when: is_linux
+    - jq
     - role: kitty
       tags:
         - terminal

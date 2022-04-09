@@ -52,7 +52,6 @@
       - feh
       - firefox
       - httpie
-      - jq
       - make
       - most
       - neofetch

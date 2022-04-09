@@ -1,0 +1,5 @@
+- name: Install
+  package:
+    name: jq
+    state: latest
+  become: '{{ should_sudo_install }}'
