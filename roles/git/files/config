@@ -27,8 +27,5 @@
 [rebase]
   autosquash = true
 
-[url "ssh://git@github.com"]
-	insteadOf = https://github.com
-
 [gc]
 	auto = 0
