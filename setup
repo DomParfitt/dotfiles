@@ -22,6 +22,8 @@ def parse_args():
                         help='List the available roles')
     parser.add_argument('-f', '--force', action='store_true',
                         help='Force Ansible modules to be installed')
+    parser.add_argument('-i', '--install-modules', action='store_true',
+                        help='Install required Ansible modules')
 
     return parser.parse_args()
 
@@ -73,17 +75,16 @@ def list_roles():
     exit(0)
 
 
-def run_setup(roles, force=False):
+def run_setup(roles, install_modules=False):
     # If ansible is not installed, install it
     if which('ansible') is None:
         print('Ansible is not currently installed.')
         install_ansible()
 
     # Install additional modules
-    cmd = ['ansible-galaxy', 'collection', 'install', '-r', 'requirements.yml']
-    if force:
-        cmd.append('--force')
-    run(cmd)
+    if install_modules:
+        run(['ansible-galaxy', 'collection',
+             'install', '-r', 'requirements.yml', '--force'])
 
     additional_args = []
     if roles:
@@ -109,7 +110,7 @@ def main():
             roles = 'config'
         elif args.roles:
             roles = args.roles
-        run_setup(roles, args.force)
+        run_setup(roles, install_modules=args.install_modules)
 
 
 if __name__ == '__main__':
