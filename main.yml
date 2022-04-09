@@ -1,4 +1,4 @@
-- hosts: 
+- hosts:
     - all
     - localhost
   connection: local
@@ -21,7 +21,6 @@
     - bottom
     - role: bspwm
       when: is_linux
-    # - chrome
     - role: docker
       when: is_linux
     - role: exa
@@ -29,11 +28,10 @@
         - terminal
     - role: flatpak
       when: is_linux
-    - fzf  
+    - fzf
     - git
     - role: gnome
       when: is_linux
-    # - haskell
     - httpie
     - role: i3
       when: is_linux
