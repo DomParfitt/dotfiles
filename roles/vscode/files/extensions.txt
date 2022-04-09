@@ -26,7 +26,6 @@ James-Yu.latex-workshop
 joaompinto.vscode-graphviz
 johnpapa.vscode-peacock
 joshuapoehls.json-escaper
-jpoissonnier.vscode-styled-components
 justusadam.language-haskell
 kddejong.vscode-cfn-lint
 Koihik.vscode-lua-format
@@ -40,7 +39,13 @@ ms-azuretools.vscode-docker
 ms-dotnettools.csharp
 ms-python.python
 ms-python.vscode-pylance
+ms-toolsai.jupyter
+ms-toolsai.jupyter-keymap
+ms-toolsai.jupyter-renderers
 ms-vscode.cpptools
+ms-vsliveshare.vsliveshare
+ms-vsliveshare.vsliveshare-audio
+ms-vsliveshare.vsliveshare-pack
 nextfaze.json-parse-stringify
 nickfode.latex-formatter
 ocamllabs.ocaml-platform
@@ -54,12 +59,15 @@ scala-lang.scala
 scalameta.metals
 sodatea.velocity
 streetsidesoftware.code-spell-checker
+styled-components.vscode-styled-components
 sumneko.lua
+Tim-Koehler.helm-intellisense
 timonwong.shellcheck
 twxs.cmake
 usernamehw.errorlens
 vadimcn.vscode-lldb
 wayou.vscode-todo-highlight
+wholroyd.HCL
 william-voyek.vscode-nginx
 XadillaX.viml
 yzhang.markdown-all-in-one
