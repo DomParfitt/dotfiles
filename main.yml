@@ -52,6 +52,7 @@
     - role: tmux
       tags:
         - terminal
+    - vagrant
     - vim
     - vscode
     - zoxide

@@ -1,0 +1,6 @@
+- name: Install
+  dnf:
+    name: vagrant
+    disablerepo: hashicorp
+    state: latest
+  become: true

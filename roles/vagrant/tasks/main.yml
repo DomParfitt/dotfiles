@@ -1,0 +1,8 @@
+- name: Run OS specific tasks
+  include_tasks: "{{ item }}"
+  vars:
+    params:
+      files:
+        - "{{ role_path }}/tasks/{{ ansible_facts['distribution'] | lower }}.yml"
+        - "{{ role_path }}/tasks/{{ ansible_facts['os_family'] | lower }}.yml"
+  loop: "{{ query('first_found', params, errors='ignore') }}"
