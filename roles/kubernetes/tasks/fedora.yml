@@ -1,0 +1,24 @@
+- name: Add stable repository
+  yum_repository:
+    file: kubernetes
+    name: kubernetes
+    description: Kubernetes
+    baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    enabled: 1
+    gpgcheck: 1
+    repo_gpgcheck: 1
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  become: true
+
+- name: Install minikube
+  dnf:
+    name: https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+    disable_gpg_check: true
+    state: latest
+  become: "{{ should_sudo_install }}"
+
+- name: Enable COPR
+  community.general.copr:
+    name: rubemlrm/kubectx
+  become: true
+

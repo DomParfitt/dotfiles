@@ -39,6 +39,7 @@
     - role: kitty
       tags:
         - terminal
+    - kubernetes
     - lazygit
     - node
     - nomad
