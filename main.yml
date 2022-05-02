@@ -26,6 +26,7 @@
     - role: exa
       tags:
         - terminal
+    - fish
     - role: flatpak
       when: is_linux
     - fzf
