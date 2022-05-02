@@ -1,0 +1,16 @@
+- name: Add repository
+  yum_repository:
+    file: google-cloud-sdk
+    name: google-cloud-cli
+    description: Google Cloud CLI
+    baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el8-x86_64
+    enabled: 1
+    gpgcheck: 1
+    repo_gpgcheck: 0
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+  become: true
+
+- name: Install required libs
+  dnf:
+    name: libxcrypt-compat
+  become: true

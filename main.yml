@@ -29,6 +29,7 @@
     - role: flatpak
       when: is_linux
     - fzf
+    - gcloud
     - git
     - role: gnome
       when: is_linux
