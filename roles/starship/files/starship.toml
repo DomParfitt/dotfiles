@@ -55,7 +55,9 @@ format = "[$branch ]($style)"
 style = "76"
 
 [git_status]
-format = "$all_status$ahead_behind"
+format = "$ahead_behind$all_status"
+ahead = "[⇡$count ](76)" # green
+behind = "[⇣$count ](76)" # green
 modified = "[!$count ](178)" # orange
 staged = "[+$count ](178)" # orange
 stashed = "[*$count ](76)" # green
