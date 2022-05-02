@@ -1,0 +1,85 @@
+
+
+format="""
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$cmd_duration\
+$golang\
+$nodejs\
+$rust\
+$kubernetes\
+${custom.publicip}
+$character
+"""
+
+right_format="""
+$aws\
+$gcloud
+"""
+
+[aws]
+format = "[$symbol $profile]($style)"
+symbol = "\uF270"
+style = "208" # orange
+
+[character] 
+success_symbol = "[λ](76)" # green
+error_symbol = "[λ](196)" # red
+
+[cmd_duration]
+format = "[$duration ]($style)"
+style = "66" # grey
+
+[custom.publicip]
+command = "dig +short myip.opendns.com @resolver1.opendns.com"
+symbol = "\uF0AC"
+format = "[$symbol $output]($style)"
+style = "105" # mauve
+when = true
+
+[directory]
+format = "([$read_only ]($style))[$path ]($style)"
+read_only = "\uF023"
+style = "39" # blue
+truncate_to_repo = false
+
+[gcloud]
+format = "[$symbol $project]($style)"
+symbol = "\uF7B7"
+style = "32" # dark blue
+
+[git_branch]
+format = "[$branch ]($style)"
+style = "76"
+
+[git_status]
+format = "$all_status$ahead_behind"
+modified = "[!$count ](178)" # orange
+staged = "[+$count ](178)" # orange
+stashed = "[*$count ](76)" # green
+untracked = "[?$count ](39)" # blue
+
+[golang]
+format = "[$symbol $version ]($style)"
+version_format = "$raw"
+symbol = "\uE626"
+style = "37"
+
+[kubernetes]
+disabled = false
+format = "[$symbol $context/$namespace ]($style)"
+symbol = "\u2388"
+style = "134" # purple
+
+[nodejs]
+format = "[$symbol node $version ]($style)"
+symbol = "\uE617" 
+style = "70" # green
+
+[rust]
+format = "[$symbol $version ]($style)"
+version_format = "$raw"
+symbol = "\uE7A8"
+style = "37"

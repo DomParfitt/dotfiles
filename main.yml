@@ -49,6 +49,7 @@
     - ripgrep
     - rust
     - ssh
+    - starship
     - tealdeer
     - role: tmux
       tags:
