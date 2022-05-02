@@ -20,7 +20,7 @@ $gcloud
 """
 
 [aws]
-format = "[$symbol $profile]($style)"
+format = "[($symbol $profile)]($style)"
 symbol = "\uF270"
 style = "208" # orange
 
@@ -43,10 +43,13 @@ when = true
 format = "([$read_only ]($style))[$path ]($style)"
 read_only = "\uF023"
 style = "39" # blue
+fish_style_pwd_dir_length = 1
+truncation_length = 5
 truncate_to_repo = false
 
+
 [gcloud]
-format = "[$symbol $project]($style)"
+format = "[($symbol $project)]($style)"
 symbol = "\uF7B7"
 style = "32" # dark blue
 
