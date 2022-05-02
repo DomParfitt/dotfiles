@@ -2,6 +2,7 @@
 
 from os import path, mkdir
 import argparse
+from subprocess import run
 import yaml
 
 
@@ -134,6 +135,11 @@ def update_main_file(new_role):
     with open(path.join(path.dirname(__file__), 'main.yml'), 'w+') as main_file:
         yaml.dump(config, main_file, Dumper=Dumper, sort_keys=False)
 
+
+def add_to_git(role_name):
+    files = ['main.yml', f'roles/{role_name}/']
+    run(['git', 'add'] + files)
+
 def main():
     parser = argparse.ArgumentParser(description='Add a new role')
     parser.add_argument('role', nargs='?', help='Name for the new role')
@@ -143,6 +149,7 @@ def main():
 
     create_directory_structure(role_name)
     update_main_file(role_name)
+    add_to_git(role_name)
 
 
 if __name__ == '__main__':

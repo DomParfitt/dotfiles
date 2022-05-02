@@ -1,3 +1,8 @@
+- name: Install nvm
+  git:
+    repo: https://github.com/nvm-sh/nvm.git
+    dest: ~/.nvm
+
 - name: Install
   shell: zsh -ic 'nvm install {{ item }}'
   loop:
