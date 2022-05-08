@@ -20,7 +20,7 @@ $gcloud
 """
 
 [aws]
-format = "[($symbol $profile)]($style)"
+format = "[($symbol $profile) ]($style)"
 symbol = "\uF270"
 style = "208" # orange
 
@@ -35,7 +35,7 @@ style = "66" # grey
 [custom.publicip]
 command = "dig +short myip.opendns.com @resolver1.opendns.com"
 symbol = "\uF0AC"
-format = "[$symbol $output]($style)"
+format = "[$symbol $output ]($style)"
 style = "105" # mauve
 when = true
 
@@ -49,7 +49,7 @@ truncate_to_repo = false
 
 
 [gcloud]
-format = "[($symbol $project)]($style)"
+format = "[($symbol $project) ]($style)"
 symbol = "\uF7B7"
 style = "32" # dark blue
 

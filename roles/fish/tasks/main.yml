@@ -13,19 +13,6 @@
     state: latest
   become: "{{ should_sudo_install }}"
 
-- name: Download fisher
-  get_url:
-    url: https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
-    dest: /tmp/fisher.fish
-    owner: "{{ lookup('env', 'USER') }}"
-    mode: '0755'
-  become: true
-
-- name: Install fisher
-  shell:
-    cmd: source /tmp/fisher.fish && fisher install jorgebucaran/fisher
-    executable: /usr/bin/fish
-
 - name: Copy config
   file:
     src: "{{ role_path }}/files"
@@ -34,3 +21,16 @@
     force: true
   tags:
     - config
+
+- name: Download fisher
+  get_url:
+    url: https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
+    dest: /tmp/fisher.fish
+    owner: "{{ lookup('env', 'USER') }}"
+    mode: '0755'
+
+- name: Install fisher
+  shell:
+    cmd: source /tmp/fisher.fish && fisher install jorgebucaran/fisher
+    executable: fish
+
