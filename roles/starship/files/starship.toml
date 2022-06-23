@@ -47,7 +47,6 @@ fish_style_pwd_dir_length = 1
 truncation_length = 5
 truncate_to_repo = false
 
-
 [gcloud]
 format = "[($symbol $project) ]($style)"
 symbol = "\uF7B7"
@@ -61,6 +60,7 @@ style = "76"
 format = "$ahead_behind$all_status"
 ahead = "[⇡$count ](76)" # green
 behind = "[⇣$count ](76)" # green
+deleted = "[-$count ](160)"
 modified = "[!$count ](178)" # orange
 staged = "[+$count ](178)" # orange
 stashed = "[*$count ](76)" # green
