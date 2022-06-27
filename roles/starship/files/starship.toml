@@ -5,6 +5,7 @@ $directory\
 $git_branch\
 $git_status\
 $fill\
+$shell\
 $cmd_duration\
 $golang\
 $nodejs\
@@ -61,6 +62,7 @@ format = "$ahead_behind$all_status"
 ahead = "[⇡$count ](76)" # green
 behind = "[⇣$count ](76)" # green
 deleted = "[-$count ](160)"
+diverged = "[⇣$behind_count⇡$ahead_count ](76)"
 modified = "[!$count ](178)" # orange
 staged = "[+$count ](178)" # orange
 stashed = "[*$count ](76)" # green
@@ -88,3 +90,7 @@ format = "[$symbol $version ]($style)"
 version_format = "$raw"
 symbol = "\uE7A8"
 style = "37"
+
+[shell]
+disabled = false
+fish_indicator = "\uF739"
