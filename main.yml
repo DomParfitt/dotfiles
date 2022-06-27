@@ -26,7 +26,9 @@
     - role: exa
       tags:
         - terminal
-    - fish
+    - role: fish
+      tags:
+        - terminal
     - role: flatpak
       when: is_linux
     - fzf
@@ -51,7 +53,9 @@
     - ripgrep
     - rust
     - ssh
-    - starship
+    - role: starship
+      tags:
+        - terminal
     - tealdeer
     - role: tmux
       tags:
