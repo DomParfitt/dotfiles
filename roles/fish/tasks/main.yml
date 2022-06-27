@@ -33,4 +33,9 @@
   shell:
     cmd: source /tmp/fisher.fish && fisher install jorgebucaran/fisher
     executable: fish
+    creates: ~/.config/fisher/functions/fisher.fish
 
+- name: Install packages
+  shell:
+    cmd: fisher update
+    executable: fish
