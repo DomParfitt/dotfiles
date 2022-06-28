@@ -17,6 +17,7 @@ esbenp.prettier-vscode
 firsttris.vscode-jest-runner
 floone.varnish-vcl
 golang.go
+hashicorp.hcl
 haskell.haskell
 hilleer.yaml-plus-json
 hoovercj.haskell-linter
@@ -31,7 +32,6 @@ kddejong.vscode-cfn-lint
 Koihik.vscode-lua-format
 kumar-harsh.graphql-for-vscode
 mads-hartmann.bash-ide-vscode
-matklad.rust-analyzer
 matthewpi.caddyfile-support
 MaxGabriel.brittany
 mechatroner.rainbow-csv
@@ -43,6 +43,7 @@ ms-toolsai.jupyter
 ms-toolsai.jupyter-keymap
 ms-toolsai.jupyter-renderers
 ms-vscode.cpptools
+ms-vscode.live-server
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
 ms-vsliveshare.vsliveshare-pack
@@ -53,6 +54,7 @@ redhat.vscode-commons
 redhat.vscode-xml
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
+rust-lang.rust-analyzer
 ryanluker.vscode-coverage-gutters
 ryu1kn.partial-diff
 scala-lang.scala
@@ -67,7 +69,6 @@ twxs.cmake
 usernamehw.errorlens
 vadimcn.vscode-lldb
 wayou.vscode-todo-highlight
-wholroyd.HCL
 william-voyek.vscode-nginx
 XadillaX.viml
 yzhang.markdown-all-in-one
