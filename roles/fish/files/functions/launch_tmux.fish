@@ -10,6 +10,5 @@ function launch_tmux --description "Launch a tmux session if not already in one"
   end
 
   # Run tmux and exit once it does
-#  tmux; and exit 
   exec tmux
 end
