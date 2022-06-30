@@ -1,3 +1,3 @@
 function vim --wraps=nvim --description 'alias vim=nvim'
-  nvim $argv; 
+  __nvm_run "nvim" $argv; 
 end
