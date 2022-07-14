@@ -3,7 +3,7 @@ function asp --argument-names profile --description "Sets and clears the AWS_PRO
     return 0
   end
 
-  if not set --query profile
+  if not set --query profile or test -z "$profile"
     set -e AWS_PROFILE
   else
     set -gx AWS_PROFILE $profile
