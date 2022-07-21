@@ -14,14 +14,12 @@ def parse_args():
 
     parser = argparse.ArgumentParser(description='Setup stuff')
 
-    parser.add_argument('roles', nargs='?', choices=roles, metavar='roles',
-                        help='Comma-separate list of roles to run')
+    parser.add_argument('roles', nargs='*', metavar='roles',
+                        help='Roles to run')
     parser.add_argument('-c', '--config-only', action='store_true',
-                        help="Only copy config files (i.e. don't install anything). Runs for all roles regardless of whether the roles arg is present")
+                        help="Only copy config files and don't do any addtional setup")
     parser.add_argument('-l', '--list-roles', action='store_true',
                         help='List the available roles')
-    parser.add_argument('-f', '--force', action='store_true',
-                        help='Force Ansible modules to be installed')
     parser.add_argument('-i', '--install-modules', action='store_true',
                         help='Install required Ansible modules')
 
@@ -62,20 +60,13 @@ def install_ansible():
 
 
 def list_roles():
-    roles = get_available_roles()
-
-    print('ROLES:')
-    for role in roles:
-        print(f' - {role}')
-    print()
-    print('PSEUDO-ROLES:')
-    for role in PSEUDO_ROLES:
-        print(f' - {role}')
+    for role in sorted(get_available_roles() + PSEUDO_ROLES):
+        print(role)
 
     exit(0)
 
 
-def run_setup(roles, install_modules=False):
+def run_setup(roles, install_modules=False, config_only=False):
     # If ansible is not installed, install it
     if which('ansible') is None:
         print('Ansible is not currently installed.')
@@ -87,8 +78,16 @@ def run_setup(roles, install_modules=False):
              'install', '-r', 'requirements.yml', '--force'])
 
     additional_args = []
-    if roles:
-        additional_args = ['--tags', roles]
+    if config_only:
+        additional_args = ['--tags', 'config']
+        if roles:
+            roles_to_skip = get_available_roles().copy()
+            for role in roles:
+                if role in roles_to_skip:
+                    roles_to_skip.remove(role)
+            additional_args.extend(['--skip-tags', ','.join(roles_to_skip)])
+    elif roles:
+        additional_args = ['--tags', ','.join(roles)]
 
     # Run the playbook
     run(['ansible-playbook', 'main.yml'] + additional_args)
@@ -106,11 +105,7 @@ def main():
     if args.list_roles:
         list_roles()
     else:
-        if args.config_only:
-            roles = 'config'
-        elif args.roles:
-            roles = args.roles
-        run_setup(roles, install_modules=args.install_modules)
+        run_setup(args.roles, install_modules=args.install_modules, config_only=args.config_only)
 
 
 if __name__ == '__main__':
