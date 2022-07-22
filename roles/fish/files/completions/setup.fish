@@ -3,7 +3,7 @@ complete -c setup -f -a (string join ' ' $roles)
 
 set --local opts (./setup -h | \
    # Get the flag info from the usage message
-   sed '1,/options/d' | \
+   sed '1,/option/d' | \
    # Replace any sequence of spaces with a single space
    string replace -ar '\s+' ' ' | \
    # Remove newlines to get rid of extras
