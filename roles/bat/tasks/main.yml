@@ -3,10 +3,3 @@
     name: bat
     state: present
   become: "{{ should_sudo_install }}"
-  when: not should_use_cargo
-
-- name: Install (cargo)
-  shell: ~/.cargo/bin/cargo install bat
-  args:
-    creates: ~/.cargo/bin/bat
-  when: should_use_cargo
