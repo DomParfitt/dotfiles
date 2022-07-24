@@ -8,7 +8,7 @@
   file:
     src: "{{ role_path }}/files/config.toml"
     dest: ~/.cargo/config.toml
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config

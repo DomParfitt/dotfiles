@@ -3,5 +3,5 @@
     name:
       - latexmk
       - texlive
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true

@@ -1,7 +1,7 @@
 - name: Install
   package:
     name: zsh
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true
 
 - name: Install Antigen

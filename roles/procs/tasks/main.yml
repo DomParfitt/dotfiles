@@ -1,7 +1,7 @@
 - name: Install
   package:
     name: procs
-    state: present
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 

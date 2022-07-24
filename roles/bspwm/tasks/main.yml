@@ -1,7 +1,7 @@
 - name: Install
   package:
     name: "{{ item }}"
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   loop:
     - bspwm
     - sxhkd
@@ -9,9 +9,9 @@
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files/{{ item }}"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: "~/.config/{{ item }}"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   loop:
     - bspwm

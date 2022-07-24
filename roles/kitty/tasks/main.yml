@@ -1,14 +1,14 @@
 - name: Install
   package:
     name: kitty
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: ~/.config/kitty
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config

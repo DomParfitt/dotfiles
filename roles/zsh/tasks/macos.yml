@@ -1,6 +1,6 @@
 - name: Install Antigen
   package:
     name: antigen
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: false
   when: is_mac

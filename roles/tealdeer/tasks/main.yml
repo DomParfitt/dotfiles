@@ -1,7 +1,7 @@
 - name: Install
   package:
     name: tealdeer
-    state: present
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 
@@ -16,9 +16,9 @@
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: ~/.config/tealdeer
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config

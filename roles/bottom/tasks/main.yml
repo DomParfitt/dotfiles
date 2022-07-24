@@ -10,7 +10,7 @@
 - name: Install
   package:
     name: bottom
-    state: present
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 

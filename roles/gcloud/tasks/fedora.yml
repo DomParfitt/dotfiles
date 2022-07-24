@@ -8,6 +8,7 @@
     gpgcheck: 1
     repo_gpgcheck: 0
     gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    state: "{{ should_teardown | ternary('absent', 'present') }}"
   become: true
 
 - name: Install required libs

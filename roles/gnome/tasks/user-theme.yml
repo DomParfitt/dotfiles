@@ -3,7 +3,7 @@
     name:
       - gnome-shell-extension-user-theme
       - gnome-shell-theme-yaru
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true
   when: ansible_facts['os_family'] | lower == 'redhat'
 

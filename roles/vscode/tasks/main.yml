@@ -10,20 +10,21 @@
 - name: Install
   package:
     name: "{{ is_linux | ternary('code', 'visual-studio-code') }}"
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
 
 - name: Create config directory
   file: 
     path: "{{ config_path }}/Code/User"
-    state: directory
+    state: "{{ should_teardown | ternary('absent', 'directory') }}"
     mode: '0755'
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files/{{ item }}"
+    # src: "{{ role_path }}/files/{{ item }}"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files'~item) }}"
     dest: "{{ config_path }}/Code/User/{{ item }}"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   loop:
     - keybindings.json

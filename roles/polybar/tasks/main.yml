@@ -1,14 +1,14 @@
 - name: Install
   package:
     name: polybar
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true  
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: ~/.config/polybar
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config

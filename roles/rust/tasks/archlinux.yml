@@ -1,7 +1,7 @@
 - name: Install OpenSSL dependencies
   community.general.pacman:
     name: openssl
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
     update_cache: yes
     upgrade: yes
   become: true

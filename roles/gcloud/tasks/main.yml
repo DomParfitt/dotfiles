@@ -9,5 +9,5 @@
 - name: Install
   package:
     name: google-cloud-cli
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"

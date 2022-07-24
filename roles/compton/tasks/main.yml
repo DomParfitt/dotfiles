@@ -1,6 +1,5 @@
 - name: Install packages
   package:
-    name:
-      - compton
-    state: latest
+    name: compton
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true

@@ -1,14 +1,14 @@
 - name: Install
   package:
     name: git
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: ~/.config/git
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config
@@ -16,7 +16,7 @@
 - name: Install delta
   package:
     name: git-delta
-    state: present
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 

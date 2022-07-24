@@ -2,7 +2,7 @@
   file:
     src: "{{ role_path }}/files/config"
     dest: ~/.ssh/config
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     mode: '0600'
     force: true
   tags:

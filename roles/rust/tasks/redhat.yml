@@ -1,6 +1,6 @@
 - name: Install OpenSSL dependencies
   dnf:
     name: openssl-devel
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true
   

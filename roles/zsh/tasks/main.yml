@@ -18,7 +18,7 @@
   file:
     src: "{{ role_path }}/files/{{ item.src }}"
     dest: "{{ item.dest }}"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   with_items:
     - src: zshrc

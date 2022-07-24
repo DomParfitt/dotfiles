@@ -8,13 +8,14 @@
     gpgcheck: 1
     repo_gpgcheck: 1
     gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    state: "{{ should_teardown | ternary('absent', 'present') }}"
   become: true
 
 - name: Install minikube
   dnf:
     name: https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
     disable_gpg_check: true
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
 
 - name: Enable COPR

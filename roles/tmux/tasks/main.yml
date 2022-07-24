@@ -1,14 +1,14 @@
 - name: Install
   package:
     name: tmux
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true
     
 - name: Copy config
   file:
     src: "{{ role_path }}/files/tmux.conf"
     dest: ~/.tmux.conf
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config

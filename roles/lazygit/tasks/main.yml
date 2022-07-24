@@ -10,5 +10,5 @@
 - name: Install
   package:
     name: lazygit
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"

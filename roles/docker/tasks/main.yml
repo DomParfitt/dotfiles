@@ -8,7 +8,7 @@
 - name: Install
   package:
     name: "{{ item }}"
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   loop:
     - containerd.io
     - docker-ce

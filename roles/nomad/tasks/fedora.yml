@@ -7,6 +7,7 @@
     enabled: 1
     gpgcheck: 1
     gpgkey: https://rpm.releases.hashicorp.com/gpg
+    state: "{{ should_teardown | ternary('absent', 'present') }}"
   become: true
 
 - name: Add testing repository
@@ -18,4 +19,5 @@
     enabled: 0
     gpgcheck: 1
     gpgkey: https://rpm.releases.hashicorp.com/gpg
+    state: "{{ should_teardown | ternary('absent', 'present') }}"
   become: true

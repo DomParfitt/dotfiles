@@ -21,9 +21,9 @@
 
 - name: Copy files
   file:
-    src: "{{ role_path }}/files/{{ item.src }}"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: "{{ item.dest }}"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
   with_items:
     - src: aliases
       dest: ~/.aliases
@@ -54,5 +54,5 @@
       - make
       - most
       - neofetch
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"

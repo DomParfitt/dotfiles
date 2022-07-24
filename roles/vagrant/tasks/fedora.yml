@@ -4,7 +4,7 @@
       - vagrant
       - vagrant-libvirt
     disablerepo: hashicorp
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true
 
 - name: Enable virtnetworkd

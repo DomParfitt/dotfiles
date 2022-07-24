@@ -10,14 +10,14 @@
 - name: Install
   package:
     name: starship
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
 
 - name: Copy config
   file:
     src: "{{ role_path }}/files/starship.toml"
     dest: ~/.config/starship.toml
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   tags:
     - config

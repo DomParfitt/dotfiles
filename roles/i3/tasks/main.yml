@@ -1,14 +1,14 @@
 - name: Install
   package:
     name: i3
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: true
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files/{{ item }}"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files') }}"
     dest: "~/.config/{{ item }}"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
   with_items:
     - i3
     - i3status

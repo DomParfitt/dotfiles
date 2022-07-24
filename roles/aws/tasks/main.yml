@@ -10,7 +10,7 @@
   file:
     src: "{{ role_path }}/files/rotate-iam-keys"
     dest: "~/bin/rotate-iam-keys"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
 
 - name: Create log directory

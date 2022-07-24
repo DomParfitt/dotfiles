@@ -1,5 +1,5 @@
 - name: Install
   package:
     name: httpie
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: '{{ should_sudo_install }}'

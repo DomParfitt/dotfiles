@@ -3,13 +3,13 @@
     name:
       # - vim
       - neovim
-    state: latest
+    state: "{{ should_teardown | ternary('absent', 'latest') }}"
   become: "{{ should_sudo_install }}"
 
 - name: Create directories
   file:
     path: "~/.vim/{{ item }}"
-    state: directory
+    state: "{{ should_teardown | ternary('absent', 'directory') }}"
     mode: '0755'
   loop:
     - autoload
@@ -17,9 +17,9 @@
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files/{{ item.src }}"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files'~item.src) }}"
     dest: "{{ item.dest }}"
-    state: link
+    state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
   with_items:
     - src: vimrc
