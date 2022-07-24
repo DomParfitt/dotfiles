@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+from operator import contains
 import os
 from shutil import which
 from subprocess import run
@@ -80,6 +81,10 @@ def run_setup(roles, install_modules=False, config_only=False, teardown=False):
              'install', '-r', 'requirements.yml', '--force'])
 
     additional_args = []
+
+    if roles:
+        additional_args = ['--tags', ','.join(roles)]
+
     if config_only:
         additional_args = ['--tags', 'config']
         if roles:
@@ -88,11 +93,13 @@ def run_setup(roles, install_modules=False, config_only=False, teardown=False):
                 if role in roles_to_skip:
                     roles_to_skip.remove(role)
             additional_args.extend(['--skip-tags', ','.join(roles_to_skip)])
-    elif roles:
-        additional_args = [
-            '--tags', ','.join(roles)]
 
     if teardown:
+        if not roles:
+            proceed = input(
+                'No roles provided. This will teardown the entire system. Are you sure? [y/N]: ').lower()
+            if not (proceed == 'y' or proceed == 'yes'):
+                exit(1)
         additional_args.extend(['--extra-vars', 'should_teardown=true'])
 
     # Run the playbook
