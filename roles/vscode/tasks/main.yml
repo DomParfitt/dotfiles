@@ -18,11 +18,13 @@
     path: "{{ config_path }}/Code/User"
     state: "{{ should_teardown | ternary('absent', 'directory') }}"
     mode: '0755'
+  tags:
+    - config
 
 - name: Copy config
   file:
     # src: "{{ role_path }}/files/{{ item }}"
-    src: "{{ should_teardown | ternary(omit, role_path~'/files'~item) }}"
+    src: "{{ should_teardown | ternary(omit, role_path~'/files/'~item) }}"
     dest: "{{ config_path }}/Code/User/{{ item }}"
     state: "{{ should_teardown | ternary('absent', 'link') }}"
     force: true
