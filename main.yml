@@ -7,6 +7,7 @@
     is_mac: "{{ (ansible_facts['os_family'] | lower == 'darwin') }}"
     should_sudo_install: "{{ not is_mac }}"
     should_use_cargo: false
+    should_teardown: false
   roles:
     - role: homebrew
       when: is_mac
