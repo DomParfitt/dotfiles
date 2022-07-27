@@ -79,7 +79,7 @@ symbol = "\u2388"
 style = "134" # purple
 
 [nodejs]
-format = "[$symbol node $version ]($style)"
+format = "[$symbol $version ]($style)"
 symbol = "\uE617" 
 style = "70" # green
 
