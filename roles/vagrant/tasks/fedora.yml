@@ -1,6 +1,14 @@
 - name: Install
   dnf:
-    name: vagrant
+    name: 
+      - vagrant
+      - vagrant-libvirt
     disablerepo: hashicorp
     state: latest
+  become: true
+
+- name: Enable virtnetworkd
+  systemd:
+    name: virtnetworkd
+    state: started
   become: true

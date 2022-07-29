@@ -1,17 +1,27 @@
+- name: Download nvm
+  get_url:
+    url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh
+    dest: /tmp/nvm-install.sh
+    owner: "{{ lookup('env', 'USER') }}"
+    mode: '0755'
+
 - name: Install nvm
-  git:
-    repo: https://github.com/nvm-sh/nvm.git
-    dest: ~/.nvm
+  shell:
+    cmd: /tmp/nvm-install.sh
+    creates: ~/.nvm
+  environment: 
+    PROFILE: /dev/null
 
 - name: Install
-  shell: zsh -ic 'nvm install {{ item }}'
+  shell: source ~/.nvm/nvm.sh && nvm install {{ item }}
   loop:
     - --lts
+    - 14
     - 12
     - 10
 
 - name: Install packages
-  shell: zsh -ic 'nvm_load && npm install -g {{ item }}'
+  shell: source ~/.nvm/nvm.sh && npm install -g {{ item }}
   loop:
     - aws-cdk
     - eslint
