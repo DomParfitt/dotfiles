@@ -36,6 +36,7 @@
     - git
     - role: gnome
       when: is_linux
+    - go
     - httpie
     - role: i3
       when: is_linux

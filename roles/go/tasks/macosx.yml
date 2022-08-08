@@ -1,0 +1,5 @@
+- name: Install
+  package:
+    name: go
+    state: latest
+  become: false
