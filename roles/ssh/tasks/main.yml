@@ -1,3 +1,9 @@
+- name: Make dir
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+
 - name: Copy config
   file:
     src: "{{ role_path }}/files/config"
