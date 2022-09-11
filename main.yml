@@ -48,6 +48,7 @@
     - lazygit
     - node
     - nomad
+    - podman
     - role: polybar
       when: is_linux
     - procs
