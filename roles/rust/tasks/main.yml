@@ -42,7 +42,5 @@
     creates: "~/.cargo/bin/{{ item.bin }}"
   when: install_rust_packages is true
   with_items:
-    - package: cargo-edit
-      bin: carg-add
     - package: cargo-tarpaulin
       bin: cargo-tarpaulin
