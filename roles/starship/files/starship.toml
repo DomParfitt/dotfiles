@@ -32,10 +32,11 @@ format = "[$duration ]($style)"
 style = "66" # grey
 
 [custom.publicip]
-command = "dig +short myip.opendns.com @resolver1.opendns.com"
+command = "myip"
 symbol = "\uF0AC"
 format = "[$symbol $output ]($style)"
 style = "105" # mauve
+shell = ["fish"]
 when = true
 
 [directory]
