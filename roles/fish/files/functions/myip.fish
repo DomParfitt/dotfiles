@@ -1,5 +1,11 @@
 function myip --description "Returns the current public IP address of the machine"
-  if not set --query MY_IP or not set --query MY_IP_SET_AT 
+  argparse (fish_opt -s f -l force) -- $argv
+  if set --query _flag_force
+    _store_my_ip
+    return $status
+  end
+
+  if not set --query MY_IP; or not set --query MY_IP_SET_AT 
     _store_my_ip
     return $status
   end
