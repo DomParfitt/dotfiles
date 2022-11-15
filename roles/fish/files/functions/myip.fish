@@ -5,7 +5,7 @@ function myip --description "Returns the current public IP address of the machin
     return $status
   end
 
-  if not set --query MY_IP; or not set --query MY_IP_SET_AT 
+  if test -n "$MY_IP"; or test -n "$MY_IP_SET_AT"
     _store_my_ip
     return $status
   end
