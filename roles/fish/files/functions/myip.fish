@@ -5,7 +5,7 @@ function myip --description "Returns the current public IP address of the machin
     return $status
   end
 
-  if test -n "$MY_IP"; or test -n "$MY_IP_SET_AT"
+  if test -z "$MY_IP"; or test -z "$MY_IP_SET_AT"
     _store_my_ip
     return $status
   end
@@ -25,7 +25,13 @@ function _get_my_ip
 end
 
 function _store_my_ip
-    set -Ux MY_IP $(_get_my_ip)
-    set -Ux MY_IP_SET_AT $(date +%s)
+    set --local ip $(_get_my_ip)
+    if test -n "$ip"
+      set -e MY_IP
+      set -e MY_IP_SET_AT
+
+      set -Ux MY_IP $ip
+      set -Ux MY_IP_SET_AT $(date +%s)
+    end
     echo $MY_IP 
 end
