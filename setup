@@ -94,12 +94,6 @@ def run_setup(roles, install_modules=False, config_only=False):
 
 
 def main():
-    # Make sure we're using Python 3
-    if version_info.major != 3:
-        print(
-            f'Python 3 required. Current version is {version_info.major}.{version_info.minor}.{version_info.micro}')
-        exit(1)
-
     args = parse_args()
 
     if args.list_roles:
