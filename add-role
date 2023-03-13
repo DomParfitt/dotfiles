@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from os import path, mkdir
 import argparse
@@ -143,13 +143,20 @@ def add_to_git(role_name):
 def main():
     parser = argparse.ArgumentParser(description='Add a new role')
     parser.add_argument('role', nargs='?', help='Name for the new role')
+    parser.add_argument('--no-git', action='store_true', help="Don't automatically add changes to git")
+    parser.add_argument('--no-update-main', action='store_true', help="Don't update the main file with the new role")
+    
     args = parser.parse_args()
 
     role_name = (args.role or input('Role name: ')).lower()
 
     create_directory_structure(role_name)
-    update_main_file(role_name)
-    add_to_git(role_name)
+    
+    if not args.no_update_main:
+        update_main_file(role_name)
+
+    if not args.no_git:
+        add_to_git(role_name)
 
 
 if __name__ == '__main__':
