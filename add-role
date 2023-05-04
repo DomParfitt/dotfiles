@@ -43,7 +43,7 @@ def get_tasks_file_contents(role_name):
     return [
         {
             "name": "Run OS specific tasks",
-            "include_tasks": "{{ item }}",
+            "import_tasks": "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml",
             "vars": {
                 "params": {
                     "files": [
