@@ -25,6 +25,6 @@
   loop:
     - aws-cdk
     - eslint
-    - generator-simple-ts
+    - https://github.com/DomParfitt/generator-simple-ts #generator-simple-ts
     - typescript
     - yo
