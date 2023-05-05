@@ -87,5 +87,15 @@
     "key": "ctrl+alt+,",
     "command": "-paredit.barfSexpForward",
     "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
+  },
+  {
+    "key": "shift+alt+cmd+f",
+    "command": "list.find",
+    "when": "listFocus && listSupportsFind"
+  },
+  {
+    "key": "cmd+f",
+    "command": "-list.find",
+    "when": "listFocus && listSupportsFind"
   }
 ]
