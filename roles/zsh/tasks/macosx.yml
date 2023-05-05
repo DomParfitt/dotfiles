@@ -1,0 +1,13 @@
+# - name: Install Antigen
+#   package:
+#     name: antigen
+#     state: latest
+#   become: false
+#   when: is_mac
+
+- name: Say hello
+  debug:
+    msg: Hello
+# - name: Fail
+#   fail:
+#     msg: 'I have failed'

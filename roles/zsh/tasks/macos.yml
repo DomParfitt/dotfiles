@@ -1,6 +1,0 @@
-- name: Install Antigen
-  package:
-    name: antigen
-    state: latest
-  become: false
-  when: is_mac
