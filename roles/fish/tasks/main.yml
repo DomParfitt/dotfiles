@@ -33,3 +33,9 @@
   shell:
     cmd: fisher update
     executable: fish
+
+- name: Set default shell
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /usr/bin/fish
+  become: true
