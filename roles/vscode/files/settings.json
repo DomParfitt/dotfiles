@@ -32,6 +32,9 @@
     "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.tabSize": 2
   },
+  "[python]": {
+    "editor.formatOnType": true
+  },
   "[rust]": {
     "editor.tabSize": 4
   },
