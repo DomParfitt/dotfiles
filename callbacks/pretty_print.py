@@ -96,7 +96,6 @@ class CallbackModule(CallbackBase):
         self._on_task_end(Result.SKIPPED, self._msg_from_result(result))
 
     def v2_runner_on_failed(self, result, ignore_errors=False):
-        # self._display.display(str(result._result))
         self._on_task_end(Result.FAILED, self._msg_from_result(result))
 
     def v2_on_file_diff(self, result):
@@ -177,20 +176,21 @@ class CallbackModule(CallbackBase):
     def _msg_from_result(self, result):
         if '_ansible_verbose_always' not in result._result and not result.is_failed():
             return None
-        
+
         if 'results' not in result._result:
             return result._result['msg']
-        
-        failed_results = [result for result in result._result['results'] if result['failed']]
-        
+
+        failed_results = [
+            result for result in result._result['results'] if result['failed']]
+
         msgs = []
         for fail in failed_results:
             loop_var = fail['ansible_loop_var']
             msgs.append({
                 "item": fail[loop_var],
-                "msg": fail['stderr_lines'][0], # fail['msg']
+                "msg": fail['stderr_lines'][0],  # fail['msg']
             })
-        
+
         return msgs
 
     def _include_file_from_result(self, result):
