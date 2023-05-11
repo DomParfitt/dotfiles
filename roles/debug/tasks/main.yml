@@ -1,0 +1,15 @@
+- name: Run OS specific tasks
+  import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"
+- name: Install
+  package:
+    name: debug
+    state: latest
+  become: "{{ should_sudo_install }}"
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files"
+    dest: ~/.config/debug
+    state: link
+    force: true
+  tags:
+    - config

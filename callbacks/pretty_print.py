@@ -96,7 +96,8 @@ class CallbackModule(CallbackBase):
         self._on_task_end(Result.SKIPPED, self._msg_from_result(result))
 
     def v2_runner_on_failed(self, result, ignore_errors=False):
-        self._on_task_end(Result.FAILED, self._msg_from_result(result))
+        self._on_task_end(
+            Result.FAILED, self._msg_from_result(result, force=True))
 
     def v2_on_file_diff(self, result):
         self._on_task_end(Result.CHANGED, self._msg_from_result(result))
@@ -173,8 +174,8 @@ class CallbackModule(CallbackBase):
         if not sameParent:
             self._parent_stack.append(parentTask)
 
-    def _msg_from_result(self, result):
-        if '_ansible_verbose_always' not in result._result and not result.is_failed():
+    def _msg_from_result(self, result, force=False):
+        if '_ansible_verbose_always' not in result._result and not force:
             return None
 
         if 'results' not in result._result:
@@ -186,9 +187,14 @@ class CallbackModule(CallbackBase):
         msgs = []
         for fail in failed_results:
             loop_var = fail['ansible_loop_var']
+            if 'stderr_lines' in fail:
+                msg = fail['stderr_lines'][0]
+            else:
+                msg = fail['msg']
+
             msgs.append({
                 "item": fail[loop_var],
-                "msg": fail['stderr_lines'][0],  # fail['msg']
+                "msg": msg
             })
 
         return msgs

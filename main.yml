@@ -21,6 +21,7 @@
     - bottom
     - role: bspwm
       when: is_linux
+    - debug
     - role: docker
       when: is_linux
     - role: exa
