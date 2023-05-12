@@ -211,11 +211,18 @@ class CallbackModule(CallbackBase):
         if 'include' not in results[0]:
             return
 
-        include = results[0]['include']
-        include = str.split(include, '/')
-        include = include[len(include) - 1]
-        include = str.split(include, '.')
-        return include[0]
+        includes = []
+        for result in results:
+            if 'include' not in result:
+                continue
+
+            include = result['include']
+            include = str.split(include, '/')
+            include = include[len(include) - 1]
+            include = str.split(include, '.')
+            includes.append(include[0])
+
+        return ", ".join(includes)
 
 
 class Printer:
