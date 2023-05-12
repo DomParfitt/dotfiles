@@ -1,15 +1,40 @@
 - name: Run OS specific tasks
   import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"
-- name: Install
-  package:
-    name: debug
-    state: latest
-  become: "{{ should_sudo_install }}"
-- name: Copy config
-  file:
-    src: "{{ role_path }}/files"
-    dest: ~/.config/debug
-    state: link
-    force: true
-  tags:
-    - config
+
+- name: Debug lines
+  debug:
+    msg:  
+      - "System: {{ ansible_facts['system'] }}"
+      - "OS Family: {{ ansible_facts['os_family'] }}"
+      - "Distrbution: {{ ansible_facts['distribution'] }}"
+      - Is Linux? - {{ is_linux }}
+      - Is Mac? - {{ is_mac }}
+      - Should use sudo? - {{ should_sudo_install }}
+
+- name: Fail
+  fail:
+    msg: I have failed
+
+- name: Fail with items
+  fail:
+    msg: I am {{ item }}
+  loop:
+    - foo
+    - bar
+
+- name: Fail with stderr
+  shell:
+    cmd: "echo Failed on: {{ item }} 1>&2 && exit 1"
+  loop:
+    - foo
+    - bar
+
+- name: Always changed
+  shell:
+    cmd: echo Hello
+
+- name: Always skipped
+  shell:
+    cmd: echo Hello
+  when: false
+
