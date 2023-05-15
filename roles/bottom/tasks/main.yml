@@ -8,7 +8,7 @@
   become: "{{ should_sudo_install }}"
   when: not should_use_cargo
 
-- name: Install (cargo)
+- name: Install
   shell: ~/.cargo/bin/cargo install bottom
   args:
     creates: ~/.cargo/bin/btm
