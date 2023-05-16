@@ -5,36 +5,50 @@ import shutil
 from enum import Enum
 
 
-class Result(Enum):
-    FAILED = "FAILED"
-    CHANGED = "CHANGED"
-    SUCCESS = "SUCCESS"
-    SKIPPED = "SKIPPED"
-    NONE = ""
+DOCUMENTATION = '''
+    name: pretty_print
+    type: stdout
+    description: Pretty prints playbook output
+    short_description: Pretty prints playbook output.
+    options:
+        show_skipped:
+            name: Show skipped
+            description: Include skipped tasks in the output.
+            type: bool
+            default: False
+            ini:
+                - section: callback_pretty_print
+                  key: show_skipped
+            env:
+                - name: ANSIBLE_CALLBACK_PRETTY_PRINT_SHOW_SKIPPED
+            vars:
+                - name: show_skipped
+        show_msgs:
+            name: Show messages
+            description: Print msgs from tasks
+            type: bool
+            default: True
+            ini:
+                - section: callback_pretty_print
+                  key: show_msgs
+            env:
+                - name: ANSIBLE_CALLBACK_PRETTY_PRINT_SHOW_MSGS
+        justify:
+            name: Justify
+            description: How to justify the output.
+            type: string
+            default: centre
+            choices:
+                - centre
+                - left
+                - right
+            ini:
+                - section: callback_pretty_print
+                  key: justify
+            env:
+                - name: ANSIBLE_CALLBACK_PRETTY_PRINT_JUSTIFY
 
-    def __str__(self) -> str:
-        return self.value
-
-    def __len__(self) -> int:
-        return len(self.value)
-
-    def color(self):
-        if self == Result.SUCCESS:
-            return 'green'
-        elif self == Result.SKIPPED:
-            return 'blue'
-        elif self == Result.CHANGED:
-            return 'yellow'
-        elif self == Result.FAILED:
-            return 'red'
-        else:
-            return 'bright gray'
-
-    def flatten(results):
-        for result in Result:
-            if result in results:
-                return result
-        return Result.SKIPPED
+'''
 
 
 class CallbackModule(CallbackBase):
@@ -43,17 +57,22 @@ class CallbackModule(CallbackBase):
     CALLBACK_TYPE = 'stdout'
     CALLBACK_NAME = 'pretty_print'
 
-    _show_skipped = False
-
     _current_role = None
     _current_task = None
     _parent_stack = []
     _processed_roles = []
-    _start = datetime.now()
 
     def __init__(self):
         super(CallbackModule, self).__init__()
-        self.printer = Printer(self._display.display)
+
+    def v2_playbook_on_play_start(self, play):
+        self._start = datetime.now()
+        self._show_skipped = self.get_option('show_skipped')
+        self._show_msgs = self.get_option('show_msgs')
+
+        printer_args = {}
+        printer_args['justify'] = self.get_option('justify')
+        self.printer = Printer(self._display.display, printer_args)
 
     def v2_playbook_on_task_start(self, task, is_conditional):
         if task._role is None:
@@ -72,7 +91,7 @@ class CallbackModule(CallbackBase):
 
         self._current_task = {
             "name": task.name,
-            "start": datetime.now()
+            "start": datetime.now(),
         }
 
     def v2_playbook_on_stats(self, stats):
@@ -102,25 +121,11 @@ class CallbackModule(CallbackBase):
     def v2_on_file_diff(self, result):
         self._on_task_end(Result.CHANGED, self._msg_from_result(result))
 
-    def v2_runner_item_on_ok(self, result):
-        # import pprint
-        # loop_var = result._result['ansible_loop_var']
-        # self._display.display("Item OK")
-        # self._display.display(pprint.pformat(result._result[loop_var]))
-        # self._display.display(pprint.pformat(result._result))
-        pass
-
-    def v2_runner_item_on_failed(self, result):
-        pass
-
-    def v2_runner_item_on_skipped(self, result):
-        pass
 
     def _on_role_start(self, role_name):
         self._current_role = {
             "name": role_name,
             "tasks": [],
-            "result": Result.SUCCESS,
             "start": datetime.now()
         }
 
@@ -167,14 +172,14 @@ class CallbackModule(CallbackBase):
             self._parent_stack.append(parentTask)
             return
 
-        currentParent = self._parent_stack.pop()
-        sameParent = currentParent.name == parentTask.name
-        self._parent_stack.append(currentParent)
-
-        if not sameParent:
+        currentParent = self._parent_stack[-1]
+        if currentParent.name != parentTask.name:
             self._parent_stack.append(parentTask)
 
     def _msg_from_result(self, result, force=False):
+        if not self._show_msgs:
+            return None
+
         if '_ansible_verbose_always' not in result._result and not force:
             return None
 
@@ -182,7 +187,8 @@ class CallbackModule(CallbackBase):
             return result._result['msg']
 
         failed_results = [
-            result for result in result._result['results'] if result['failed']]
+            result for result in result._result['results'] if result['failed']
+        ]
 
         msgs = []
         for fail in failed_results:
@@ -227,8 +233,13 @@ class CallbackModule(CallbackBase):
 
 class Printer:
 
-    def __init__(self, print):
+    def __init__(self, print, args):
         self.print = print
+        self._justify = args['justify']
+
+    def debug(self, obj):
+        import pprint
+        self.print(pprint.pformat(obj))
 
     def print_role_name(self, role_name):
         self._print_line()
@@ -359,10 +370,12 @@ class Printer:
                 prefix_size = indent_level * 2
             else:
                 available_space = column_size
-                # prefix_size = 0 # Left justify
-                # prefix_size = available_space - len(item) # Right justify
-                prefix_size = round(
-                    (available_space - item_size) / 2)  # Centre justify
+                if self._justify == 'left':
+                    prefix_size = 0
+                elif self._justify == 'right':
+                    prefix_size = available_space - item_size
+                else:
+                    prefix_size = round((available_space - item_size) / 2)
 
             prefix = ' ' * prefix_size
             suffix = ' ' * (available_space - prefix_size - item_size)
@@ -388,3 +401,35 @@ class Printer:
             return "{0:.2f}s".format(seconds)
         else:
             return "{0:.0f}ms".format(seconds * 1000)
+
+
+class Result(Enum):
+    FAILED = "FAILED"
+    CHANGED = "CHANGED"
+    SUCCESS = "SUCCESS"
+    SKIPPED = "SKIPPED"
+    NONE = ""
+
+    def __str__(self) -> str:
+        return self.value
+
+    def __len__(self) -> int:
+        return len(self.value)
+
+    def color(self):
+        if self == Result.SUCCESS:
+            return 'green'
+        elif self == Result.SKIPPED:
+            return 'blue'
+        elif self == Result.CHANGED:
+            return 'yellow'
+        elif self == Result.FAILED:
+            return 'red'
+        else:
+            return 'bright gray'
+
+    def flatten(results):
+        for result in Result:
+            if result in results:
+                return result
+        return Result.SKIPPED

@@ -4,8 +4,10 @@ import argparse
 import os
 from shutil import which
 from subprocess import run
-from sys import version_info, exit
+from sys import exit
 
+# Pseudo roles are tags that are applied to multiple roles to allow easy setup of a collection
+# of related roles
 PSEUDO_ROLES = ['config', 'terminal']
 
 
@@ -22,6 +24,7 @@ def parse_args():
                         help='List the available roles')
     parser.add_argument('-i', '--install-modules', action='store_true',
                         help='Install required Ansible modules')
+    parser.add_argument('-v', action='count', default=1, help='Verbosity')
 
     return parser.parse_args()
 
@@ -66,19 +69,19 @@ def list_roles():
     exit(0)
 
 
-def run_setup(roles, install_modules=False, config_only=False):
+def run_setup(roles, args):
     # If ansible is not installed, install it
     if which('ansible') is None:
         print('Ansible is not currently installed.')
         install_ansible()
 
     # Install additional modules
-    if install_modules:
+    if args.install_modules:
         run(['ansible-galaxy', 'collection',
              'install', '-r', 'requirements.yml', '--force'])
 
     additional_args = []
-    if config_only:
+    if args.config_only:
         additional_args = ['--tags', 'config']
         if roles:
             roles_to_skip = get_available_roles().copy()
@@ -89,8 +92,18 @@ def run_setup(roles, install_modules=False, config_only=False):
     elif roles:
         additional_args = ['--tags', ','.join(roles)]
 
+    env = os.environ
+    verbosity = [
+        ['ANSIBLE_CALLBACK_PRETTY_PRINT_SHOW_SKIPPED'],
+        [],
+    ]
+    for i in range(0, min(args.v - 1, len(verbosity))):
+        for pair in verbosity[i]:
+            env[pair] = 'True'
+        pass
+
     # Run the playbook
-    run(['ansible-playbook', 'main.yml'] + additional_args)
+    run(['ansible-playbook', 'main.yml'] + additional_args, env=env)
 
 
 def main():
@@ -99,7 +112,7 @@ def main():
     if args.list_roles:
         list_roles()
     else:
-        run_setup(args.roles, install_modules=args.install_modules, config_only=args.config_only)
+        run_setup(args.roles, args)
 
 
 if __name__ == '__main__':
