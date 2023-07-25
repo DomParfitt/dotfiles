@@ -2,6 +2,6 @@ function docker-compose --wraps=podman-compose --description 'alias docker-compo
   if type --query podman-compose
     podman-compose $argv;
   else
-    command docker-compose $argv;
+    command docker compose $argv;
   end
 end

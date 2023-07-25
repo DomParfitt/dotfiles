@@ -15,14 +15,6 @@
     - docker-ce-cli
   become: true
 
-- name: Install compose
-  get_url:
-    url: "https://github.com/docker/compose/releases/latest/download/docker-compose-Linux-{{ ansible_architecture }}"
-    dest: /usr/local/bin/docker-compose
-    owner: "{{ lookup('env', 'USER') }}"
-    mode: '0755'
-  become: true
-
 - name: Add user to group
   user:
     name: "{{ lookup('env', 'USER') }}"
