@@ -2,10 +2,12 @@ Host github.com
 	User domparfitt
 	HostName github.com
 	PreferredAuthentications publickey
+	IdentitiesOnly yes
 	IdentityFile ~/.ssh/github/id_ed25519
 
 Host gitlab.com
 	User domparfitt
 	HostName gitlab.com
 	PreferredAuthentications publickey
+	IdentityFile yes
 	IdentityFile ~/.ssh/gitlab/id_ed25519
