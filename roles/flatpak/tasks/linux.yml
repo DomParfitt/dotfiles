@@ -1,0 +1,11 @@
+- name: Install
+  package:
+    name: flatpak
+    state: latest
+  become: true
+
+- name: Add Flathub
+  flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+  become: true

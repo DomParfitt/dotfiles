@@ -1,0 +1,14 @@
+- name: Install
+  package:
+    name: polybar
+    state: latest
+  become: true  
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files"
+    dest: ~/.config/polybar
+    state: link
+    force: true
+  tags:
+    - config

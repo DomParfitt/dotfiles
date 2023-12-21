@@ -1,11 +1,2 @@
-- name: Install
-  package:
-    name: flatpak
-    state: latest
-  become: true
-
-- name: Add Flathub
-  flatpak_remote:
-    name: flathub
-    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-  become: true
+- name: Run OS specific tasks
+  import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"

@@ -8,39 +8,32 @@
     should_sudo_install: "{{ not is_mac }}"
     should_use_cargo: false
   roles:
-    - role: homebrew
-      when: is_mac
+    - homebrew
     - common
     - role: alacritty
       tags:
         - terminal
-    - role: awesome
-      when: is_linux
+    - awesome
     - aws
     - bat
     - bottom
-    - role: bspwm
-      when: is_linux
+    - bspwm
     - debug
-    - role: docker
-      when: is_linux
+    - docker
     - role: exa
       tags:
         - terminal
     - role: fish
       tags:
         - terminal
-    - role: flatpak
-      when: is_linux
+    - flatpak
     - fzf
     - gcloud
     - git
-    - role: gnome
-      when: is_linux
+    - gnome
     - go
     - httpie
-    - role: i3
-      when: is_linux
+    - i3
     - jq
     - role: kitty
       tags:
@@ -51,8 +44,7 @@
     - node
     - nomad
     - podman
-    - role: polybar
-      when: is_linux
+    - polybar
     - procs
     - ripgrep
     - rust

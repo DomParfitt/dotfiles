@@ -1,0 +1,14 @@
+- name: Install
+  package:
+    name: awesome
+    state: latest
+  become: true
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files"
+    dest: ~/.config/awesome
+    state: link
+    force: true
+  tags:
+    - config

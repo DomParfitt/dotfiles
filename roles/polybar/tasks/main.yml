@@ -1,14 +1,2 @@
-- name: Install
-  package:
-    name: polybar
-    state: latest
-  become: true  
-
-- name: Copy config
-  file:
-    src: "{{ role_path }}/files"
-    dest: ~/.config/polybar
-    state: link
-    force: true
-  tags:
-    - config
+- name: Run OS specific tasks
+  import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"
