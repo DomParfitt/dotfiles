@@ -47,6 +47,7 @@
         - terminal
     - kubernetes
     - lazygit
+    - line6
     - node
     - nomad
     - podman

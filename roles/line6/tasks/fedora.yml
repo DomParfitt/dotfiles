@@ -1,0 +1,43 @@
+- name: Get VMs list
+  community.libvirt.virt:
+    command: list_vms
+  register: existing_vms
+  changed_when: no
+
+- name: Create VM
+  block:
+    - name: Get storage
+      stat:
+        path: "{{ libvirt_storage_file }}"
+      register: storage_file
+
+    - name: Create storage
+      command:
+        cmd: qemu-img create -f qcow2 {{ libvirt_storage_file }} {{ vm_storage_gb }}
+      when: not storage_file.stat.exists
+
+    - name: Create shared dir
+      file:
+        path: "{{ shared_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Install deps
+      dnf:
+        name: python3-pycdlib
+      become: true
+
+    - name: Create autounattend drive
+      community.general.iso_create:
+        src_files:
+          - "{{ role_path }}/files/Autounattend.xml"
+        dest_iso: /tmp/autounattend.iso
+        interchange_level: 3
+        joliet: 3
+        vol_ident: WIN_AUTOINSTALL
+
+    - name: Create Windows VM
+      community.libvirt.virt:
+        command: define
+        xml: "{{ lookup('template', 'vm.xml.j2') }}"
+  when: "vm_name not in existing_vms.list_vms"
