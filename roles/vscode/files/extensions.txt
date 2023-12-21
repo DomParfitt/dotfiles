@@ -7,7 +7,6 @@ bbenoist.vagrant
 betterthantomorrow.calva
 betterthantomorrow.calva-spritz
 bmalehorn.vscode-fish
-bungcip.better-toml
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 CircleCI.circleci
@@ -21,6 +20,7 @@ eg2.vscode-npm-script
 esbenp.prettier-vscode
 firsttris.vscode-jest-runner
 floone.varnish-vcl
+github.vscode-github-actions
 golang.go
 hashicorp.hcl
 hashicorp.terraform
@@ -43,6 +43,7 @@ MaxGabriel.brittany
 mechatroner.rainbow-csv
 ms-azuretools.vscode-docker
 ms-dotnettools.csharp
+ms-dotnettools.vscode-dotnet-runtime
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-python.autopep8
 ms-python.isort
@@ -67,11 +68,13 @@ richie5um2.vscode-sort-json
 rust-lang.rust-analyzer
 ryanluker.vscode-coverage-gutters
 ryu1kn.partial-diff
+samuelcolvin.jinjahtml
 scala-lang.scala
 scalameta.metals
 sodatea.velocity
 streetsidesoftware.code-spell-checker
 styled-components.vscode-styled-components
+tamasfe.even-better-toml
 Tim-Koehler.helm-intellisense
 timonwong.shellcheck
 twxs.cmake

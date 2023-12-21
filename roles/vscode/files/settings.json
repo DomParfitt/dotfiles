@@ -72,8 +72,8 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
   "editor.detectIndentation": false,
   "editor.fontSize": 13,
@@ -106,11 +106,14 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "markdown.extension.toc.levels": "2..6",
   "markdown.extension.toc.orderedList": true,
+  "npm.keybindingsChangedWarningShown": true,
   "php.validate.executablePath": "/usr/bin/php",
   "prettier.requireConfig": false,
   "prettier.singleQuote": true,
   "python.defaultInterpreterPath": "/bin/python",
   "redhat.telemetry.enabled": false,
+  "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
   "security.workspace.trust.enabled": false,
   "shellcheck.customArgs": [
     "-x"
