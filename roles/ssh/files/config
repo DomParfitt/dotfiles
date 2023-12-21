@@ -3,3 +3,9 @@ Host github.com
 	HostName github.com
 	PreferredAuthentications publickey
 	IdentityFile ~/.ssh/github/id_ed25519
+
+Host gitlab.com
+	User domparfitt
+	HostName gitlab.com
+	PreferredAuthentications publickey
+	IdentityFile ~/.ssh/gitlab/id_ed25519
