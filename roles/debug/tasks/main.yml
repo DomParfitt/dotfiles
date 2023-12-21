@@ -29,6 +29,15 @@
     - foo
     - bar
 
+- name: Loop
+  shell:
+    cmd: echo Hello, world
+  loop:
+    - foo
+    - bar
+    - key: baz
+      value: boom
+
 - name: Always changed
   shell:
     cmd: echo Hello
