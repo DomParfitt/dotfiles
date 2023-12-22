@@ -1,3 +1,7 @@
 - name: Hello from Linux
   debug:
     msg: Hello from Linux
+
+- name: Hello again from Linux
+  debug:
+    msg: Hello again from Linux
