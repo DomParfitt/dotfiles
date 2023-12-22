@@ -59,6 +59,7 @@ class CallbackModule(CallbackBase):
 
     _current_role = None
     _current_task = None
+    _current_pseudo_parent = None
     _parent_stack = []
     _processed_roles = []
 
@@ -84,14 +85,28 @@ class CallbackModule(CallbackBase):
             self._on_role_start(role_name)
         elif self._current_role['name'] != role_name:
             self._on_role_end()
-
             self._on_role_start(role_name)
 
-        self._update_parent_stack(task)
+        parent = task.get_first_parent_include()
+        pseudo_parent = None
+        if parent is not None:
+            parent = self._get_parent(parent.name)
+            if parent is not None:
+                task_filepath = task.get_path().split(":")[0]
+                task_file_name = self._name_from_filepath(task_filepath)
+                if task_file_name in parent['included_files']:
+                    pseudo_parent = {
+                        "name": task_file_name,
+                        "result": Result.NONE,
+                        "msg": None,
+                    }
 
         self._current_task = {
             "name": task.name,
             "start": datetime.now(),
+            "parent": parent,
+            "pseudo_parent": pseudo_parent,
+            "included_files": [],
         }
 
     def v2_playbook_on_stats(self, stats):
@@ -104,10 +119,10 @@ class CallbackModule(CallbackBase):
         else:
             res = Result.SUCCESS
 
-        include = self._include_file_from_result(result)
-        if include is not None:
+        included_files = self._include_files_from_result(result)
+        if included_files is not None:
             res = Result.NONE
-            self._current_task['display_name'] = f"{self._current_task['name']} ({include})"
+            self._current_task['included_files'] = included_files
 
         self._on_task_end(res, self._msg_from_result(result))
 
@@ -120,7 +135,6 @@ class CallbackModule(CallbackBase):
 
     def v2_on_file_diff(self, result):
         self._on_task_end(Result.CHANGED, self._msg_from_result(result))
-
 
     def _on_role_start(self, role_name):
         self._current_role = {
@@ -145,7 +159,8 @@ class CallbackModule(CallbackBase):
             return
 
         # If this is the first task we've completed for the current role then we need to print the
-        # role name first
+        # role name first. Done here rather than _on_role_start so we don't print a role name when
+        # all tasks are skipped
         if len(self._current_role['tasks']) == 0:
             self.printer.print_role_name(self._current_role['name'])
 
@@ -154,18 +169,29 @@ class CallbackModule(CallbackBase):
         self._current_task['msg'] = msg
         self._current_role['tasks'].append(self._current_task)
 
-        self.printer.print_task(
-            self._current_task, indent_level=len(self._parent_stack) + 1)
+        self._update_parent_stack(self._current_task)
+
+        pseudo_parent = self._current_task['pseudo_parent']
+        indent_level = len(self._parent_stack) + 1
+        if pseudo_parent is not None:
+            if pseudo_parent != self._current_pseudo_parent:
+                self.printer.print_task(
+                    self._current_task['pseudo_parent'], indent_level)
+            self.printer.print_task(
+                self._current_task, indent_level=indent_level+1)
+            self._current_pseudo_parent = pseudo_parent
+        else:
+            self.printer.print_task(self._current_task, indent_level)
 
     def _update_parent_stack(self, task):
-        parentTask = task.get_first_parent_include()
+        parentTask = task['parent']
         if parentTask is None:
             self._parent_stack = []
             return
 
         # Treat tasks with a parent that is not a task we've seen (i.e. those added with `import_tasks`)
         # as having no parent.
-        if parentTask.name not in [task['name'] for task in self._current_role['tasks']]:
+        if parentTask['name'] not in [task['name'] for task in self._current_role['tasks']]:
             return
 
         if len(self._parent_stack) == 0:
@@ -173,7 +199,7 @@ class CallbackModule(CallbackBase):
             return
 
         currentParent = self._parent_stack[-1]
-        if currentParent.name != parentTask.name:
+        if currentParent['name'] != parentTask['name']:
             self._parent_stack.append(parentTask)
 
     def _msg_from_result(self, result, force=False):
@@ -205,7 +231,7 @@ class CallbackModule(CallbackBase):
 
         return msgs
 
-    def _include_file_from_result(self, result):
+    def _include_files_from_result(self, result):
         if 'results' not in result._result:
             return
 
@@ -222,13 +248,22 @@ class CallbackModule(CallbackBase):
             if 'include' not in result:
                 continue
 
-            include = result['include']
-            include = str.split(include, '/')
-            include = include[len(include) - 1]
-            include = str.split(include, '.')
-            includes.append(include[0])
+            filepath = result['include']
+            includes.append(self._name_from_filepath(filepath))
 
-        return ", ".join(includes)
+        return includes
+
+    def _name_from_filepath(self, filepath):
+        name = str.split(filepath, '/')
+        name = name[len(name) - 1]
+        name = str.split(name, '.')
+        return name[0]
+
+    def _get_parent(self, parent_name):
+        tasks = self._current_role['tasks']
+        for task in tasks:
+            if task['name'] == parent_name:
+                return task
 
 
 class Printer:
@@ -246,11 +281,7 @@ class Printer:
         self._print_line(role_name, bold=True)
 
     def print_task(self, task, indent_level=1):
-        if 'display_name' in task:
-            name = task['display_name']
-        else:
-            name = task['name']
-
+        name = task['name']
         result = task['result']
 
         if result == Result.NONE:
