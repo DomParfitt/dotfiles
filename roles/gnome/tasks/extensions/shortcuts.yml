@@ -1,7 +1,7 @@
 - name: Configure WM keybindings
   community.general.dconf:
-    key: "/org/gnome/desktop/wm/keybindings/{{ item.key }}"
-    value: "{{ item.value | string }}"
+    key: "/org/gnome/desktop/wm/keybindings/{{ setting.key }}"
+    value: "{{ setting.value | string }}"
   with_items:
     - key: switch-applications
       value: "'@as []'"
@@ -13,11 +13,13 @@
       value: "['<Shift><Alt>Tab']"
     - key: show-desktop
       value: "['<Super>d']"
+  loop_control:
+    loop_var: setting
 
 - name: Configure terminal shortcut
   community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/{{ item.key }}"
-    value: "{{ item.value | string }}"
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/{{ setting.key }}"
+    value: "{{ setting.value | string }}"
   with_items:
     - key: binding
       value: "'<Primary><Alt>t'"
@@ -25,11 +27,13 @@
       value: "'alacritty'"
     - key: name
       value: "'Terminal'"
+  loop_control:
+    loop_var: setting
 
 - name: Configure file explorer shortcut
   community.general.dconf:
-    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/{{ item.key }}"
-    value: "{{ item.value | string }}"
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/{{ setting.key }}"
+    value: "{{ setting.value | string }}"
   with_items:
     - key: binding
       value: "'<Super>e'"
@@ -37,3 +41,5 @@
       value: "'nautilus'"
     - key: name
       value: "'File Explorer'"
+  loop_control:
+    loop_var: setting

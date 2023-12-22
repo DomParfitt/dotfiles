@@ -9,8 +9,8 @@
 
 - name: Configure
   community.general.dconf:
-    key: "/org/gnome/shell/extensions/openweather/{{ item.key }}"
-    value: "{{ item.value }}"
+    key: "/org/gnome/shell/extensions/openweather/{{ setting.key }}"
+    value: "{{ setting.value }}"
   with_items:
     - key: actual-city
       value: "0"
@@ -56,3 +56,5 @@
       value: "true"
     - key: wind-speed-unit
       value: "'mph'"
+  loop_control:
+    loop_var: setting

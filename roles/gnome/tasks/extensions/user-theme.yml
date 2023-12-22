@@ -9,8 +9,10 @@
 
 - name: Configure
   community.general.dconf:
-    key: "/org/gnome/shell/extensions/user-theme/{{ item.key }}"
-    value: "{{ item.value }}"
+    key: "/org/gnome/shell/extensions/user-theme/{{ setting.key }}"
+    value: "{{ setting.value }}"
   with_items:
     - key: name
       value: "'Yaru-dark'"
+  loop_control:
+    loop_var: setting

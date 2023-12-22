@@ -9,8 +9,8 @@
 
 - name: Configure
   community.general.dconf:
-    key: "/org/gnome/shell/extensions/dash-to-dock/{{ item.key }}"
-    value: "{{ item.value }}"
+    key: "/org/gnome/shell/extensions/dash-to-dock/{{ setting.key }}"
+    value: "{{ setting.value }}"
   with_items:
     - key: apply-custom-theme
       value: "true"
@@ -44,6 +44,8 @@
       value: "'DOTS'"
     - key: scroll-action
       value: "'do-nothing'"
+  loop_control:
+    loop_var: setting
 
 # - name: Get full name
 #   shell: gnome-extensions list | grep dash-to-dock
