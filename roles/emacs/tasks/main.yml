@@ -1,0 +1,46 @@
+- name: Run OS specific tasks
+  import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"
+
+- name: Install
+  package:
+    name: emacs
+    state: latest
+  become: "{{ should_sudo_install }}"
+
+- name: Setup daemon
+  block:
+    - name: Create service
+      file:
+        src: "{{ role_path }}/files/emacs.service"
+        dest: ~/.config/systemd/user/emacs.service
+        state: link
+        force: true
+
+    - name: Start service
+      systemd_service:
+        name: emacs
+        state: started
+        scope: user
+
+- name: Copy config
+  file:
+    src: "{{ role_path }}/files/doom"
+    dest: ~/.config/doom
+    state: link
+    force: true
+  tags:
+    - config
+
+- name: Install Doom
+  git:
+    repo: https://github.com/hlissner/doom-emacs
+    dest: ~/.config/emacs
+
+- name: Sync Doom
+  command: ~/.config/emacs/bin/doom sync
+
+- name: Generate env file
+  command: ~/.config/emacs/bin/doom env
+
+- name: Install icons
+  command: emacs --batch -f nerd-icons-install-fonts
