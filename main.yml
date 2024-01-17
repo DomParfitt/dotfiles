@@ -21,7 +21,7 @@
     - debug
     - docker
     - emacs
-    - role: exa
+    - role: eza
       tags:
         - terminal
     - role: fish

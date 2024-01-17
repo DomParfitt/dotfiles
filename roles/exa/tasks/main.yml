@@ -1,5 +1,0 @@
-- name: Install
-  package:
-    name: exa
-    state: present
-  become: "{{ should_sudo_install }}"

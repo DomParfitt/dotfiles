@@ -4,9 +4,9 @@ alias l='ls -hl'
 alias ll='ls -ahl'
 alias lls='ll | less'
 
-# Use `exa` as an `ls` replacement
-if command -v exa > /dev/null 2>&1; then
-  alias ls='exa --color=always'
+# Use `eza` as an `ls` replacement
+if command -v eza > /dev/null 2>&1; then
+  alias ls='eza --color=always'
 fi
 
 # Use `bat` as a `cat` replacement

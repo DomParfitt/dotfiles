@@ -1,0 +1,11 @@
+- name: Install
+  package:
+    name: eza
+    state: present
+  become: "{{ should_sudo_install }}"
+
+- name: Remove old package
+  package:
+    name: exa
+    state: absent
+  become: "{{ should_sudo_install }}"
