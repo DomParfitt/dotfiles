@@ -13,7 +13,6 @@ if status is-interactive
 
     # Set PATH
     fish_add_path \
-        ~/.cargo/bin \
         ~/.local/bin \
         ~/bin \
         /usr/local/bin
