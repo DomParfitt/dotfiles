@@ -1,0 +1,28 @@
+- name: Get installed version
+  command:
+    cmd: /usr/local/go/bin/go version
+  register: existing_go_version
+
+- name: Install/update
+  block:
+    - name: Remove existing install
+      file:
+        path: /usr/local/go
+        state: absent
+        mode: '0755'
+        force: true
+      become: '{{ should_sudo_install }}'
+
+    - name: Download
+      get_url:
+        url: https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz
+        dest: /tmp/go{{ go_version }}.linux-amd64.tar.gz
+        owner: "{{ lookup('env', 'USER') }}"
+        mode: '0755'
+
+    - name: Install
+      unarchive:
+        src: /tmp/go{{ go_version }}.linux-amd64.tar.gz
+        dest: /usr/local
+      become: '{{ should_sudo_install }}'
+  when: (existing_go_version.stdout | regex_replace('go version go([0-9]+\.[0-9]+\.[0-9]+).*', '\\1')) != go_version

@@ -3,7 +3,7 @@ if status is-interactive
     launch_tmux
 
     # Use prefix search on Up for history
-    bind --key up history-prefix-search-backward    
+    bind --key up history-prefix-search-backward
     bind \e\[A history-prefix-search-backward
 
     # Set colors
@@ -13,11 +13,9 @@ if status is-interactive
 
     # Set PATH
     fish_add_path \
-      ~/.cargo/bin \
-      ~/.local/bin \
-      ~/bin \
-      ~/go/bin \
-      /usr/local/bin \
-      /usr/local/go/bin
-end
+        ~/.cargo/bin \
+        ~/.local/bin \
+        ~/bin \
+        /usr/local/bin
 
+end

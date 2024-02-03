@@ -1,3 +1,22 @@
 - name: Run OS specific tasks
-  import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"
+  import_tasks: '{{ playbook_dir }}/tasks/run_os_specific_tasks.yml'
 
+- name: Install tools
+  command:
+    cmd: /usr/local/go/bin/go install {{ item.url }}
+    creates: ~/go/bin/{{ item.bin }}
+  loop:
+    - bin: dlv
+      url: github.com/go-delve/delve/cmd/dlv@latest
+    - bin: goimports
+      url: golang.org/x/tools/cmd/goimports@latest
+    - bin: gomodifytags
+      url: github.com/fatih/gomodifytags@latest
+    - bin: gopkgs
+      url: github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest
+    - bin: gopls
+      url: golang.org/x/tools/gopls@latest
+    - bin: impl
+      url: github.com/josharian/impl@latest
+    - bin: staticcheck
+      url: honnef.co/go/tools/cmd/staticcheck@latest
