@@ -78,11 +78,12 @@
   "editor.detectIndentation": false,
   "editor.fontSize": 13,
   "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "modifications",
   "editor.insertSpaces": true,
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "evenBetterToml.semanticTokens": true,
   "extensions.ignoreRecommendations": false,
   "files.associations": {
     "*.cf": "yaml",
@@ -98,10 +99,12 @@
   },
   "git.autofetch": true,
   "git.confirmSync": false,
-  "go.autocompleteUnimportedPackages": true,
   "go.inlayHints.parameterNames": true,
   "go.inlayHints.rangeVariableTypes": true,
   "go.toolsManagement.autoUpdate": true,
+  "gopls": {
+    "ui.semanticTokens": true
+  },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "latex-workshop.view.pdf.viewer": "tab",
   "markdown.extension.toc.levels": "2..6",
@@ -114,6 +117,7 @@
   "redhat.telemetry.enabled": false,
   "rust-analyzer.inlayHints.bindingModeHints.enable": true,
   "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "rust-analyzer.semanticHighlighting.operator.specialization.enable": true,
   "security.workspace.trust.enabled": false,
   "shellcheck.customArgs": [
     "-x"
