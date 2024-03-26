@@ -51,12 +51,13 @@
     "editor.tabSize": 2
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": null,
     "editor.tabSize": 2
   },
   "breadcrumbs.enabled": true,
   "calva.paredit.defaultKeyMap": "strict",
   "calva.showCalvaSaysOnStart": false,
+  "circleci.notifications.areActive": "no",
   "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**, results/unit/**",
   "cSpell.enabled": false,
   "cSpell.enabledLanguageIds": [
@@ -80,9 +81,10 @@
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.largeFileOptimizations": false,
-  "editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
+  "emmet.showAbbreviationSuggestions": false,
+  "emmet.showExpandedAbbreviation": "never",
   "evenBetterToml.semanticTokens": true,
   "extensions.ignoreRecommendations": false,
   "files.associations": {
@@ -99,6 +101,7 @@
   },
   "git.autofetch": true,
   "git.confirmSync": false,
+  "go.autocompleteUnimportedPackages": true,
   "go.inlayHints.parameterNames": true,
   "go.inlayHints.rangeVariableTypes": true,
   "go.toolsManagement.autoUpdate": true,
@@ -129,6 +132,11 @@
     "**/*.zsh": true
   },
   "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.titleBarStyle": "custom",
   "workbench.colorCustomizations": {
@@ -140,7 +148,6 @@
   "workbench.startupEditor": "newUntitledFile",
   "xml.format.enabled": false,
   "yaml.format.enable": true,
-  "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "Kubernetes": "*.yaml"
   },
