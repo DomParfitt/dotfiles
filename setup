@@ -2,9 +2,12 @@
 
 import argparse
 import os
+from os import path
 from shutil import which
 from subprocess import run
 from sys import exit
+
+SETUP_DIR = path.dirname(path.realpath(__file__))
 
 # Pseudo roles are tags that are applied to multiple roles to allow easy setup of a collection
 # of related roles
@@ -30,7 +33,7 @@ def parse_args():
 
 
 def get_available_roles():
-    return sorted(os.listdir(os.path.join(os.path.dirname(__file__), 'roles')))
+    return sorted(os.listdir(path.join(SETUP_DIR, 'roles')))
 
 
 def install_ansible():
@@ -77,8 +80,9 @@ def run_setup(roles, args):
 
     # Install additional modules
     if args.install_modules:
-        run(['ansible-galaxy', 'collection',
-             'install', '-r', 'requirements.yml', '--force'])
+        run(['ansible-galaxy', 'collection', 'install',
+             '-r', path.join(SETUP_DIR, 'requirements.yml'),
+             '--force'])
 
     additional_args = []
     if args.config_only:
@@ -102,8 +106,9 @@ def run_setup(roles, args):
             env[pair] = 'True'
         pass
 
-    # Run the playbook
-    run(['ansible-playbook', 'main.yml'] + additional_args, env=env)
+    env['ANSIBLE_CONFIG'] = path.join(SETUP_DIR, 'ansible.cfg')
+    run(['ansible-playbook', path.join(SETUP_DIR, 'main.yml')] +
+        additional_args, env=env)
 
 
 def main():
