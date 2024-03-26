@@ -4,3 +4,7 @@
 
 ./calva/**
 **/.calva/**
+
+.clj-kondo/**
+
+.lsp/**

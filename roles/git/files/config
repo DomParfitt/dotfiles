@@ -3,16 +3,22 @@
   email = mail@domparfitt.com
 
 [alias]
-  default = ! git remote show origin | sed -n '/HEAD branch/s/.*: //p'
+  default = ! git branch --list 'master' --list 'main' | head -1 | tr -d '[:space:]'
   dpull = ! source $HOME/.functions && pull_and_diff
+  fixup = ! git add . && git commit --fixup $(git log -1 --pretty=format:"%h")
+  fix = fixup
+  primary = default
+  preview = ! git fetch && git log --oneline HEAD..origin/$(git default)
   publish = ! git push -u origin $(git branch --show-current)
   pub = publish
+  trunk = default
+  wip = ! git add . && git commit -m 'WIP'
 
 [credential]
   helper = store
 
 [core]
-  editor = vim
+  editor = nvim
   excludesfile = ~/.config/git/gitignore
 
 [include]
@@ -26,6 +32,3 @@
 
 [rebase]
   autosquash = true
-
-[gc]
-	auto = 0
