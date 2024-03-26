@@ -1,8 +1,3 @@
 - name: Run OS specific tasks
   import_tasks: "{{ playbook_dir }}/tasks/run_os_specific_tasks.yml"
 
-- name: Install
-  package:
-    name: google-cloud-cli
-    state: latest
-  become: "{{ should_sudo_install }}"

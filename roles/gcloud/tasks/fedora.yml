@@ -14,3 +14,9 @@
   dnf:
     name: libxcrypt-compat
   become: true
+
+- name: Install
+  dnf:
+    name: google-cloud-cli
+    state: latest
+  become: "{{ should_sudo_install }}"
