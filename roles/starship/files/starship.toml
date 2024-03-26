@@ -75,7 +75,7 @@ style = "37"
 
 [kubernetes]
 disabled = false
-format = "[$symbol $context/$namespace ]($style)"
+format = "[$symbol $cluster/$namespace ]($style)"
 symbol = "\u2388"
 style = "134" # purple
 
