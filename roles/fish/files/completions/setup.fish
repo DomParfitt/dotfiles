@@ -9,12 +9,16 @@ set --local opts (./setup -h | \
    # Remove newlines to get rid of extras
    tr -d \n | \
    # Reinsert newlines between flags
-   string replace -ar '(-\w),' '\n$1' | \
+   string replace -ar ' (-\w)' '\n$1' | \
    # Split each line into required sections
    # Should be: -<short-flag> --<long-flag> description
-   string replace -afr '\\-([a-z]+) --([a-z]+[a-z\\-]*) (.*)' '$1,$2,$3')
+   string replace -afr '\\-([a-z]+),? (--([a-z]+[a-z\\-]*))?\s?(.*)' '$1,$3,$4')
 
 for option in $opts
   set --local opt (echo $option | string split ,)
-  complete -c setup -s $opt[1] -l $opt[2] -d $opt[3]
+  if test -n $opt[2]
+     complete -c setup -s $opt[1] -l $opt[2] -d $opt[3]
+  else
+     complete -c setup -s $opt[1] -d $opt[3]
+  end
 end
