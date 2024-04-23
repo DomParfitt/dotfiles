@@ -1,4 +1,4 @@
-set --local roles (./setup -l)
+set --local roles (~/.dotfiles/setup -l)
 complete -c setup -f -a (string join ' ' $roles)
 
 set --local opts (./setup -h | \
