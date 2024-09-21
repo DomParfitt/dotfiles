@@ -1,0 +1,11 @@
+- name: Add repository
+  yum_repository:
+    file: mise
+    name: mise
+    description: Mise-en-place
+    baseurl: https://mise.jdx.dev/rpm
+    enabled: 1
+    gpgcheck: 1
+    repo_gpgcheck: 0
+    gpgkey: https://mise.jdx.dev/gpg-key.pub
+  become: true
