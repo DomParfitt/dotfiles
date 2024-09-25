@@ -1,0 +1,8 @@
+[tools]
+go = "latest"
+usage = "latest"
+node = ["lts", "latest"]
+
+[env]
+MISE_GO_DEFAULT_PACKAGES_FILE = "~/.config/mise/go/packages"
+MISE_NODE_DEFAULT_PACKAGES_FILE = "~/.config/mise/node/packages"

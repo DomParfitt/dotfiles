@@ -3,14 +3,14 @@
 
 - name: Install
   package:
-    name: starship
+    name: mise
     state: latest
-  become: "{{ should_sudo_install }}"
+  become: '{{ should_sudo_install }}'
 
 - name: Copy config
   file:
-    src: "{{ role_path }}/files/starship.toml"
-    dest: ~/.config/starship.toml
+    src: '{{ role_path }}/files'
+    dest: ~/.config/mise
     state: link
     force: true
   tags:

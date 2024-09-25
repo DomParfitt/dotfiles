@@ -42,6 +42,7 @@
     - kubernetes
     - lazygit
     - line6
+    - mise
     - node
     - nomad
     - podman
