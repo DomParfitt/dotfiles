@@ -1,3 +1,7 @@
 function dc --wraps=docker-compose --description 'alias dc=docker-compose'
-  docker-compose $argv; 
+  if type --query docker-compose
+    docker-compose $argv; 
+  end
+
+  docker compose $argv
 end
