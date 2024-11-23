@@ -61,7 +61,6 @@
     - vagrant
     - vim
     - vscode
-    - zed
     - zoxide
     - role: zsh
       tags:
