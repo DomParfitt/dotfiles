@@ -4,7 +4,7 @@
     "editor.tabSize": 2
   },
   "[haskell]": {
-    "editor.defaultFormatter": "haskell.haskell"
+    "editor.defaultFormatter": "MaxGabriel.brittany"
   },
   "[helm]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -51,25 +51,13 @@
     "editor.tabSize": 2
   },
   "[yaml]": {
-    "editor.defaultFormatter": null,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "breadcrumbs.enabled": true,
   "calva.paredit.defaultKeyMap": "strict",
   "calva.showCalvaSaysOnStart": false,
-  "circleci.notifications.areActive": "no",
   "coverage-gutters.coverageReportFileName": "test-results/jest/**, .nyc_output/**, results/unit/**",
-  "cSpell.enabled": false,
-  "cSpell.enabledLanguageIds": [
-    "asciidoc",
-    "git-commit",
-    "latex",
-    "markdown",
-    "plaintext",
-    "restructuredtext",
-    "text"
-  ],
-  "cSpell.language": "en-GB",
   "diffEditor.ignoreTrimWhitespace": false,
   "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
@@ -77,10 +65,11 @@
     "source.organizeImports": "never"
   },
   "editor.detectIndentation": false,
-  "editor.fontSize": 13,
+  "editor.fontSize": 12,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.largeFileOptimizations": false,
+  "editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
   "editor.tabSize": 2,
   "emmet.showAbbreviationSuggestions": false,
@@ -101,20 +90,38 @@
   },
   "git.autofetch": true,
   "git.confirmSync": false,
-  "go.autocompleteUnimportedPackages": true,
+  "gitlens.advanced.messages": {
+    "suppressIntegrationRequestTimedOutWarning": true
+  },
+  "gitlens.launchpad.indicator.polling.enabled": false,
+  "go.alternateTools": {
+    "customFormatter": "./bin/gosimports"
+  },
+  "go.buildTags": "linux",
+  "go.delveConfig": {
+    "showGlobalVariables": true,
+    "showLog": true
+  },
   "go.inlayHints.parameterNames": true,
   "go.inlayHints.rangeVariableTypes": true,
+  "go.lintTool": "golangci-lint",
+  "go.testFlags": [
+    "--count=1"
+  ],
+  "go.testTags": "integration",
   "go.toolsManagement.autoUpdate": true,
   "gopls": {
+    "build.buildFlags": [
+      "-tags=build e2e integration prod"
+    ],
     "ui.semanticTokens": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "latex-workshop.view.pdf.viewer": "tab",
   "markdown.extension.toc.levels": "2..6",
   "markdown.extension.toc.orderedList": true,
-  "npm.keybindingsChangedWarningShown": true,
   "php.validate.executablePath": "/usr/bin/php",
-  "prettier.requireConfig": false,
+  "prettier.requireConfig": true,
   "prettier.singleQuote": true,
   "python.defaultInterpreterPath": "/bin/python",
   "redhat.telemetry.enabled": false,
