@@ -22,7 +22,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Yggdroot/indentLine'
   Plug 'itchyny/lightline.vim'
   Plug 'preservim/nerdtree'
-  Plug 'joshdick/onedark.vim'
+  Plug 'joshdick/onedark.vim', {'branch': 'main'}
   Plug 'tpope/vim-commentary'
   Plug 'rakr/vim-one'
   Plug 'sheerun/vim-polyglot'
