@@ -15,3 +15,7 @@
     force: true
   tags:
     - config
+
+- name: Trust config
+  command:
+    cmd: mise trust ~/.config/mise/config.toml
