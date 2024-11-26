@@ -1,0 +1,16 @@
+# - name: Install
+#   package:
+#     name: zed
+#     state: latest
+#   become: "{{ should_sudo_install }}"
+
+- name: Download
+  get_url:
+    url: https://zed.dev/install.sh
+    dest: /tmp/install-zed.sh
+    owner: "{{ lookup('env', 'USER') }}"
+    mode: '0755'
+
+- name: Install
+  command:
+    cmd: /tmp/install-zed.sh
